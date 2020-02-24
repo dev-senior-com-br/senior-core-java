@@ -14,16 +14,13 @@ import java.util.List;
 
 public class AuthorizationIT {
 
-    private static final String ADMIN_USERNAME = "username";
-    private static final String ADMIN_PASSWORD = "password";
     private static final String URI = "res://tenant/dominio/servico/recurso";
     private static final String ROLE_NAME = "PapelParaTestes";
-    private static final String SIMPLE_USER = "demo";
     private static String token;
 
     @BeforeClass
     public static void beforeClass() throws ServiceException {
-        token = new AuthenticationClient().login(new LoginInput(ADMIN_USERNAME, ADMIN_PASSWORD)).getJsonToken().getAccess_token();
+        token = new AuthenticationClient().login(new LoginInput(System.getenv("username"), System.getenv("password_valid"))).getJsonToken().getAccess_token();
     }
 
     @Test
@@ -67,7 +64,7 @@ public class AuthorizationIT {
 
     @Test
     public void testCreateAndGetRole() throws ServiceException {
-        Assert.assertThrows(ServiceException.class, () -> getRole());
+        Assert.assertThrows(ServiceException.class, this::getRole);
         try {
             Assert.assertNotNull(createRole());
             Assert.assertNotNull(getRole());
@@ -78,13 +75,13 @@ public class AuthorizationIT {
 
     @Test
     public void testCreateAndDeleteRoles() throws ServiceException {
-        Assert.assertThrows(ServiceException.class, () -> getRole());
+        Assert.assertThrows(ServiceException.class, this::getRole);
         try {
             Assert.assertNotNull(createRole());
         } finally {
             Assert.assertNotNull(deleteRole());
         }
-        Assert.assertThrows(ServiceException.class, () -> getRole());
+        Assert.assertThrows(ServiceException.class, this::getRole);
     }
 
     @Test
@@ -143,14 +140,14 @@ public class AuthorizationIT {
         return new AuthorizationClient(token).deleteRole(input);
     }
 
-    private UnassignUsersOutput unassignUsers() throws ServiceException {
-        UnassignUsersInput input = new UnassignUsersInput(Collections.singletonList(ROLE_NAME), Collections.singletonList(SIMPLE_USER));
-        return new AuthorizationClient(token).unassignUsers(input);
+    private void unassignUsers() throws ServiceException {
+        UnassignUsersInput input = new UnassignUsersInput(Collections.singletonList(ROLE_NAME), Collections.singletonList(System.getenv("other_user")));
+        new AuthorizationClient(token).unassignUsers(input);
     }
 
-    private AssignUsersOutput assignUsers() throws ServiceException {
-        AssignUsersInput input = new AssignUsersInput(Collections.singletonList(ROLE_NAME), Collections.singletonList(SIMPLE_USER));
-        return new AuthorizationClient(token).assignUsers(input);
+    private void assignUsers() throws ServiceException {
+        AssignUsersInput input = new AssignUsersInput(Collections.singletonList(ROLE_NAME), Collections.singletonList(System.getenv("other_user")));
+        new AuthorizationClient(token).assignUsers(input);
     }
 
     private GetAssignedUsersOutput getAssignedUsers() throws ServiceException {

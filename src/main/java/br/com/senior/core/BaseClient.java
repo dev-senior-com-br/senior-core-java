@@ -38,10 +38,10 @@ public abstract class BaseClient {
         this.env = env;
     }
 
-    protected String getRestUrl() {
+    private String getUrl() {
         switch (env) {
-            case PROD: return "https://platform.senior.com.br/t/senior.com.br/bridge/1.0/rest";
-            case HOMOLOG: return "https://platform-homologx.senior.com.br/t/senior.com.br/bridge/1.0/rest";
+            case PROD: return "https://platform.senior.com.br/t/senior.com.br/bridge/1.0/";
+            case HOMOLOG: return "https://platform-homologx.senior.com.br/t/senior.com.br/bridge/1.0/";
             default: throw new IllegalStateException("Environment inválido");
         }
     }
@@ -89,7 +89,11 @@ public abstract class BaseClient {
     }
 
     protected String getActionsUrl() {
-        return String.format("%s/%s/%s/actions/", getRestUrl(), this.domain, this.service);
+        return String.format("%s/rest/%s/%s/actions/", getUrl(), this.domain, this.service);
+    }
+
+    protected String getAnonymousActionsUrl() {
+        return String.format("%s/anonymous/rest/%s/%s/actions/", getUrl(), this.domain, this.service);
     }
 
 }

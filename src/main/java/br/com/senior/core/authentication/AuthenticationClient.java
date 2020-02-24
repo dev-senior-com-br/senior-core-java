@@ -45,7 +45,7 @@ public class AuthenticationClient extends BaseClient {
      */
     public LoginWithKeyOutput loginWithKey(LoginWithKeyInput payload) throws ServiceException {
         GsonBuilder gson = new GsonBuilder();
-        return gson.create().fromJson(execute(getActionsUrl() + "loginWithKey", payload), LoginWithKeyOutput.class);
+        return gson.create().fromJson(execute(getAnonymousActionsUrl() + "loginWithKey", payload), LoginWithKeyOutput.class);
     }
 
     /**
