@@ -7,7 +7,7 @@ Esta biblioteca permite desenvolvedores criar integrações do a API de Authoriz
 ### Usando Maven
 1. Executar `mvn clean install`, após a execução do comando Senior Authorization SDK para Java estará instalado no repositório local do maven.
 
-2. Adicionar a dependencia Senior Core no pom.xml do seu projeto
+2. Adicionar a dependência Senior Core no pom.xml do seu projeto
 
   ```xml
     ...
@@ -20,8 +20,17 @@ Esta biblioteca permite desenvolvedores criar integrações do a API de Authoriz
     </dependencies>
     ...
   ```
-  
-3. Escrever em linha de comando `mvn test -Dtest=**/*` para executar os testes integrados automatizados pelo Maven.
+
+3. Adicionar as seguintes variáveis de ambiente para realizar os testes:
+
+  ```powershell
+    ...
+    USERNAME = "admin@xpto.com.br"
+    PASSWORD = "minhasenha"
+    ...
+  ```
+
+4. Escrever em linha de comando `mvn test -Dtest=**/*` para executar os testes integrados automatizados pelo Maven.
 
 ## Exemplo Rápido
 
