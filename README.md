@@ -25,7 +25,7 @@ Esta biblioteca permite desenvolvedores criar integrações do a API de Authoriz
 
 ## Exemplo Rápido
 
-Implementamos no pacote **/src/test/java/br/com/senior/core/it** um conjunto de testes de integração para cada serviço. Alguns serviços dependem de variáveis que precisam ser informadas pelos usuários, como login e senha para testar o login, ou token de acesso para os testes de autorização.
+Implementamos no pacote **/src/test/java/br/com/senior/core** um conjunto de testes de integração para cada serviço. Alguns serviços dependem de variáveis que precisam ser informadas pelos usuários, como login e senha para testar o login, ou token de acesso para os testes de autorização.
 Testes de login multi fator por exemplo dependem de um usuário que esteja configurado dessa para tal.
 
 O ambiente pode ser definido no construtor de cada client, por padrão é utilizado o ambiente de homologação.
