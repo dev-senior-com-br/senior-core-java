@@ -39,9 +39,9 @@ Testes de login multi fator por exemplo dependem de um usuário que esteja confi
 
 O ambiente pode ser definido no construtor de cada client, por padrão é utilizado o ambiente de homologação.
 
-Os  testes servem como exemplos de implementação, basta copiar o código do exemplo que se deseja para sua aplicação
+Os  testes servem como exemplos de implementação, basta copiar o código do exemplo que se deseja para sua aplicação.
 
-Utilizando como exemplo o login, caso a aplicação queira efetuar o login integrado com a Senior, basta adicionar a dependência no maven e utilizar o cliente de autenticação, por exemplo
+Utilizando como exemplo o login, caso a aplicação queira efetuar o login integrado com a Senior, basta adicionar a dependência no maven e utilizar o cliente de autenticação, por exemplo:
 
 ```java
     ...
