@@ -21,17 +21,6 @@ Esta biblioteca permite desenvolvedores criar integrações do a API de Authoriz
     ...
   ```
 
-3. Adicionar as seguintes variáveis de ambiente para realizar os testes:
-
-  ```powershell
-    ...
-    USERNAME = "admin@xpto.com.br"
-    PASSWORD = "minhasenha"
-    ...
-  ```
-
-4. Escrever em linha de comando `mvn test -Dtest=**/*` para executar os testes integrados automatizados pelo Maven.
-
 ## Exemplo Rápido
 
 Implementamos no pacote **/src/test/java/br/com/senior/core** um conjunto de testes de integração para cada serviço. Alguns serviços dependem de variáveis que precisam ser informadas pelos usuários, como login e senha para testar o login, ou token de acesso para os testes de autorização.
