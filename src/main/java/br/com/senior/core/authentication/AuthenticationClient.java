@@ -59,8 +59,7 @@ public class AuthenticationClient extends BaseClient {
     /**
      * Gera um novo token a partir de um refresh_token.
      */
-    public RefreshTokenOutput refreshToken (RefreshTokenInput payload) throws ServiceException {
-        String tenant = System.getenv("tenant");
+    public RefreshTokenOutput refreshToken (RefreshTokenInput payload, String tenant) throws ServiceException {
         GsonBuilder gson = new GsonBuilder();
         return gson.create().fromJson(executeAnonymous(getActionsUrl() + "refreshToken", payload, tenant), RefreshTokenOutput.class);
     }

@@ -64,9 +64,10 @@ public class AuthenticationIT {
 
     @Test
     public void testRefreshToken() throws ServiceException {
+        String tenant = System.getenv("tenant");
         LoginOutput loginOutput = login();
         RefreshTokenInput input = new RefreshTokenInput(loginOutput.getJsonToken().getRefresh_token(), Scope.DESKTOP.toString().toLowerCase());
-        RefreshTokenOutput output = new AuthenticationClient().refreshToken(input);
+        RefreshTokenOutput output = new AuthenticationClient().refreshToken(input,tenant);
         Assert.assertNotNull(input.getRefreshToken());
         Assert.assertNotNull(input.getScope());
         Assert.assertNotNull(output.getJsonToken());
