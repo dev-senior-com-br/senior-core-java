@@ -68,17 +68,7 @@ public class AuthenticationIT {
         LoginOutput loginOutput = login();
         RefreshTokenInput input = new RefreshTokenInput(loginOutput.getJsonToken().getRefresh_token(), Scope.DESKTOP.toString().toLowerCase());
         RefreshTokenOutput output = new AuthenticationClient().refreshToken(input,tenant);
-        Assert.assertNotNull(input.getRefreshToken());
-        Assert.assertNotNull(input.getScope());
         Assert.assertNotNull(output.getJsonToken());
-    }
-
-    @Test
-    public void testRefreshTokenScopeNull() throws ServiceException {
-        LoginOutput output = login();
-        RefreshTokenInput input = new RefreshTokenInput(output.getJsonToken().getRefresh_token());
-        Assert.assertNotNull(input.getRefreshToken());
-        Assert.assertNull(input.getScope());
     }
 
     private LoginOutput login() throws ServiceException {
