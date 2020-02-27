@@ -25,7 +25,7 @@ public class AuthenticationClient extends BaseClient {
      */
     public LoginOutput login(LoginInput payload) throws ServiceException {
         GsonBuilder gson = new GsonBuilder();
-        String str = execute(getActionsUrl() + "login", payload);
+        String str = executeAnonymous(getActionsUrl() + "login", payload, null);
         LoginInternalOutput internalOutput = gson.create().fromJson(str, LoginInternalOutput.class);
         SeniorJsonToken jsonToken = Optional.ofNullable(internalOutput.getJsonToken()).map(json -> gson.create().fromJson(json, SeniorJsonToken.class)).orElse(null);
         return new LoginOutput(jsonToken, internalOutput.getMfaInfo(), internalOutput.getResetPasswordInfo());
@@ -37,7 +37,7 @@ public class AuthenticationClient extends BaseClient {
      */
     public LoginMFAOutput loginMFA(LoginMFAInput payload) throws ServiceException {
         GsonBuilder gson = new GsonBuilder();
-        return gson.create().fromJson(execute(getActionsUrl() + "loginMFA", payload), LoginMFAOutput.class);
+        return gson.create().fromJson(executeAnonymous(getActionsUrl() + "loginMFA", payload, null), LoginMFAOutput.class);
     }
 
     /**
@@ -45,7 +45,7 @@ public class AuthenticationClient extends BaseClient {
      */
     public LoginWithKeyOutput loginWithKey(LoginWithKeyInput payload) throws ServiceException {
         GsonBuilder gson = new GsonBuilder();
-        return gson.create().fromJson(execute(getAnonymousActionsUrl() + "loginWithKey", payload), LoginWithKeyOutput.class);
+        return gson.create().fromJson(executeAnonymous(getAnonymousActionsUrl() + "loginWithKey", payload, null), LoginWithKeyOutput.class);
     }
 
     /**
@@ -55,4 +55,13 @@ public class AuthenticationClient extends BaseClient {
         GsonBuilder gson = new GsonBuilder();
         return gson.create().fromJson(execute(getActionsUrl() + "logout", payload, payload.getAccessToken()), LogoutOutput.class);
     }
+
+    /**
+     * Gera um novo token a partir de um refresh_token.
+     */
+    public RefreshTokenOutput refreshToken (RefreshTokenInput payload, String tenant) throws ServiceException {
+        GsonBuilder gson = new GsonBuilder();
+        return gson.create().fromJson(executeAnonymous(getActionsUrl() + "refreshToken", payload, tenant), RefreshTokenOutput.class);
+    }
+
 }
