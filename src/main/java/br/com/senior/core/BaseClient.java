@@ -46,22 +46,27 @@ public abstract class BaseClient {
         }
     }
 
-    protected String execute(String url, Object payload) throws ServiceException {
-        return execute(url, payload, null);
+    protected String execute(String url, Object payload, String token) throws ServiceException {
+        return execute(url, payload, token,null);
     }
 
-    protected String execute(String url, Object payload, String token) throws ServiceException {
+    protected String executeAnonymous(String url, Object payload, String tenant) throws ServiceException {
+        return execute(url, payload, null, tenant);
+    }
+
+    private String execute(String url, Object payload, String token, String tenant) throws ServiceException {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
-            HttpResponse response = executePost(url, payload, client, token);
+            HttpResponse response = executePost(url, payload, client, token, tenant);
             return readResponse(response);
         } catch (IOException e) {
             throw new ServiceException("Erro ao efetuar requisição", e);
         }
     }
 
-    private HttpResponse executePost(String url, Object payload, CloseableHttpClient client, String token) throws IOException {
+    private HttpResponse executePost(String url, Object payload, CloseableHttpClient client, String token, String tenant) throws IOException {
         HttpPost post = new HttpPost(url);
         post.setHeader("Content-Type", "application/json");
+        Optional.ofNullable(tenant).ifPresent(t -> post.setHeader("X-Tenant", t));
         Optional.ofNullable(token).ifPresent(t -> post.setHeader("Authorization", String.format("Bearer %s", t)));
         StringEntity userEntity = new StringEntity(new Gson().toJson(payload));
         post.setEntity(userEntity);

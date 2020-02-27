@@ -1,5 +1,6 @@
 package br.com.senior.core.authentication;
 
+import br.com.senior.core.Scope;
 import br.com.senior.core.ServiceException;
 import br.com.senior.core.authentication.pojos.*;
 import org.junit.Assert;
@@ -59,6 +60,24 @@ public class AuthenticationIT {
         LogoutInput input = new LogoutInput(login.getJsonToken().getAccess_token());
         LogoutOutput output = new AuthenticationClient().logout(input);
         Assert.assertNotNull(output);
+    }
+
+    @Test
+    public void testRefreshToken() throws ServiceException {
+        LoginOutput loginOutput = login();
+        RefreshTokenInput input = new RefreshTokenInput(loginOutput.getJsonToken().getRefresh_token(), Scope.DESKTOP.toString().toLowerCase());
+        RefreshTokenOutput output = new AuthenticationClient().refreshToken(input);
+        Assert.assertNotNull(input.getRefreshToken());
+        Assert.assertNotNull(input.getScope());
+        Assert.assertNotNull(output.getJsonToken());
+    }
+
+    @Test
+    public void testRefreshTokenScopeNull() throws ServiceException {
+        LoginOutput output = login();
+        RefreshTokenInput input = new RefreshTokenInput(output.getJsonToken().getRefresh_token());
+        Assert.assertNotNull(input.getRefreshToken());
+        Assert.assertNull(input.getScope());
     }
 
     private LoginOutput login() throws ServiceException {
