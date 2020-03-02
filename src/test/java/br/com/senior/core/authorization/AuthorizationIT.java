@@ -1,18 +1,39 @@
 package br.com.senior.core.authorization;
 
-import br.com.senior.core.ServiceException;
-import br.com.senior.core.authentication.AuthenticationClient;
-import br.com.senior.core.authorization.pojos.*;
-import br.com.senior.core.authentication.pojos.*;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class AuthorizationIT {
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import br.com.senior.core.BaseIT;
+import br.com.senior.core.ServiceException;
+import br.com.senior.core.authentication.AuthenticationClient;
+import br.com.senior.core.authentication.pojos.LoginInput;
+import br.com.senior.core.authorization.pojos.Action;
+import br.com.senior.core.authorization.pojos.AssignUsersInput;
+import br.com.senior.core.authorization.pojos.CheckAccessInput;
+import br.com.senior.core.authorization.pojos.CheckAccessOutput;
+import br.com.senior.core.authorization.pojos.CreateRoleInput;
+import br.com.senior.core.authorization.pojos.CreateRoleOutput;
+import br.com.senior.core.authorization.pojos.DeleteResourcesInput;
+import br.com.senior.core.authorization.pojos.DeleteRoleInput;
+import br.com.senior.core.authorization.pojos.DeleteRoleOutput;
+import br.com.senior.core.authorization.pojos.GetAssignedUsersInput;
+import br.com.senior.core.authorization.pojos.GetAssignedUsersOutput;
+import br.com.senior.core.authorization.pojos.GetResourcesInput;
+import br.com.senior.core.authorization.pojos.GetResourcesOutput;
+import br.com.senior.core.authorization.pojos.GetRoleInput;
+import br.com.senior.core.authorization.pojos.GetRoleOutput;
+import br.com.senior.core.authorization.pojos.PermissionToCheck;
+import br.com.senior.core.authorization.pojos.Resource;
+import br.com.senior.core.authorization.pojos.SaveResourcesInput;
+import br.com.senior.core.authorization.pojos.SaveResourcesOutput;
+import br.com.senior.core.authorization.pojos.UnassignUsersInput;
+
+public class AuthorizationIT extends BaseIT {
 
     private static final String URI = "res://tenant/dominio/servico/recurso";
     private static final String ROLE_NAME = "PapelParaTestes";

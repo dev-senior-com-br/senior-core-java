@@ -1,13 +1,25 @@
 package br.com.senior.core.authentication;
 
-import br.com.senior.core.Scope;
-import br.com.senior.core.ServiceException;
-import br.com.senior.core.authentication.pojos.*;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class AuthenticationIT {
+import br.com.senior.core.BaseIT;
+import br.com.senior.core.ServiceException;
+import br.com.senior.core.authentication.pojos.LoginInput;
+import br.com.senior.core.authentication.pojos.LoginMFAInput;
+import br.com.senior.core.authentication.pojos.LoginOutput;
+import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
+import br.com.senior.core.authentication.pojos.LoginWithKeyOutput;
+import br.com.senior.core.authentication.pojos.LogoutInput;
+import br.com.senior.core.authentication.pojos.LogoutOutput;
+import br.com.senior.core.authentication.pojos.RefreshTokenInput;
+import br.com.senior.core.authentication.pojos.RefreshTokenOutput;
+import br.com.senior.core.user.UserClient;
+import br.com.senior.core.user.pojos.GetUserInput;
+import br.com.senior.core.user.pojos.GetUserOutput;
+
+public class AuthenticationIT extends BaseIT {
 
     @Test
     public void testValidLogin() throws ServiceException {
@@ -64,19 +76,18 @@ public class AuthenticationIT {
 
     @Test
     public void testRefreshToken() throws ServiceException {
-        String tenant = System.getenv("tenant");
         LoginOutput loginOutput = login();
-        RefreshTokenInput input = new RefreshTokenInput(loginOutput.getJsonToken().getRefresh_token(), Scope.DESKTOP.toString().toLowerCase());
-        RefreshTokenOutput output = new AuthenticationClient().refreshToken(input,tenant);
+        String username = loginOutput.getJsonToken().getUsername();
+        String accessToken = loginOutput.getJsonToken().getAccess_token();
+        String refreshToken = loginOutput.getJsonToken().getRefresh_token();
+
+        GetUserInput getUserInput = new GetUserInput(username);
+        GetUserOutput getUserOutput = new UserClient().getUser(getUserInput, accessToken);
+
+        RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken, null);
+        RefreshTokenOutput output = new AuthenticationClient().refreshToken(refreshTokenInput, getUserOutput.getTenantName());
+
         Assert.assertNotNull(output.getJsonToken());
     }
 
-    private LoginOutput login() throws ServiceException {
-        return login(System.getenv("username"), System.getenv("password_valid"));
-    }
-
-    private LoginOutput login(String username, String password) throws ServiceException {
-        LoginInput input = new LoginInput(username, password);
-        return new AuthenticationClient().login(input);
-    }
 }
