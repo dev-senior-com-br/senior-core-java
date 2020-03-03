@@ -1,11 +1,15 @@
 package br.com.senior.core.authentication.pojos;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 public class RefreshTokenInput {
 
     /**
@@ -17,14 +21,6 @@ public class RefreshTokenInput {
      * Escopo do token. Pode ser um dos seguintes valores: phone, desktop, tablet, iot ou wearable. Se não fornecido, o valor padrão é desktop
      */
     String scope;
-
-    public RefreshTokenInput() {
-    }
-
-    public RefreshTokenInput(String refreshToken, String scope) {
-        this.refreshToken = refreshToken;
-        this.scope = scope;
-    }
 
     public RefreshTokenInput(String refreshToken) {
         this.refreshToken = refreshToken;

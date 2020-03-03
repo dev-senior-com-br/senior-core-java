@@ -1,13 +1,17 @@
 package br.com.senior.core.authorization.pojos;
 
+import java.util.List;
+
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
-
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class AssignUsersInput {
 
     /**
@@ -18,13 +22,5 @@ public class AssignUsersInput {
      * Os usuário à serem incluídos nos papéis
      */
     List<String> users;
-
-    public AssignUsersInput() {
-    }
-
-    public AssignUsersInput(List<String> roles, List<String> users) {
-        this.roles = roles;
-        this.users = users;
-    }
 
 }

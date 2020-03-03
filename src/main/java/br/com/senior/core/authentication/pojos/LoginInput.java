@@ -1,13 +1,13 @@
 package br.com.senior.core.authentication.pojos;
 
 import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-@Getter
-@Setter
+@Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class LoginInput {
 
     /**
@@ -29,19 +29,9 @@ public class LoginInput {
      */
     String scope;
 
-    public LoginInput() {
-    }
-
     public LoginInput(String username, String password) {
         this.username = username;
         this.password = password;
-    }
-
-    public LoginInput(String username, String password, String code, String scope) {
-        this.username = username;
-        this.password = password;
-        this.code = code;
-        this.scope = scope;
     }
 
 }

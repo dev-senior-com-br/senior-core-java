@@ -3,7 +3,9 @@ package br.com.senior.core.authorization.pojos;
 import java.util.List;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 /**
@@ -11,6 +13,8 @@ import lombok.experimental.FieldDefaults;
  */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class PermissionToCheck {
 
     /**
@@ -25,15 +29,6 @@ public class PermissionToCheck {
      * Atributos ABAC à serem utilizados no script (se houver)
      */
     List<AttributeValue> attributes;
-
-    public PermissionToCheck() {
-    }
-
-    public PermissionToCheck(String resource, String action, List<AttributeValue> attributes) {
-        this.resource = resource;
-        this.action = action;
-        this.attributes = attributes;
-    }
 
     public PermissionToCheck(String resource, String action) {
         this.resource = resource;

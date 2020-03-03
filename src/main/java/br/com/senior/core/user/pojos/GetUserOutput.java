@@ -3,12 +3,16 @@ package br.com.senior.core.user.pojos;
 import java.util.List;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class GetUserOutput {
 
     /**
@@ -93,28 +97,6 @@ public class GetUserOutput {
     Boolean allowedToChangePassword;
 
     /**
-     * This constructor allows initialization of all fields, required and optional.
-     */
-    public GetUserOutput(String id, String username, String fullName, String description, String email, String locale, String tenantDomain, String tenantName, String tenantLocale, Boolean blocked, AuthType authenticationType, Boolean changePassword, String photo, java.util.List<Property> properties, Boolean admin, Boolean allowedToChangePassword) {
-        this.id = id;
-        this.username = username;
-        this.fullName = fullName;
-        this.description = description;
-        this.email = email;
-        this.locale = locale;
-        this.tenantDomain = tenantDomain;
-        this.tenantName = tenantName;
-        this.tenantLocale = tenantLocale;
-        this.blocked = blocked;
-        this.authenticationType = authenticationType;
-        this.changePassword = changePassword;
-        this.photo = photo;
-        this.properties = properties;
-        this.admin = admin;
-        this.allowedToChangePassword = allowedToChangePassword;
-    }
-
-    /**
      * This convenience constructor allows initialization of all required fields.
      */
     public GetUserOutput(String id, String username, String fullName, String email, String tenantDomain, String tenantName, String tenantLocale, Boolean blocked, AuthType authenticationType, String photo, Boolean admin, Boolean allowedToChangePassword) {
@@ -130,9 +112,6 @@ public class GetUserOutput {
         this.photo = photo;
         this.admin = admin;
         this.allowedToChangePassword = allowedToChangePassword;
-    }
-
-    public GetUserOutput() {
     }
 
     public GetUserOutput(String tenantName) {

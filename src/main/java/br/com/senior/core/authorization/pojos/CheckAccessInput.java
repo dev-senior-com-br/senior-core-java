@@ -3,11 +3,13 @@ package br.com.senior.core.authorization.pojos;
 import java.util.List;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class CheckAccessInput {
 
     /**
@@ -23,9 +25,4 @@ public class CheckAccessInput {
      */
     Boolean includeDelegations = false;
 
-    public CheckAccessInput(List<PermissionToCheck> permissions, Boolean includeFilters, Boolean includeDelegations) {
-        this.permissions = permissions;
-        this.includeFilters = includeFilters;
-        this.includeDelegations = includeDelegations;
-    }
 }

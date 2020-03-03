@@ -1,11 +1,15 @@
 package br.com.senior.core.authentication.pojos;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 public class LoginMFAOutput {
 
     /**
@@ -16,15 +20,6 @@ public class LoginMFAOutput {
      * Informações para realizar o próximo passo da autenticação quando o usuário está sinalizado para alterar a senha após se autenticar.
      */
     ResetPasswordInfo resetPasswordInfo;
-
-
-    public LoginMFAOutput() {
-    }
-
-    public LoginMFAOutput(String jsonToken, ResetPasswordInfo resetPasswordInfo) {
-        this.jsonToken = jsonToken;
-        this.resetPasswordInfo = resetPasswordInfo;
-    }
 
     public LoginMFAOutput(String jsonToken) {
         this.jsonToken = jsonToken;

@@ -89,8 +89,8 @@ public class AuthenticationIT extends BaseIT {
         RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken, Scope.DESKTOP.toString());
         RefreshTokenOutput output = new AuthenticationClient().refreshToken(refreshTokenInput, getUserOutput.getTenantName());
 
-        Assert.assertNotNull(output);
-        Assert.assertEquals(username, output.getUsername());
+        Assert.assertNotNull(output.getJsonToken());
+        Assert.assertEquals(username, output.getJsonToken().getUsername());
     }
 
     @Test
@@ -106,8 +106,8 @@ public class AuthenticationIT extends BaseIT {
         RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken);
         RefreshTokenOutput output = new AuthenticationClient().refreshToken(refreshTokenInput, getUserOutput.getTenantName());
 
-        Assert.assertNotNull(output);
-        Assert.assertEquals(username, output.getUsername());
+        Assert.assertNotNull(output.getJsonToken());
+        Assert.assertEquals(username, output.getJsonToken().getUsername());
     }
 
 }

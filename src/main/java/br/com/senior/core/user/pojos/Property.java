@@ -3,13 +3,17 @@ package br.com.senior.core.user.pojos;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 /**
  * Representa uma propriedade
  */
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 public class Property {
     
     /**
@@ -20,17 +24,6 @@ public class Property {
      * Valor da propriedade
      */
     public String value;
-    
-    public Property() {
-    }
-    
-    /** 
-     * This constructor allows initialization of all fields, required and optional.
-     */
-    public Property(String name, String value) {
-        this.name = name;
-        this.value = value;
-    }
 
     @Override
     public String toString() {
