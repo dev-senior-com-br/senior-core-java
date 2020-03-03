@@ -19,7 +19,7 @@ public class UserClient extends BaseClient {
     }
 
     /**
-     * Recupera dados do usuário logado.
+     * Retorna as informações básicas do usuário passado como parâmetro. Se o usuário não for informado, retorna os dados do usuário corrente (que efetuou o login)
      */
     public GetUserOutput getUser(GetUserInput payload, String token) throws ServiceException {
         GsonBuilder gson = new GsonBuilder();

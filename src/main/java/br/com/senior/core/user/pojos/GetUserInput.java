@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 public class GetUserInput {
 
     /**
-     * Username de acesso - Ex: user@tenant.com.br
+     * "Nome do usuário no formato nome@dominio_tenant"
      */
     String username;
 
