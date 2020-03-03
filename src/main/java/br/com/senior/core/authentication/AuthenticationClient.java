@@ -4,9 +4,6 @@ import java.util.Optional;
 
 import com.google.gson.GsonBuilder;
 
-import br.com.senior.core.BaseClient;
-import br.com.senior.core.Environment;
-import br.com.senior.core.ServiceException;
 import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.authentication.pojos.LoginInternalOutput;
 import br.com.senior.core.authentication.pojos.LoginMFAInput;
@@ -17,8 +14,12 @@ import br.com.senior.core.authentication.pojos.LoginWithKeyOutput;
 import br.com.senior.core.authentication.pojos.LogoutInput;
 import br.com.senior.core.authentication.pojos.LogoutOutput;
 import br.com.senior.core.authentication.pojos.RefreshTokenInput;
+import br.com.senior.core.authentication.pojos.RefreshTokenInternalOutput;
 import br.com.senior.core.authentication.pojos.RefreshTokenOutput;
 import br.com.senior.core.authentication.pojos.SeniorJsonToken;
+import br.com.senior.core.utils.BaseClient;
+import br.com.senior.core.utils.Environment;
+import br.com.senior.core.utils.ServiceException;
 
 public class AuthenticationClient extends BaseClient {
 
@@ -73,7 +74,9 @@ public class AuthenticationClient extends BaseClient {
      */
     public RefreshTokenOutput refreshToken(RefreshTokenInput payload, String tenant) throws ServiceException {
         GsonBuilder gson = new GsonBuilder();
-        return gson.create().fromJson(executeAnonymous(getActionsUrl() + "refreshToken", payload, tenant), RefreshTokenOutput.class);
+        String str = executeAnonymous(getActionsUrl() + "refreshToken", payload, tenant);
+        RefreshTokenInternalOutput internalOutput = gson.create().fromJson(str, RefreshTokenInternalOutput.class);
+        return Optional.ofNullable(internalOutput.getJsonToken()).map(json -> gson.create().fromJson(json, RefreshTokenOutput.class)).orElse(null);
     }
 
 }

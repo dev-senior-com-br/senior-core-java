@@ -1,4 +1,4 @@
-package br.com.senior.core;
+package br.com.senior.core.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

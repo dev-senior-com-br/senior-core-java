@@ -1,4 +1,4 @@
-package br.com.senior.core;
+package br.com.senior.core.user.pojos;
 
 import java.util.ArrayList;
 import java.util.List;

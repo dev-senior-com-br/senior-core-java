@@ -5,7 +5,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.senior.core.BaseIT;
-import br.com.senior.core.ServiceException;
 import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.authentication.pojos.LoginMFAInput;
 import br.com.senior.core.authentication.pojos.LoginOutput;
@@ -15,9 +14,11 @@ import br.com.senior.core.authentication.pojos.LogoutInput;
 import br.com.senior.core.authentication.pojos.LogoutOutput;
 import br.com.senior.core.authentication.pojos.RefreshTokenInput;
 import br.com.senior.core.authentication.pojos.RefreshTokenOutput;
+import br.com.senior.core.authentication.pojos.Scope;
 import br.com.senior.core.user.UserClient;
 import br.com.senior.core.user.pojos.GetUserInput;
 import br.com.senior.core.user.pojos.GetUserOutput;
+import br.com.senior.core.utils.ServiceException;
 
 public class AuthenticationIT extends BaseIT {
 
@@ -75,7 +76,8 @@ public class AuthenticationIT extends BaseIT {
     }
 
     @Test
-    public void testRefreshToken() throws ServiceException {
+    public void testRefreshTokenWithScope() throws ServiceException {
+
         LoginOutput loginOutput = login();
         String username = loginOutput.getJsonToken().getUsername();
         String accessToken = loginOutput.getJsonToken().getAccess_token();
@@ -84,10 +86,28 @@ public class AuthenticationIT extends BaseIT {
         GetUserInput getUserInput = new GetUserInput(username);
         GetUserOutput getUserOutput = new UserClient().getUser(getUserInput, accessToken);
 
-        RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken, null);
+        RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken, Scope.DESKTOP.toString());
         RefreshTokenOutput output = new AuthenticationClient().refreshToken(refreshTokenInput, getUserOutput.getTenantName());
 
-        Assert.assertNotNull(output.getJsonToken());
+        Assert.assertNotNull(output);
+        Assert.assertEquals(username, output.getUsername());
+    }
+
+    @Test
+    public void testRefreshTokenScopeLess() throws ServiceException {
+        LoginOutput loginOutput = login();
+        String username = loginOutput.getJsonToken().getUsername();
+        String accessToken = loginOutput.getJsonToken().getAccess_token();
+        String refreshToken = loginOutput.getJsonToken().getRefresh_token();
+
+        GetUserInput getUserInput = new GetUserInput(username);
+        GetUserOutput getUserOutput = new UserClient().getUser(getUserInput, accessToken);
+
+        RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken);
+        RefreshTokenOutput output = new AuthenticationClient().refreshToken(refreshTokenInput, getUserOutput.getTenantName());
+
+        Assert.assertNotNull(output);
+        Assert.assertEquals(username, output.getUsername());
     }
 
 }

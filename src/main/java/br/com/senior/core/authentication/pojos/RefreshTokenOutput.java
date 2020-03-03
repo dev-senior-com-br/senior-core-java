@@ -1,23 +1,41 @@
 package br.com.senior.core.authentication.pojos;
 
 import lombok.AccessLevel;
-import lombok.Getter;
+import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-@Getter
+@Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RefreshTokenOutput {
 
     /**
-     * String contendo um json com os tokens de acesso, de refresh, o tempo de validade restante para o token de acesso e o nome do usuário
+     * Tipo do Scope
      */
-    String jsonToken;
+    String scope;
 
-    public RefreshTokenOutput() {
-    }
+    /**
+     * Duração do token gerado
+     */
+    long expires_in;
 
-    public RefreshTokenOutput(String jsonToken) {
-        this.jsonToken = jsonToken;
-    }
+    /**
+     * Nome do usuário dono do token
+     */
+    String username;
+
+    /**
+     * Tipo to token
+     */
+    String token_type;
+
+    /**
+     * Token de acesso
+     */
+    String access_token;
+
+    /**
+     * Token para geração de novo token de acesso
+     */
+    String refresh_token;
 
 }

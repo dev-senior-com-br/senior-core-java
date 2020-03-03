@@ -2,9 +2,9 @@ package br.com.senior.core.user;
 
 import com.google.gson.GsonBuilder;
 
-import br.com.senior.core.BaseClient;
-import br.com.senior.core.Environment;
-import br.com.senior.core.ServiceException;
+import br.com.senior.core.utils.BaseClient;
+import br.com.senior.core.utils.Environment;
+import br.com.senior.core.utils.ServiceException;
 import br.com.senior.core.user.pojos.GetUserInput;
 import br.com.senior.core.user.pojos.GetUserOutput;
 

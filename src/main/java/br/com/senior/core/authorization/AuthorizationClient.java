@@ -1,8 +1,8 @@
 package br.com.senior.core.authorization;
 
-import br.com.senior.core.BaseClient;
-import br.com.senior.core.Environment;
-import br.com.senior.core.ServiceException;
+import br.com.senior.core.utils.BaseClient;
+import br.com.senior.core.utils.Environment;
+import br.com.senior.core.utils.ServiceException;
 import br.com.senior.core.authorization.pojos.*;
 import com.google.gson.Gson;
 import lombok.AccessLevel;

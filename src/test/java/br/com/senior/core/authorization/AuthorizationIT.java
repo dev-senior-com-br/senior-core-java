@@ -9,7 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.senior.core.BaseIT;
-import br.com.senior.core.ServiceException;
+import br.com.senior.core.utils.ServiceException;
 import br.com.senior.core.authentication.AuthenticationClient;
 import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.authorization.pojos.Action;
