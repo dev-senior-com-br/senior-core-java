@@ -1,4 +1,4 @@
-package br.com.senior.core;
+package br.com.senior.core.utils;
 
 import lombok.AccessLevel;
 import lombok.Getter;

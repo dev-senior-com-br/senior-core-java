@@ -1,4 +1,4 @@
-package br.com.senior.core.authentication.pojos;
+package br.com.senior.core.user.pojos;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,8 +10,11 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
-public class RefreshTokenOutput {
+public class GetUserInput {
 
-    SeniorJsonToken jsonToken;
+    /**
+     * "Nome do usuário no formato nome@dominio_tenant"
+     */
+    String username;
 
 }

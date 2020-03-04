@@ -1,13 +1,17 @@
 package br.com.senior.core.authorization.pojos;
 
+import java.util.List;
+
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
-
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class UnassignUsersInput {
 
     /**
@@ -18,13 +22,5 @@ public class UnassignUsersInput {
      * Os usuário à serem removidos dos papéis
      */
     List<String> users;
-
-    public UnassignUsersInput() {
-    }
-
-    public UnassignUsersInput(List<String> roles, List<String> users) {
-        this.roles = roles;
-        this.users = users;
-    }
 
 }

@@ -1,11 +1,15 @@
 package br.com.senior.core.authorization.pojos;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreateRoleInput {
 
     /**
@@ -16,14 +20,6 @@ public class CreateRoleInput {
      * A descrição do papel
      */
     String description;
-
-    public CreateRoleInput() {
-    }
-
-    public CreateRoleInput(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
 
     public CreateRoleInput(String name) {
         this.name = name;

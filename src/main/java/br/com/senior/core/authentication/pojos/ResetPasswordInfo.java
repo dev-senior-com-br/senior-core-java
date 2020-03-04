@@ -1,11 +1,15 @@
 package br.com.senior.core.authentication.pojos;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class ResetPasswordInfo {
 
     /**
@@ -17,11 +21,4 @@ public class ResetPasswordInfo {
      */
     String tenant;
 
-    public ResetPasswordInfo() {
-    }
-
-    public ResetPasswordInfo(String temporaryToken, String tenant) {
-        this.temporaryToken = temporaryToken;
-        this.tenant = tenant;
-    }
 }

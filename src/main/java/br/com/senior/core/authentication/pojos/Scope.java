@@ -1,4 +1,4 @@
-package br.com.senior.core;
+package br.com.senior.core.authentication.pojos;
 
 public enum Scope {
     PHONE,

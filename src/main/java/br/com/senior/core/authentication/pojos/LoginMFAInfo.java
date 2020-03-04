@@ -1,11 +1,15 @@
 package br.com.senior.core.authentication.pojos;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoginMFAInfo {
 
     /**
@@ -20,14 +24,5 @@ public class LoginMFAInfo {
      * Nome do tenant
      */
     String tenant;
-
-    public LoginMFAInfo() {
-    }
-
-    public LoginMFAInfo(String temporaryToken, UserOTPAuthStatusDTO mfaStatus, String tenant) {
-        this.temporaryToken = temporaryToken;
-        this.mfaStatus = mfaStatus;
-        this.tenant = tenant;
-    }
 
 }

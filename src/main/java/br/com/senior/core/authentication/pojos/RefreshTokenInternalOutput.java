@@ -10,8 +10,11 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
-public class RefreshTokenOutput {
+public class RefreshTokenInternalOutput {
 
-    SeniorJsonToken jsonToken;
+    /**
+     * String contendo um json com os tokens de acesso, de refresh, o tempo de validade restante para o token de acesso e o nome do usuário
+     */
+    String jsonToken;
 
 }

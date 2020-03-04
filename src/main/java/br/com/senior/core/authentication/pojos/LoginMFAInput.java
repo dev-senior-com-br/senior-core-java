@@ -1,11 +1,15 @@
 package br.com.senior.core.authentication.pojos;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoginMFAInput {
 
     /**
@@ -16,13 +20,5 @@ public class LoginMFAInput {
      * Código de validação gerado pelo Google Authenticator
      */
     Long validationCode;
-
-    public LoginMFAInput() {
-    }
-
-    public LoginMFAInput(String temporaryToken, Long validationCode) {
-        this.temporaryToken = temporaryToken;
-        this.validationCode = validationCode;
-    }
 
 }

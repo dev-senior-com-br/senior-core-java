@@ -1,4 +1,4 @@
-package br.com.senior.core;
+package br.com.senior.core.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,7 +47,7 @@ public abstract class BaseClient {
     }
 
     protected String execute(String url, Object payload, String token) throws ServiceException {
-        return execute(url, payload, token,null);
+        return execute(url, payload, token, null);
     }
 
     protected String executeAnonymous(String url, Object payload, String tenant) throws ServiceException {
@@ -95,6 +95,10 @@ public abstract class BaseClient {
 
     protected String getActionsUrl() {
         return String.format("%s/rest/%s/%s/actions/", getUrl(), this.domain, this.service);
+    }
+
+    protected String getQueriesUrl() {
+        return String.format("%s/rest/%s/%s/queries/", getUrl(), this.domain, this.service);
     }
 
     protected String getAnonymousActionsUrl() {

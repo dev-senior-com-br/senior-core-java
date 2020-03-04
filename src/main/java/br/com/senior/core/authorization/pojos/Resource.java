@@ -3,16 +3,16 @@ package br.com.senior.core.authorization.pojos;
 import java.util.List;
 
 import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 /**
  * Um recurso é um elemento que deve ter seu acesso controlado pelo serviço de autorização
  */
-@Getter
-@Setter
+@Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class Resource {
 
     /**
@@ -43,19 +43,6 @@ public class Resource {
      * Serviço pertencente do recurso
      */
     String serviceName;
-
-    public Resource() {
-    }
-
-    public Resource(String uri, String name, String label, String description, List<Action> actions, String domainName, String serviceName) {
-        this.uri = uri;
-        this.name = name;
-        this.label = label;
-        this.description = description;
-        this.actions = actions;
-        this.domainName = domainName;
-        this.serviceName = serviceName;
-    }
 
     public Resource(String name, String uri, List<Action> actions) {
         this.name = name;

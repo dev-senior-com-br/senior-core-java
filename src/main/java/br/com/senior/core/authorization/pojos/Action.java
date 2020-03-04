@@ -1,7 +1,9 @@
 package br.com.senior.core.authorization.pojos;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 /**
@@ -9,6 +11,8 @@ import lombok.experimental.FieldDefaults;
  */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Action {
 
     /**
@@ -31,17 +35,6 @@ public class Action {
      * Informa se a ação está bloqueada
      */
     Boolean locked = false;
-
-    public Action() {
-    }
-
-    public Action(String name, String label, Boolean master, Boolean hasAttributes, Boolean locked) {
-        this.name = name;
-        this.label = label;
-        this.master = master;
-        this.hasAttributes = hasAttributes;
-        this.locked = locked;
-    }
 
     public Action(String name) {
         this.name = name;

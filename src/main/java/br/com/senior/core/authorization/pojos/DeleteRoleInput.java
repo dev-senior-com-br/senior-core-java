@@ -1,25 +1,18 @@
 package br.com.senior.core.authorization.pojos;
 
 import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-@Getter
-@Setter
+@Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class DeleteRoleInput {
 
     /**
      * Nome do papel a ser deletado
      */
     String name;
-
-    public DeleteRoleInput() {
-    }
-
-    public DeleteRoleInput(String name) {
-        this.name = name;
-    }
 
 }
