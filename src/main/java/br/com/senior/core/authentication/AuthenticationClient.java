@@ -16,7 +16,6 @@ import br.com.senior.core.authentication.pojos.LogoutOutput;
 import br.com.senior.core.authentication.pojos.RefreshTokenInput;
 import br.com.senior.core.authentication.pojos.RefreshTokenInternalOutput;
 import br.com.senior.core.authentication.pojos.RefreshTokenOutput;
-import br.com.senior.core.authentication.pojos.SeniorJsonRefreshToken;
 import br.com.senior.core.authentication.pojos.SeniorJsonToken;
 import br.com.senior.core.utils.BaseClient;
 import br.com.senior.core.utils.Environment;
@@ -77,7 +76,7 @@ public class AuthenticationClient extends BaseClient {
         GsonBuilder gson = new GsonBuilder();
         String str = executeAnonymous(getActionsUrl() + "refreshToken", payload, tenant);
         RefreshTokenInternalOutput internalOutput = gson.create().fromJson(str, RefreshTokenInternalOutput.class);
-        SeniorJsonRefreshToken jsonToken = Optional.ofNullable(internalOutput.getJsonToken()).map(json -> gson.create().fromJson(json, SeniorJsonRefreshToken.class)).orElse(null);
+        SeniorJsonToken jsonToken = Optional.ofNullable(internalOutput.getJsonToken()).map(json -> gson.create().fromJson(json, SeniorJsonToken.class)).orElse(null);
         return new RefreshTokenOutput(jsonToken);
     }
 

@@ -12,6 +12,6 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 public class RefreshTokenOutput {
 
-    SeniorJsonRefreshToken jsonToken;
+    SeniorJsonToken jsonToken;
 
 }
