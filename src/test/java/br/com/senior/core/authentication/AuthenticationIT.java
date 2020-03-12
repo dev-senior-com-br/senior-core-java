@@ -1,24 +1,14 @@
 package br.com.senior.core.authentication;
 
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import br.com.senior.core.BaseIT;
-import br.com.senior.core.authentication.pojos.LoginInput;
-import br.com.senior.core.authentication.pojos.LoginMFAInput;
-import br.com.senior.core.authentication.pojos.LoginOutput;
-import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
-import br.com.senior.core.authentication.pojos.LoginWithKeyOutput;
-import br.com.senior.core.authentication.pojos.LogoutInput;
-import br.com.senior.core.authentication.pojos.LogoutOutput;
-import br.com.senior.core.authentication.pojos.RefreshTokenInput;
-import br.com.senior.core.authentication.pojos.RefreshTokenOutput;
-import br.com.senior.core.authentication.pojos.Scope;
+import br.com.senior.core.authentication.pojos.*;
 import br.com.senior.core.user.UserClient;
 import br.com.senior.core.user.pojos.GetUserInput;
 import br.com.senior.core.user.pojos.GetUserOutput;
 import br.com.senior.core.utils.ServiceException;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
 
 public class AuthenticationIT extends BaseIT {
 
@@ -31,14 +21,14 @@ public class AuthenticationIT extends BaseIT {
 
     @Test
     public void testInvalidLogin() {
-        LoginInput input = new LoginInput(System.getenv("username"), System.getenv("password_invalid"));
+        LoginInput input = new LoginInput(System.getenv("USERNAME"), System.getenv("PASSWORD_INVALID"));
         Assert.assertThrows(ServiceException.class, () -> new AuthenticationClient().login(input));
     }
 
     @Test
     @Ignore("Como depende do código de validação que irá aparecer na tela do usuário não é possível rodar de forma automatizada")
     public void testValidLoginMFA() throws ServiceException {
-        LoginOutput login = login(System.getenv("username_mfa"), System.getenv("password_mfa"));
+        LoginOutput login = login(System.getenv("USERNAME_MFA"), System.getenv("PASSWORD_MFA"));
         final Long validationCode = 1L; //Esse código vai aparecer no dispositivo configurado para login multifator e deve ser informado pelo usuário
         LoginMFAInput input = new LoginMFAInput(login.getMfaInfo().getTemporaryToken(), validationCode);
         Assert.assertThrows(ServiceException.class, () -> new AuthenticationClient().loginMFA(input));
@@ -46,7 +36,7 @@ public class AuthenticationIT extends BaseIT {
 
     @Test
     public void testInvalidLoginMFA() throws ServiceException {
-        LoginOutput login = login(System.getenv("username_mfa"), System.getenv("password_mfa"));
+        LoginOutput login = login(System.getenv("USERNAME_MFA"), System.getenv("PASSWORD_MFA"));
         Assert.assertNotNull("O usuário informado deveria estar configurado para login multifator", login.getMfaInfo());
 
         final Long invalidCode = 1L;
@@ -56,14 +46,14 @@ public class AuthenticationIT extends BaseIT {
 
     @Test
     public void testValidLoginWithKey() throws ServiceException {
-        LoginWithKeyInput input = new LoginWithKeyInput(System.getenv("access_key"), System.getenv("secret"), System.getenv("tenant"));
+        LoginWithKeyInput input = new LoginWithKeyInput(System.getenv("ACCESS_KEY"), System.getenv("SECRET"), System.getenv("TENANT"));
         LoginWithKeyOutput output = new AuthenticationClient().loginWithKey(input);
         Assert.assertNotNull(output.getJsonToken());
     }
 
     @Test
     public void testInvalidLoginWithKey() {
-        LoginWithKeyInput input = new LoginWithKeyInput(System.getenv("access_key"), System.getenv("secret"), System.getenv("tenant"));
+        LoginWithKeyInput input = new LoginWithKeyInput(System.getenv("ACCESS_KEY"), System.getenv("SECRET"), System.getenv("TENANT"));
         Assert.assertThrows(ServiceException.class, () -> new AuthenticationClient().loginWithKey(input));
     }
 

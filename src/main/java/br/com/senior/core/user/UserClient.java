@@ -1,12 +1,11 @@
 package br.com.senior.core.user;
 
-import com.google.gson.GsonBuilder;
-
-import br.com.senior.core.utils.BaseClient;
-import br.com.senior.core.utils.Environment;
-import br.com.senior.core.utils.ServiceException;
 import br.com.senior.core.user.pojos.GetUserInput;
 import br.com.senior.core.user.pojos.GetUserOutput;
+import br.com.senior.core.utils.BaseClient;
+import br.com.senior.core.utils.EndpointPath;
+import br.com.senior.core.utils.Environment;
+import br.com.senior.core.utils.ServiceException;
 
 public class UserClient extends BaseClient {
 
@@ -22,8 +21,7 @@ public class UserClient extends BaseClient {
      * Retorna as informações básicas do usuário passado como parâmetro. Se o usuário não for informado, retorna os dados do usuário corrente (que efetuou o login)
      */
     public GetUserOutput getUser(GetUserInput payload, String token) throws ServiceException {
-        GsonBuilder gson = new GsonBuilder();
-        return gson.create().fromJson(execute(getQueriesUrl() + "getUser", payload, token), GetUserOutput.class);
+        return execute(getQueriesUrl(EndpointPath.GET_USER), payload, token, GetUserOutput.class);
     }
 
 }
