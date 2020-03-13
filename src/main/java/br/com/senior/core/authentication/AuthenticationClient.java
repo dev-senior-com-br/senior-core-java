@@ -1,6 +1,18 @@
 package br.com.senior.core.authentication;
 
-import br.com.senior.core.authentication.pojos.*;
+import br.com.senior.core.authentication.pojos.LoginInput;
+import br.com.senior.core.authentication.pojos.LoginInternalOutput;
+import br.com.senior.core.authentication.pojos.LoginMFAInput;
+import br.com.senior.core.authentication.pojos.LoginMFAOutput;
+import br.com.senior.core.authentication.pojos.LoginOutput;
+import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
+import br.com.senior.core.authentication.pojos.LoginWithKeyOutput;
+import br.com.senior.core.authentication.pojos.LogoutInput;
+import br.com.senior.core.authentication.pojos.LogoutOutput;
+import br.com.senior.core.authentication.pojos.RefreshTokenInput;
+import br.com.senior.core.authentication.pojos.RefreshTokenInternalOutput;
+import br.com.senior.core.authentication.pojos.RefreshTokenOutput;
+import br.com.senior.core.authentication.pojos.SeniorJsonToken;
 import br.com.senior.core.utils.BaseClient;
 import br.com.senior.core.utils.EndpointPath;
 import br.com.senior.core.utils.Environment;

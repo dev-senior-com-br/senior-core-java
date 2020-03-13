@@ -1,6 +1,25 @@
 package br.com.senior.core.authorization;
 
-import br.com.senior.core.authorization.pojos.*;
+import br.com.senior.core.authorization.pojos.AssignUsersInput;
+import br.com.senior.core.authorization.pojos.AssignUsersOutput;
+import br.com.senior.core.authorization.pojos.CheckAccessInput;
+import br.com.senior.core.authorization.pojos.CheckAccessOutput;
+import br.com.senior.core.authorization.pojos.CreateRoleInput;
+import br.com.senior.core.authorization.pojos.CreateRoleOutput;
+import br.com.senior.core.authorization.pojos.DeleteResourcesInput;
+import br.com.senior.core.authorization.pojos.DeleteResourcesOutput;
+import br.com.senior.core.authorization.pojos.DeleteRoleInput;
+import br.com.senior.core.authorization.pojos.DeleteRoleOutput;
+import br.com.senior.core.authorization.pojos.GetAssignedUsersInput;
+import br.com.senior.core.authorization.pojos.GetAssignedUsersOutput;
+import br.com.senior.core.authorization.pojos.GetResourcesInput;
+import br.com.senior.core.authorization.pojos.GetResourcesOutput;
+import br.com.senior.core.authorization.pojos.GetRoleInput;
+import br.com.senior.core.authorization.pojos.GetRoleOutput;
+import br.com.senior.core.authorization.pojos.SaveResourcesInput;
+import br.com.senior.core.authorization.pojos.SaveResourcesOutput;
+import br.com.senior.core.authorization.pojos.UnassignUsersInput;
+import br.com.senior.core.authorization.pojos.UnassignUsersOutput;
 import br.com.senior.core.utils.BaseClient;
 import br.com.senior.core.utils.EndpointPath;
 import br.com.senior.core.utils.Environment;

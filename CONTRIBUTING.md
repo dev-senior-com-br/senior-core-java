@@ -16,6 +16,9 @@ Para executar os testes automatizados é necessário configurar algumas variáve
     secret = password;
     access_key = minhaaccesskeyc51b1e661baa2bd2ef48b78391febba2; 
     tenant = xpto;
+    other_user = otherusername;
+    tenant_name = nomedotenant;
+    tenant_domain = nomedodominio;
     ...
   ```
 
