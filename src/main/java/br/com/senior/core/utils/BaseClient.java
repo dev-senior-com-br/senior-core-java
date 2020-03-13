@@ -1,19 +1,5 @@
 package br.com.senior.core.utils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-
-import com.google.gson.Gson;
-
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
@@ -38,71 +24,24 @@ public abstract class BaseClient {
         this.env = env;
     }
 
-    private String getUrl() {
-        switch (env) {
-            case PROD: return "https://platform.senior.com.br/t/senior.com.br/bridge/1.0/";
-            case HOMOLOG: return "https://platform-homologx.senior.com.br/t/senior.com.br/bridge/1.0/";
-            default: throw new IllegalStateException("Environment inválido");
-        }
+    protected <T> T execute(String url, Object payload, String token, Class<T> clazz) throws ServiceException {
+        return RequestUtils.execute(url, payload, token, null, clazz);
     }
 
-    protected String execute(String url, Object payload, String token) throws ServiceException {
-        return execute(url, payload, token, null);
+    protected <T> T executeAnonymous(String url, Object payload, String tenant, Class<T> clazz) throws ServiceException {
+        return RequestUtils.execute(url, payload, null, tenant, clazz);
     }
 
-    protected String executeAnonymous(String url, Object payload, String tenant) throws ServiceException {
-        return execute(url, payload, null, tenant);
+    protected String getActionsUrl(EndpointPath path) {
+        return String.format("%s/rest/%s/%s/actions/%s", env.getUrl(), domain, service, path.getPathName());
     }
 
-    private String execute(String url, Object payload, String token, String tenant) throws ServiceException {
-        try (CloseableHttpClient client = HttpClients.createDefault()) {
-            HttpResponse response = executePost(url, payload, client, token, tenant);
-            return readResponse(response);
-        } catch (IOException e) {
-            throw new ServiceException("Erro ao efetuar requisição", e);
-        }
+    protected String getQueriesUrl(EndpointPath path) {
+        return String.format("%s/rest/%s/%s/queries/%s", env.getUrl(), domain, service, path.getPathName());
     }
 
-    private HttpResponse executePost(String url, Object payload, CloseableHttpClient client, String token, String tenant) throws IOException {
-        HttpPost post = new HttpPost(url);
-        post.setHeader("Content-Type", "application/json");
-        Optional.ofNullable(tenant).ifPresent(t -> post.setHeader("X-Tenant", t));
-        Optional.ofNullable(token).ifPresent(t -> post.setHeader("Authorization", String.format("Bearer %s", t)));
-        StringEntity userEntity = new StringEntity(new Gson().toJson(payload));
-        post.setEntity(userEntity);
-        return client.execute(post);
-    }
-
-    private String readResponse(HttpResponse response) throws IOException, ServiceException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), StandardCharsets.ISO_8859_1), 8);
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            sb.append(line).append("\n");
-        }
-        response.getEntity().getContent().close();
-        int statusCode = response.getStatusLine().getStatusCode();
-        switch(statusCode) {
-            case 200: return sb.toString();
-            case 401:
-                log.error("Erro ao efetuar requisição, código de erro: {}. Erro retornado: {}", statusCode, sb);
-                throw new ServiceException(statusCode, "Token inválido");
-            default:
-                log.error("Erro ao efetuar requisição, código de erro: {}. Erro retornado: {}", statusCode, sb);
-                throw new ServiceException(statusCode, new Gson().fromJson(sb.toString(), ErrorOutput.class).getMessage());
-        }
-    }
-
-    protected String getActionsUrl() {
-        return String.format("%s/rest/%s/%s/actions/", getUrl(), this.domain, this.service);
-    }
-
-    protected String getQueriesUrl() {
-        return String.format("%s/rest/%s/%s/queries/", getUrl(), this.domain, this.service);
-    }
-
-    protected String getAnonymousActionsUrl() {
-        return String.format("%s/anonymous/rest/%s/%s/actions/", getUrl(), this.domain, this.service);
+    protected String getAnonymousActionsUrl(EndpointPath path) {
+        return String.format("%s/anonymous/rest/%s/%s/actions/%s", env.getUrl(), domain, service, path.getPathName());
     }
 
 }

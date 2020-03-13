@@ -1,17 +1,15 @@
 package br.com.senior.core.user;
 
-import java.util.Arrays;
-import java.util.Optional;
-
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import br.com.senior.core.BaseIT;
 import br.com.senior.core.authentication.pojos.LoginOutput;
 import br.com.senior.core.user.pojos.GetUserInput;
 import br.com.senior.core.user.pojos.GetUserOutput;
 import br.com.senior.core.utils.ServiceException;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import java.util.Arrays;
 
 public class UserIT extends BaseIT {
 
@@ -19,7 +17,7 @@ public class UserIT extends BaseIT {
 
     @BeforeClass
     public static void beforeClass() {
-        usernameExpected = Arrays.stream(System.getenv("username").split("@")).findFirst().get();
+        usernameExpected = Arrays.stream(System.getenv("USERNAME").split("@")).findFirst().orElse(null);
     }
 
     @Test
