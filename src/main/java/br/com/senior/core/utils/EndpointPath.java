@@ -51,4 +51,10 @@ public class EndpointPath {
         public static final String GET_TENANT_BY_NAME = "getTenantByName";
     }
 
+    @UtilityClass
+    public class Notification {
+
+        public static final String NOTIFY_USER = "notifyUser";
+    }
+
 }
