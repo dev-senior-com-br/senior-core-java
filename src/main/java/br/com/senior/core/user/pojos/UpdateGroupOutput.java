@@ -2,17 +2,14 @@ package br.com.senior.core.user.pojos;
 
 import lombok.AccessLevel;
 import lombok.Data;
-import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GetUserInput {
+public class UpdateGroupOutput {
 
     /**
-     * "Nome do usuário no formato nome@dominio_tenant"
+     * Identificador do grupo que foi atualizado
      */
-    @NonNull
-    String username;
-
+    public String id;
 }

@@ -1,4 +1,4 @@
-package br.com.senior.core.tenant.dto;
+package br.com.senior.core.user.pojos;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -7,7 +7,12 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GetTenantByDomainInput {
+public class GetGroupInput {
+
+    /**
+     * Identificador do grupo
+     */
     @NonNull
-    String tenantDomain;
+    public String id;
+
 }

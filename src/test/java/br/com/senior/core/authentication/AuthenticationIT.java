@@ -74,7 +74,7 @@ public class AuthenticationIT extends BaseIT {
         String refreshToken = loginOutput.getJsonToken().getRefresh_token();
 
         GetUserInput getUserInput = new GetUserInput(username);
-        GetUserOutput getUserOutput = new UserClient().getUser(getUserInput, accessToken);
+        GetUserOutput getUserOutput = new UserClient(accessToken).getUser(getUserInput);
 
         RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken, Scope.DESKTOP.toString());
         RefreshTokenOutput output = new AuthenticationClient().refreshToken(refreshTokenInput, getUserOutput.getTenantName());
@@ -91,7 +91,7 @@ public class AuthenticationIT extends BaseIT {
         String refreshToken = loginOutput.getJsonToken().getRefresh_token();
 
         GetUserInput getUserInput = new GetUserInput(username);
-        GetUserOutput getUserOutput = new UserClient().getUser(getUserInput, accessToken);
+        GetUserOutput getUserOutput = new UserClient(accessToken).getUser(getUserInput);
 
         RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken);
         RefreshTokenOutput output = new AuthenticationClient().refreshToken(refreshTokenInput, getUserOutput.getTenantName());

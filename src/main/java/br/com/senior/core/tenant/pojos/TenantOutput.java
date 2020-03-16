@@ -1,4 +1,4 @@
-package br.com.senior.core.tenant.dto;
+package br.com.senior.core.tenant.pojos;
 
 import lombok.AccessLevel;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package br.com.senior.core.user.pojos;
+package br.com.senior.core.tenant.pojos;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -7,12 +7,7 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GetUserInput {
-
-    /**
-     * "Nome do usuário no formato nome@dominio_tenant"
-     */
+public class GetTenantByDomainInput {
     @NonNull
-    String username;
-
+    String tenantDomain;
 }
