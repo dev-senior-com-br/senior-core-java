@@ -32,16 +32,16 @@ public abstract class BaseClient {
         return RequestUtils.execute(url, payload, null, tenant, clazz);
     }
 
-    protected String getActionsUrl(EndpointPath path) {
-        return String.format("%s/rest/%s/%s/actions/%s", env.getUrl(), domain, service, path.getPathName());
+    protected String getActionsUrl(String path) {
+        return String.format("%s/rest/%s/%s/actions/%s", env.getUrl(), domain, service, path);
     }
 
-    protected String getQueriesUrl(EndpointPath path) {
-        return String.format("%s/rest/%s/%s/queries/%s", env.getUrl(), domain, service, path.getPathName());
+    protected String getQueriesUrl(String path) {
+        return String.format("%s/rest/%s/%s/queries/%s", env.getUrl(), domain, service, path);
     }
 
-    protected String getAnonymousActionsUrl(EndpointPath path) {
-        return String.format("%s/anonymous/rest/%s/%s/actions/%s", env.getUrl(), domain, service, path.getPathName());
+    protected String getAnonymousActionsUrl(String path) {
+        return String.format("%s/anonymous/rest/%s/%s/actions/%s", env.getUrl(), domain, service, path);
     }
 
 }

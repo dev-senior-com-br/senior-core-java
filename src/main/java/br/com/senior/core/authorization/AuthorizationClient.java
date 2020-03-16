@@ -47,7 +47,7 @@ public class AuthorizationClient extends BaseClient {
      * Se o usuário possuir permissão e marcar para incluir os filtros, irá retornar os filtros de serviço e recurso associados.
      */
     public CheckAccessOutput checkAccess(CheckAccessInput payload) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.CHECK_ACCESS), payload, this.token, CheckAccessOutput.class);
+        return execute(getActionsUrl(EndpointPath.Authorization.CHECK_ACCESS), payload, this.token, CheckAccessOutput.class);
     }
 
     /**
@@ -58,7 +58,7 @@ public class AuthorizationClient extends BaseClient {
      * Só serão permitidas alterações em recursos customizados.
      */
     public SaveResourcesOutput saveResources(SaveResourcesInput payload) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.SAVE_RESOURCES), payload, this.token, SaveResourcesOutput.class);
+        return execute(getActionsUrl(EndpointPath.Authorization.SAVE_RESOURCES), payload, this.token, SaveResourcesOutput.class);
     }
 
     /**
@@ -66,55 +66,55 @@ public class AuthorizationClient extends BaseClient {
      * Somente é possível remover recursos customizados
      */
     public DeleteResourcesOutput deleteResources(DeleteResourcesInput payload) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.DELETE_RESOURCES), payload, this.token, DeleteResourcesOutput.class);
+        return execute(getActionsUrl(EndpointPath.Authorization.DELETE_RESOURCES), payload, this.token, DeleteResourcesOutput.class);
     }
 
     /**
      * Retorna os dados de um recurso
      */
     public GetResourcesOutput getResource(GetResourcesInput payload) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.GET_RESOURCES), payload, this.token, GetResourcesOutput.class);
+        return execute(getActionsUrl(EndpointPath.Authorization.GET_RESOURCES), payload, this.token, GetResourcesOutput.class);
     }
 
     /**
      * Cria um novo papel
      */
     public CreateRoleOutput createRole(CreateRoleInput payload) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.CREATE_ROLE), payload, this.token, CreateRoleOutput.class);
+        return execute(getActionsUrl(EndpointPath.Authorization.CREATE_ROLE), payload, this.token, CreateRoleOutput.class);
     }
 
     /**
      * Vincula um ou mais usuários à um ou mais papéis, lançando o evento rolePermissionsChanged com os usuários incluídos
      */
     public AssignUsersOutput assignUsers(AssignUsersInput payload) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.ASSIGN_USER), payload, this.token, AssignUsersOutput.class);
+        return execute(getActionsUrl(EndpointPath.Authorization.ASSIGN_USER), payload, this.token, AssignUsersOutput.class);
     }
 
     /**
      * Remove um ou mais usuários de um ou mais papéis, lançando o evento rolePermissionsChanged com os usuários removidos
      */
     public UnassignUsersOutput unassignUsers(UnassignUsersInput payload) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.UNASSIGN_USER), payload, this.token, UnassignUsersOutput.class);
+        return execute(getActionsUrl(EndpointPath.Authorization.UNASSIGN_USER), payload, this.token, UnassignUsersOutput.class);
     }
 
     /**
      * Retorna uma lista de usuários que estão vinculados em ao menos um dos papéis informados
      */
     public GetAssignedUsersOutput getAssignedUsers(GetAssignedUsersInput payload) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.GET_ASSIGN_USERS), payload, this.token, GetAssignedUsersOutput.class);
+        return execute(getActionsUrl(EndpointPath.Authorization.GET_ASSIGN_USERS), payload, this.token, GetAssignedUsersOutput.class);
     }
 
     /**
      * Retorna os dados de um papel
      */
     public GetRoleOutput getRole(GetRoleInput payload) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.GET_ROLE), payload, this.token, GetRoleOutput.class);
+        return execute(getActionsUrl(EndpointPath.Authorization.GET_ROLE), payload, this.token, GetRoleOutput.class);
     }
 
     /**
      * Deleta um papel
      */
     public DeleteRoleOutput deleteRole(DeleteRoleInput payload) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.DELETE_ROLE), payload, this.token, DeleteRoleOutput.class);
+        return execute(getActionsUrl(EndpointPath.Authorization.DELETE_ROLE), payload, this.token, DeleteRoleOutput.class);
     }
 }

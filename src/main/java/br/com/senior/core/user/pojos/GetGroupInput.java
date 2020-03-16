@@ -6,16 +6,16 @@ import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
 /**
- * Payload de entrada do {@link br.com.senior.core.user.UserClient#getUser(GetUserInput) getUser}
+ * Payload de entrada do {@link br.com.senior.core.user.UserClient#getGroup(GetGroupInput) getGroup}
  */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GetUserInput {
+public class GetGroupInput {
 
     /**
-     * "Nome do usuário no formato nome@dominio_tenant"
+     * Identificador do grupo
      */
     @NonNull
-    String username;
+    public String id;
 
 }

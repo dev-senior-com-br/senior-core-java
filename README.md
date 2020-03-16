@@ -1,11 +1,11 @@
-# Senior Authorization SDK para Java
+# Senior API SDK para Java
 
-Esta biblioteca permite desenvolvedores criar integrações do a API de Authorization / Authentication da Senior.
+Esta biblioteca permite desenvolvedores criar integrações das APIs da Senior.
 
 ## Instalação
 
 ### Usando Maven
-1. Executar `mvn clean install`, após a execução do comando Senior Authorization SDK para Java estará instalado no repositório local do maven.
+1. Executar `mvn clean install`, após a execução do comando Senior API SDK para Java estará instalado no repositório local do maven.
 
 2. Adicionar a dependência Senior Core no pom.xml do seu projeto
 
@@ -43,4 +43,4 @@ Utilizando como exemplo o login, caso a aplicação queira efetuar o login integ
 
 ### Suporte
 
-1. Criar um issue https://github.com/dev-senior-com-br/authorization-java/issues
+1. Criar um issue https://github.com/dev-senior-com-br/senior-core-java/issues

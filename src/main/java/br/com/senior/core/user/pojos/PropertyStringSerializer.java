@@ -2,6 +2,9 @@ package br.com.senior.core.user.pojos;
 
 import java.util.List;
 
+/**
+ * Serialização de uma {@link Property Propriedade}
+ */
 public class PropertyStringSerializer {
     
 	public static final PropertyStringSerializer INSTANCE = new PropertyStringSerializer();
