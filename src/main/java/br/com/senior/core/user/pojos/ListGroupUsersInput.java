@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Payload de entrada do {@link br.com.senior.core.user.UserClient#listGroupUsers(ListGroupUsersInput) listGroupUsers}
+ */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ListGroupUsersInput {

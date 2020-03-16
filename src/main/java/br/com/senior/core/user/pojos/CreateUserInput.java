@@ -4,6 +4,9 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Payload de entrada do {@link br.com.senior.core.user.UserClient#createUser(CreateUserInput) createUser}
+ */
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateUserInput {

@@ -4,6 +4,9 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Informações básicas de uma usuário
+ */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class GroupBasicUser {

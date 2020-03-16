@@ -31,6 +31,9 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/**
+ * Exemplos de código do {@link br.com.senior.core.user.UserClient}  UserClient}
+ */
 public class UserIT extends BaseIT {
 
     private static final String USER_NAME = "UsuarioParaTestes";

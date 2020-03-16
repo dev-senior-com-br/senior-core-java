@@ -6,6 +6,9 @@ import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
+/**
+ * Payload de saída do {@link br.com.senior.core.user.UserClient#getUser(GetUserInput) getUser}
+ */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class GetUserOutput {

@@ -4,6 +4,9 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Dados de paginação de uma lista
+ */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Pagination {

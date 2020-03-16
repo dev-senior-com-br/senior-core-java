@@ -4,6 +4,9 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Informações sobre as listagens
+ */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ListInformation {
