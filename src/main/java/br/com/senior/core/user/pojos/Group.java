@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 /**
- *
+ * Informações referentes ao grupo
  */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
