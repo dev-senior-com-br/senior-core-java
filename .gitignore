@@ -26,4 +26,3 @@ hs_err_pid*
 target/
 release.properties
 pom.xml.releaseBackup
-senior-core-java.iml
