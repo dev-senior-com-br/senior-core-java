@@ -30,11 +30,22 @@ public class UserClient extends BaseClient {
 
     private String token;
 
+    /**
+     * Construtor
+     *
+     * @param token
+     */
     public UserClient(String token) {
         super("platform", "user");
         this.token = token;
     }
 
+    /**
+     * Construtor
+     *
+     * @param token
+     * @param env
+     */
     public UserClient(String token, Environment env) {
         super("platform", "user", env);
         this.token = token;

@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Payload de entrada do {@link br.com.senior.core.authorization.AuthorizationClient#getRole(GetRoleInput) getRole}
+ */
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor

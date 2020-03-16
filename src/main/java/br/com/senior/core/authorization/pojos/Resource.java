@@ -44,6 +44,13 @@ public class Resource {
      */
     String serviceName;
 
+    /**
+     * Construtor
+     *
+     * @param name
+     * @param uri
+     * @param actions
+     */
     public Resource(String name, String uri, List<Action> actions) {
         this.name = name;
         this.uri = uri;

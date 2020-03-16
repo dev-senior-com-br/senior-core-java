@@ -10,6 +10,9 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/**
+ * Exemplos de código do {@link br.com.senior.core.notification.NotificationClient NotificationClient}
+ */
 public class TenantIT extends BaseIT {
 
     private static String token;

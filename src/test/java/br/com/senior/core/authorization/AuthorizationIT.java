@@ -13,6 +13,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Exemplos de código do {@link br.com.senior.core.authorization.AuthorizationClient AuthorizationClient}
+ */
 public class AuthorizationIT extends BaseIT {
 
     private static final String URI = "res://tenant/dominio/servico/recurso";
@@ -38,7 +41,7 @@ public class AuthorizationIT extends BaseIT {
 
     @Test
     public void testSaveAndGetResources() throws ServiceException {
-        GetResourcesOutput resources = getResources();
+        GetResourceOutput resources = getResources();
         Assert.assertEquals(0, resources.getResources().size());
         try {
             SaveResourcesOutput saved = saveResource();
@@ -52,7 +55,7 @@ public class AuthorizationIT extends BaseIT {
 
     @Test
     public void testSaveAndDeleteResources() throws ServiceException {
-        GetResourcesOutput resources = getResources();
+        GetResourceOutput resources = getResources();
         Assert.assertEquals(0, resources.getResources().size());
         try {
             saveResource();
@@ -121,8 +124,8 @@ public class AuthorizationIT extends BaseIT {
         new AuthorizationClient(token).deleteResources(input);
     }
 
-    private GetResourcesOutput getResources() throws ServiceException {
-        GetResourcesInput input = new GetResourcesInput(Collections.singletonList(URI));
+    private GetResourceOutput getResources() throws ServiceException {
+        GetResourceInput input = new GetResourceInput(Collections.singletonList(URI));
         return new AuthorizationClient(token).getResource(input);
     }
 

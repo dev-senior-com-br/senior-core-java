@@ -17,11 +17,22 @@ public class NotificationClient extends BaseClient {
 
     String token;
 
+    /**
+     * Construtor
+     *
+     * @param token
+     */
     public NotificationClient(String token) {
         super("platform", "notification");
         this.token = token;
     }
 
+    /**
+     * Construtor
+     *
+     * @param env
+     * @param token
+     */
     public NotificationClient(Environment env, String token) {
         super("platform", "notification", env);
         this.token = token;

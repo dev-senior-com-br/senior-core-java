@@ -4,6 +4,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Payload de erro
+ */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ErrorOutput {
@@ -13,6 +16,14 @@ public class ErrorOutput {
     String domain;
     String service;
 
+    /**
+     * Construtor
+     *
+     * @param message
+     * @param reason
+     * @param domain
+     * @param service
+     */
     public ErrorOutput(String message, String reason, String domain, String service) {
         this.message = message;
         this.reason = reason;

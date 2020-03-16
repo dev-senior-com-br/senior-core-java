@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Payload de entrada do {@link br.com.senior.core.authorization.AuthorizationClient#saveResources(SaveResourcesInput) saveResources}
+ */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor

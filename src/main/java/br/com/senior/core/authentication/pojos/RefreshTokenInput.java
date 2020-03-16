@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Payload de entrada do {@link br.com.senior.core.authentication.AuthenticationClient#refreshToken(RefreshTokenInput, String) refreshToken}
+ */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
@@ -22,6 +25,11 @@ public class RefreshTokenInput {
      */
     String scope;
 
+    /**
+     * Construtor
+     *
+     * @param refreshToken
+     */
     public RefreshTokenInput(String refreshToken) {
         this.refreshToken = refreshToken;
     }

@@ -1,12 +1,12 @@
 package br.com.senior.core.authorization.pojos;
 
-import java.util.List;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
 
 /**
  * Conjunto de recurso, ação e atributos para validação da permissão
@@ -30,10 +30,15 @@ public class PermissionToCheck {
      */
     List<AttributeValue> attributes;
 
+    /**
+     * Construtor
+     *
+     * @param resource
+     * @param action
+     */
     public PermissionToCheck(String resource, String action) {
         this.resource = resource;
         this.action = action;
     }
-
 
 }

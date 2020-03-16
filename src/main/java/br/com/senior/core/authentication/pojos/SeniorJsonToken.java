@@ -4,6 +4,9 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Dados da autenticação
+ */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SeniorJsonToken {
