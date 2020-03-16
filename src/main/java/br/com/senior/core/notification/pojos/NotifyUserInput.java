@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.experimental.FieldDefaults;
 
 /**
- * Payload de entrada do {@link br.com.senior.core.notification.NotificationClient#notifyUser(NotifyUserInput)}  notifyUser}
+ * Payload de entrada do {@link br.com.senior.core.notification.NotificationClient#notifyUser(NotifyUserInput) notifyUser}
  */
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)

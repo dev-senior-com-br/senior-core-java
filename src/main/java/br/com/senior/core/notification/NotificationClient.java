@@ -29,6 +29,10 @@ public class NotificationClient extends BaseClient {
 
     /**
      * Envia uma notificação para um usuário
+     *
+     * @param payload
+     * @return
+     * @throws ServiceException
      */
     public NotifyUserOutput notifyUser(NotifyUserInput payload) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.Notification.NOTIFY_USER), payload, this.token, NotifyUserOutput.class);
