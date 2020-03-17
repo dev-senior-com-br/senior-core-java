@@ -40,6 +40,13 @@ Utilizando como exemplo o login, caso a aplicação queira efetuar o login integ
     LoginOutput output = client.login(new LoginInput(username, password));
     ...
 ```
+Definir as seguintes variáveis de ambiente:
+
+```
+SENIOR_USERNAME=<usuario>
+PASS=<senha_do_usuario>
+TENANT_NAME=<nome_do_tenant>
+```
 
 ### Suporte
 

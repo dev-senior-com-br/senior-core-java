@@ -21,7 +21,7 @@ public class AuthenticationIT extends BaseIT {
 
     @Test
     public void testInvalidLogin() {
-        LoginInput input = new LoginInput(System.getenv("USERNAME"), System.getenv("PASSWORD_INVALID"));
+        LoginInput input = new LoginInput(System.getenv("SENIOR_USERNAME"), System.getenv("PASSWORD_INVALID"));
         Assert.assertThrows(ServiceException.class, () -> new AuthenticationClient().login(input));
     }
 
@@ -70,10 +70,11 @@ public class AuthenticationIT extends BaseIT {
 
         LoginOutput loginOutput = login();
         String username = loginOutput.getJsonToken().getUsername();
+        String email = loginOutput.getJsonToken().getUsername();
         String accessToken = loginOutput.getJsonToken().getAccess_token();
         String refreshToken = loginOutput.getJsonToken().getRefresh_token();
 
-        GetUserInput getUserInput = new GetUserInput(username);
+        GetUserInput getUserInput = new GetUserInput(username, email);
         GetUserOutput getUserOutput = new UserClient(accessToken).getUser(getUserInput);
 
         RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken, Scope.DESKTOP.toString());
@@ -87,10 +88,11 @@ public class AuthenticationIT extends BaseIT {
     public void testRefreshTokenScopeLess() throws ServiceException {
         LoginOutput loginOutput = login();
         String username = loginOutput.getJsonToken().getUsername();
+        String email = loginOutput.getJsonToken().getUsername();
         String accessToken = loginOutput.getJsonToken().getAccess_token();
         String refreshToken = loginOutput.getJsonToken().getRefresh_token();
 
-        GetUserInput getUserInput = new GetUserInput(username);
+        GetUserInput getUserInput = new GetUserInput(username, email);
         GetUserOutput getUserOutput = new UserClient(accessToken).getUser(getUserInput);
 
         RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken);
