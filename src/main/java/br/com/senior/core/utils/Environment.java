@@ -16,7 +16,7 @@ public enum Environment {
     /**
      * Construtor
      *
-     * @param url
+     * @param url - URL
      */
     Environment(String url) {
         this.url = url;

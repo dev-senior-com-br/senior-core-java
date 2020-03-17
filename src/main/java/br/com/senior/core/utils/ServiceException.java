@@ -18,8 +18,8 @@ public class ServiceException extends Exception {
     /**
      * Construtor
      *
-     * @param errorCode
-     * @param message
+     * @param errorCode - Código do erro
+     * @param message - Mensagem de erro
      */
     public ServiceException(int errorCode, String message) {
         super(message);
@@ -29,8 +29,8 @@ public class ServiceException extends Exception {
     /**
      * Construtor
      *
-     * @param message
-     * @param e
+     * @param message - Mensagem de erro
+     * @param e - Exceção
      */
     public ServiceException(String message, IOException e) {
         super(message, e);

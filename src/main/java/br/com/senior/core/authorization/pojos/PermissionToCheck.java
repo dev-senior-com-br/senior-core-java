@@ -33,8 +33,8 @@ public class PermissionToCheck {
     /**
      * Construtor
      *
-     * @param resource
-     * @param action
+     * @param resource - Nome do recurso
+     * @param action   - Nome da ação do recurso
      */
     public PermissionToCheck(String resource, String action) {
         this.resource = resource;

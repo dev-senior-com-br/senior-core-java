@@ -57,7 +57,7 @@ public class EndpointPath {
     }
 
     /**
-     * Caminhos do serviço de Inquilino
+     * Caminhos do serviço de tenant
      */
     @UtilityClass
     public class Tenant {

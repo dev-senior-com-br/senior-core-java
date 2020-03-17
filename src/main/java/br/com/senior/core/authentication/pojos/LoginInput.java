@@ -35,8 +35,8 @@ public class LoginInput {
     /**
      * Construtor
      *
-     * @param username
-     * @param password
+     * @param username - Usuário
+     * @param password - Senha
      */
     public LoginInput(String username, String password) {
         this.username = username;

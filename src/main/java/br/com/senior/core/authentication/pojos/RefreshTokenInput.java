@@ -28,7 +28,7 @@ public class RefreshTokenInput {
     /**
      * Construtor
      *
-     * @param refreshToken
+     * @param refreshToken - Token de atualização
      */
     public RefreshTokenInput(String refreshToken) {
         this.refreshToken = refreshToken;

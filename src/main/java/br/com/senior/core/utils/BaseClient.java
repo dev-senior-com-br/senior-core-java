@@ -18,8 +18,8 @@ public abstract class BaseClient {
     /**
      * Construtor
      *
-     * @param domain
-     * @param service
+     * @param domain  - Domínio
+     * @param service - Serviço
      */
     public BaseClient(String domain, String service) {
         this.domain = domain;
@@ -30,9 +30,9 @@ public abstract class BaseClient {
     /**
      * Construtor
      *
-     * @param domain
-     * @param service
-     * @param env
+     * @param domain  - Domínio
+     * @param service - Serviço
+     * @param env     - Variáveis de ambiente
      */
     public BaseClient(String domain, String service, Environment env) {
         this.domain = domain;
@@ -43,13 +43,13 @@ public abstract class BaseClient {
     /**
      * Requisição autenticada
      *
-     * @param url
-     * @param payload
-     * @param token
-     * @param clazz
-     * @param <T>
-     * @return
-     * @throws ServiceException
+     * @param url     - Url da requisição
+     * @param payload - Payload de entrada
+     * @param token   - Access-token de autenticação
+     * @param clazz   - Classe de payload de saída
+     * @param <T>     - Tipo de classe
+     * @return - Payload de saída
+     * @throws ServiceException - Erro tratado de serviço
      */
     protected <T> T execute(String url, Object payload, String token, Class<T> clazz) throws ServiceException {
         return RequestUtils.execute(url, payload, token, null, clazz);
@@ -58,13 +58,13 @@ public abstract class BaseClient {
     /**
      * Requisição anônima
      *
-     * @param url
-     * @param payload
-     * @param tenant
-     * @param clazz
-     * @param <T>
-     * @return
-     * @throws ServiceException
+     * @param url     - Url da requisição
+     * @param payload - Payload de entrada
+     * @param tenant  - Nome do tenant
+     * @param clazz   - Classe de payload de saída
+     * @param <T>     - Tipo de classe
+     * @return - Payload de saída
+     * @throws ServiceException - Erro tratado de serviço
      */
     protected <T> T executeAnonymous(String url, Object payload, String tenant, Class<T> clazz) throws ServiceException {
         return RequestUtils.execute(url, payload, null, tenant, clazz);
@@ -73,8 +73,8 @@ public abstract class BaseClient {
     /**
      * Monta URL para as requisições actions
      *
-     * @param path
-     * @return
+     * @param path - Caminho definido no {@link EndpointPath EndpointPath}
+     * @return - URL formatada
      */
     protected String getActionsUrl(String path) {
         return String.format("%s/rest/%s/%s/actions/%s", env.getUrl(), domain, service, path);
@@ -83,8 +83,8 @@ public abstract class BaseClient {
     /**
      * Monta URL para as requisições queries
      *
-     * @param path
-     * @return
+     * @param path - Caminho definido no {@link EndpointPath EndpointPath}
+     * @return - URL formatada
      */
     protected String getQueriesUrl(String path) {
         return String.format("%s/rest/%s/%s/queries/%s", env.getUrl(), domain, service, path);
@@ -93,8 +93,8 @@ public abstract class BaseClient {
     /**
      * Monta URL para as requisições anônimas
      *
-     * @param path
-     * @return
+     * @param path - Caminho definido no {@link EndpointPath EndpointPath}
+     * @return - URL formatada
      */
     protected String getAnonymousActionsUrl(String path) {
         return String.format("%s/anonymous/rest/%s/%s/actions/%s", env.getUrl(), domain, service, path);

@@ -26,14 +26,14 @@ public class RequestUtils {
     /**
      * Executa a requisição
      *
-     * @param url
-     * @param payload
-     * @param token
-     * @param tenant
-     * @param clazz
-     * @param <T>
-     * @return
-     * @throws ServiceException
+     * @param url     - Url da requisição
+     * @param payload - Payload de entrada
+     * @param token   - Access-token de autenticação
+     * @param tenant  - Tenant
+     * @param clazz   - Classe de payload de saída
+     * @param <T>     - Tipo de classe
+     * @return - Payload de saída
+     * @throws ServiceException - Erro tratado de serviço
      */
     public static <T> T execute(String url, Object payload, String token, String tenant, Class<T> clazz) throws ServiceException {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
@@ -47,13 +47,13 @@ public class RequestUtils {
     /**
      * Executa a requisição POST
      *
-     * @param url
-     * @param payload
-     * @param client
-     * @param token
-     * @param tenant
-     * @return
-     * @throws IOException
+     * @param url     - Url da requisição
+     * @param payload - Payload de entrada
+     * @param client  - Cliente http
+     * @param token   - Access-token de autenticação
+     * @param tenant  - Tenant
+     * @return - Resposta http
+     * @throws IOException - Erro de comunicação
      */
     private HttpResponse executePost(String url, Object payload, CloseableHttpClient client, String token, String tenant) throws IOException {
         HttpPost post = new HttpPost(url);
@@ -68,12 +68,12 @@ public class RequestUtils {
     /**
      * Trata a resposta da requisição
      *
-     * @param response
-     * @param clazz
-     * @param <T>
-     * @return
-     * @throws IOException
-     * @throws ServiceException
+     * @param response - Resposta http
+     * @param clazz    - Classe de payload de saída
+     * @param <T>-     Tipo de classe
+     * @return - Resposta em json
+     * @throws IOException      - Erro de comunicação
+     * @throws ServiceException - Erro tratado de serviço
      */
     private <T> T readResponse(HttpResponse response, Class<T> clazz) throws IOException, ServiceException {
         int statusCode = response.getStatusLine().getStatusCode();

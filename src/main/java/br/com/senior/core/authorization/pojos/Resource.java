@@ -1,11 +1,11 @@
 package br.com.senior.core.authorization.pojos;
 
-import java.util.List;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
 
 /**
  * Um recurso é um elemento que deve ter seu acesso controlado pelo serviço de autorização
@@ -47,9 +47,9 @@ public class Resource {
     /**
      * Construtor
      *
-     * @param name
-     * @param uri
-     * @param actions
+     * @param name    - Nome do recurso
+     * @param uri     - URI d recurso
+     * @param actions - Lista de ações do recurso
      */
     public Resource(String name, String uri, List<Action> actions) {
         this.name = name;

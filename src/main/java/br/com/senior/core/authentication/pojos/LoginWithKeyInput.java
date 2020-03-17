@@ -35,9 +35,9 @@ public class LoginWithKeyInput {
     /**
      * Construtor
      *
-     * @param accessKey
-     * @param secret
-     * @param tenantName
+     * @param accessKey  - Chave de autenticação
+     * @param secret     - Senha de autenticação
+     * @param tenantName - Nome do tenant
      */
     public LoginWithKeyInput(String accessKey, String secret, String tenantName) {
         this.accessKey = accessKey;

@@ -19,10 +19,10 @@ public class ErrorOutput {
     /**
      * Construtor
      *
-     * @param message
-     * @param reason
-     * @param domain
-     * @param service
+     * @param message - Mensagem de erro
+     * @param reason  - Motivo
+     * @param domain  - Domínio
+     * @param service - Serviço
      */
     public ErrorOutput(String message, String reason, String domain, String service) {
         this.message = message;

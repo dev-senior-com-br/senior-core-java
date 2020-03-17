@@ -1,5 +1,8 @@
 package br.com.senior.core.authorization;
 
+import br.com.senior.core.authentication.pojos.LoginInput;
+import br.com.senior.core.authentication.pojos.LoginMFAInput;
+import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
 import br.com.senior.core.authorization.pojos.AssignUsersInput;
 import br.com.senior.core.authorization.pojos.AssignUsersOutput;
 import br.com.senior.core.authorization.pojos.CheckAccessInput;
@@ -38,7 +41,9 @@ public class AuthorizationClient extends BaseClient {
     /**
      * Construtor
      *
-     * @param token
+     * @param token - Access-token gerado no {@link br.com.senior.core.authentication.AuthenticationClient#login(LoginInput) login},
+     *              {@link br.com.senior.core.authentication.AuthenticationClient#loginMFA(LoginMFAInput) loginMFA} e
+     *              {@link br.com.senior.core.authentication.AuthenticationClient#loginWithKey(LoginWithKeyInput) loginWithKey}
      */
     public AuthorizationClient(String token) {
         super("platform", "authorization");
@@ -48,8 +53,10 @@ public class AuthorizationClient extends BaseClient {
     /**
      * Construtor
      *
-     * @param env
-     * @param token
+     * @param env   - Variáveis de ambiente
+     * @param token - Access-token gerado no {@link br.com.senior.core.authentication.AuthenticationClient#login(LoginInput) login},
+     *              {@link br.com.senior.core.authentication.AuthenticationClient#loginMFA(LoginMFAInput) loginMFA} e
+     *              {@link br.com.senior.core.authentication.AuthenticationClient#loginWithKey(LoginWithKeyInput) loginWithKey}
      */
     public AuthorizationClient(Environment env, String token) {
         super("platform", "authorization", env);
@@ -60,9 +67,9 @@ public class AuthorizationClient extends BaseClient {
      * Para cada recurso informado, retorna se o usuário corrente possui permissão.
      * Se o usuário possuir permissão e marcar para incluir os filtros, irá retornar os filtros de serviço e recurso associados.
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com a permissões a serem verificadas
+     * @return - Payload de saída com os permissões que o usuário possui
+     * @throws ServiceException - Erro tratado de serviço
      */
     public CheckAccessOutput checkAccess(CheckAccessInput payload) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.Authorization.CHECK_ACCESS), payload, this.token, CheckAccessOutput.class);
@@ -75,9 +82,9 @@ public class AuthorizationClient extends BaseClient {
      * O campo nome do recurso é obrigatório na criação de um novo recurso.
      * Só serão permitidas alterações em recursos customizados.
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com os recursos a serem gravados
+     * @return - Payload de saída com os recursos gravados
+     * @throws ServiceException - Erro tratado de serviço
      */
     public SaveResourcesOutput saveResources(SaveResourcesInput payload) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.Authorization.SAVE_RESOURCES), payload, this.token, SaveResourcesOutput.class);
@@ -87,9 +94,9 @@ public class AuthorizationClient extends BaseClient {
      * Deleta recursos juntamente com suas ações.
      * Somente é possível remover recursos customizados
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com os recursos a serem removidos
+     * @return - Payload de saída sem informações
+     * @throws ServiceException - Erro tratado de serviço
      */
     public DeleteResourcesOutput deleteResources(DeleteResourcesInput payload) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.Authorization.DELETE_RESOURCES), payload, this.token, DeleteResourcesOutput.class);
@@ -98,9 +105,9 @@ public class AuthorizationClient extends BaseClient {
     /**
      * Retorna os dados de um recurso
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com as URIs dos recursos a serem obtidos
+     * @return - Payload de saída com os recursos obtidos
+     * @throws ServiceException - Erro tratado de serviço
      */
     public GetResourceOutput getResource(GetResourceInput payload) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.Authorization.GET_RESOURCES), payload, this.token, GetResourceOutput.class);
@@ -109,9 +116,9 @@ public class AuthorizationClient extends BaseClient {
     /**
      * Cria um novo papel
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com os dados dos papéis a serem gravados
+     * @return - Payload de saída com o nome dos papéis gravados
+     * @throws ServiceException - Erro tratado de serviço
      */
     public CreateRoleOutput createRole(CreateRoleInput payload) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.Authorization.CREATE_ROLE), payload, this.token, CreateRoleOutput.class);
@@ -120,9 +127,9 @@ public class AuthorizationClient extends BaseClient {
     /**
      * Vincula um ou mais usuários à um ou mais papéis, lançando o evento rolePermissionsChanged com os usuários incluídos
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com os usuários e papéis a serem associados
+     * @return - Payload de saída vazio
+     * @throws ServiceException - Erro tratado de serviço
      */
     public AssignUsersOutput assignUsers(AssignUsersInput payload) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.Authorization.ASSIGN_USER), payload, this.token, AssignUsersOutput.class);
@@ -131,9 +138,9 @@ public class AuthorizationClient extends BaseClient {
     /**
      * Remove um ou mais usuários de um ou mais papéis, lançando o evento rolePermissionsChanged com os usuários removidos
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com os usuários e papéis a serem desassociados
+     * @return - Payload de saída vazio
+     * @throws ServiceException - Erro tratado de serviço
      */
     public UnassignUsersOutput unassignUsers(UnassignUsersInput payload) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.Authorization.UNASSIGN_USER), payload, this.token, UnassignUsersOutput.class);
@@ -142,9 +149,9 @@ public class AuthorizationClient extends BaseClient {
     /**
      * Retorna uma lista de usuários que estão vinculados em ao menos um dos papéis informados
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com as roles que serão consultadas para obter os usuários associados
+     * @return - Payload de saída com a lista de usuários
+     * @throws ServiceException - Erro tratado de serviço
      */
     public GetAssignedUsersOutput getAssignedUsers(GetAssignedUsersInput payload) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.Authorization.GET_ASSIGN_USERS), payload, this.token, GetAssignedUsersOutput.class);
@@ -153,9 +160,9 @@ public class AuthorizationClient extends BaseClient {
     /**
      * Retorna os dados de um papel
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com o nome do papel a ser consultado
+     * @return - Payload de saída com os dados do papel
+     * @throws ServiceException - Erro tratado de serviço
      */
     public GetRoleOutput getRole(GetRoleInput payload) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.Authorization.GET_ROLE), payload, this.token, GetRoleOutput.class);
@@ -164,9 +171,9 @@ public class AuthorizationClient extends BaseClient {
     /**
      * Deleta um papel
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com o nome do papel a ser removida
+     * @return - Payload de saída vazio
+     * @throws ServiceException - Erro tratado de serviço
      */
     public DeleteRoleOutput deleteRole(DeleteRoleInput payload) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.Authorization.DELETE_ROLE), payload, this.token, DeleteRoleOutput.class);
