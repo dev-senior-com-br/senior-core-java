@@ -57,10 +57,10 @@ public abstract class BaseClient {
     /**
      * Constrói URL do Endpoint de exclusão.
      * @param id Identificador da entidade.
+     * @param path URL da API.
      * @return String do path do Endpoint.
      */
-    protected String getDelete(String id) {
-        return String.format("%s/rest/%s/%s", env.getUrl(), EndpointPath.User.DELETE_GROUP, id);
+    protected String getDelete(String id, String path) {
+        return String.format("%s/rest/%s/%s", env.getUrl(), path, id);
     }
-
 }

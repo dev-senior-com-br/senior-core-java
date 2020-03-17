@@ -98,11 +98,22 @@ public class UserClient extends BaseClient {
     /**
      * Remove um grupo na plataforma.
      *
-     * @param id Identificador da entidade para ser removida.
+     * @param id Identificador do grupo para ser removido.
      * @throws ServiceException
      */
     public void deleteGroup(String id) throws ServiceException {
-        String endPointPath = getDelete(id);
+        String endPointPath = getDelete(id, EndpointPath.User.DELETE_GROUP);
+        delete(endPointPath, this.token);
+    }
+
+    /**
+     * Remove um usuário na plataforma.
+     *
+     * @param id Identificador do usuário para ser removido.
+     * @throws ServiceException
+     */
+    public void deleteUser(String id) throws ServiceException {
+        String endPointPath = getDelete(id, EndpointPath.User.DELETE_USER);
         delete(endPointPath, this.token);
     }
 
