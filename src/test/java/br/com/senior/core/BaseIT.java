@@ -10,11 +10,11 @@ import br.com.senior.core.utils.ServiceException;
  */
 public abstract class BaseIT {
 
-    protected LoginOutput login() throws ServiceException {
-        return login(System.getenv("username"), System.getenv("password_valid"));
+    protected static LoginOutput login() throws ServiceException {
+        return login(System.getenv("USERNAME"), System.getenv("PASSWORD_VALID"));
     }
 
-    protected LoginOutput login(String username, String password) throws ServiceException {
+    protected static LoginOutput login(String username, String password) throws ServiceException {
         LoginInput input = new LoginInput(username, password);
         return new AuthenticationClient().login(input);
     }

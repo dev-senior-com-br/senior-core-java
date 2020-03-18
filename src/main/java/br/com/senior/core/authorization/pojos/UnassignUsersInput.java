@@ -1,13 +1,12 @@
 package br.com.senior.core.authorization.pojos;
 
-import java.util.List;
-
-import br.com.senior.core.authentication.pojos.RefreshTokenInput;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
 
 /**
  * Payload de entrada do {@link br.com.senior.core.authorization.AuthorizationClient#unassignUsers(UnassignUsersInput) unassignUsers}
