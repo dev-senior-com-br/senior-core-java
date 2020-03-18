@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Payload de saída do {@link br.com.senior.core.authentication.AuthenticationClient#loginMFA(LoginMFAInput) loginMFA}
+ */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
@@ -20,9 +23,5 @@ public class LoginMFAOutput {
      * Informações para realizar o próximo passo da autenticação quando o usuário está sinalizado para alterar a senha após se autenticar.
      */
     ResetPasswordInfo resetPasswordInfo;
-
-    public LoginMFAOutput(String jsonToken) {
-        this.jsonToken = jsonToken;
-    }
 
 }

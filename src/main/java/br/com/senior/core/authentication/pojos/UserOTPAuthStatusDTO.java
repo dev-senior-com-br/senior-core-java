@@ -1,5 +1,8 @@
 package br.com.senior.core.authentication.pojos;
 
+/**
+ * Tipos de Status de Autenticação
+ */
 public enum UserOTPAuthStatusDTO {
     /**
      * Ainda não configurado pelo usuário.

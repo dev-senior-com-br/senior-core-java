@@ -2,9 +2,15 @@ package br.com.senior.core.utils;
 
 import lombok.experimental.UtilityClass;
 
+/**
+ * Utilitário com os caminhos dos serviços
+ */
 @UtilityClass
 public class EndpointPath {
 
+    /**
+     * Caminhos do serviço de Autenticação
+     */
     @UtilityClass
     public class Authentication {
 
@@ -15,6 +21,9 @@ public class EndpointPath {
         public static final String REFRESH_TOKEN = "refreshToken";
     }
 
+    /**
+     * Caminhos do serviço de Autorização
+     */
     @UtilityClass
     public class Authorization {
 
@@ -30,6 +39,9 @@ public class EndpointPath {
         public static final String CHECK_ACCESS = "checkAccess";
     }
 
+    /**
+     * Caminhos do serviço de Usuário
+     */
     @UtilityClass
     public class User {
 
@@ -44,6 +56,9 @@ public class EndpointPath {
         public static final String UPDATE_GROUP_USERS = "updateGroupUsers";
     }
 
+    /**
+     * Caminhos do serviço de tenant
+     */
     @UtilityClass
     public class Tenant {
 
@@ -51,6 +66,9 @@ public class EndpointPath {
         public static final String GET_TENANT_BY_NAME = "getTenantByName";
     }
 
+    /**
+     * Caminhos do serviço de Notificação
+     */
     @UtilityClass
     public class Notification {
 

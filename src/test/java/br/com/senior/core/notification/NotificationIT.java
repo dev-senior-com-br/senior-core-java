@@ -14,7 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Exemplos de código do {@link br.com.senior.core.notification.NotificationClient}  NotificationClient}
+ * Exemplos de código do {@link br.com.senior.core.notification.NotificationClient NotificationClient}
  */
 public class NotificationIT extends BaseIT {
 

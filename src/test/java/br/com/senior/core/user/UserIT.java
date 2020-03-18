@@ -32,7 +32,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Exemplos de código do {@link br.com.senior.core.user.UserClient}  UserClient}
+ * Exemplos de código do {@link br.com.senior.core.user.UserClient UserClient}
  */
 public class UserIT extends BaseIT {
 
@@ -136,7 +136,7 @@ public class UserIT extends BaseIT {
                 .name(GROUP_NAME)
                 .description("Descricao do Grupo")
                 .email("email@group.com")
-                .users(List.of(USER_NAME))
+//                .users(List.of(USER_NAME))
                 .build();
 
         return client.createGroup(input);
@@ -147,7 +147,7 @@ public class UserIT extends BaseIT {
                 .name(GROUP_NAME)
                 .description("Descricao do Grupo")
                 .email("email@group.com")
-                .usersToRemove(List.of(USER_NAME))
+//                .usersToRemove(List.of(USER_NAME))
                 .build();
 
         return client.updateGroup(input);
@@ -194,8 +194,8 @@ public class UserIT extends BaseIT {
     private UpdateGroupUsersOutput updateGroupUsers() throws ServiceException {
         UpdateGroupUsersInput input = UpdateGroupUsersInput.builder()
                 .groupId(GROUP_ID)
-                .usersToRemove(List.of())
-                .usersToAdd(List.of(USER_NAME))
+//                .usersToRemove(List.of())
+//                .usersToAdd(List.of(USER_NAME))
                 .build();
 
         return client.updateGroupUsers(input);

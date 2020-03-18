@@ -10,6 +10,9 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
+/**
+ * Exemplos de código do {@link br.com.senior.core.authentication.AuthenticationClient AuthenticationClient}
+ */
 public class AuthenticationIT extends BaseIT {
 
     @Test
