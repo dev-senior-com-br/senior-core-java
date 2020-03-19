@@ -1,3 +1,5 @@
+# This workflow will release and deploy project in mvnrepository
+# For more information see: https://github.com/samuelmeuli/action-maven-publish
 name: Release
 
 # Run workflow on commits to the `master` branch
