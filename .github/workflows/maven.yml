@@ -1,0 +1,32 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      SENIOR_USERNAME: "username"
+      PASS: "password"
+      TENANT_NAME: "test"
+      TENANT_DOMAIN: "test.com.br"
+      USERNAME_MFA: "nome_do_usuario_multifactor"
+      PASSWORD_MFA: "senha_do_usuario_multifactor"
+      ACCESS_KEY: "chave_de_acesso"
+      SECRET: "secret_de_acesso"
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
