@@ -22,7 +22,7 @@ public class AuthenticationIT extends BaseIT {
     @Test
     public void testInvalidLogin() {
         LoginInput input = login(System.getenv("SENIOR_USERNAME"), System.getenv("PASSWORD_INVALID"));
-        Assert.assertThrows(ServiceException.class, () -> new AuthenticationClient().login(input));
+        Assert.assertThrows(ServiceException.class, () -> login(System.getenv("SENIOR_USERNAME"), System.getenv("PASSWORD_INVALID")));
     }
 
     @Test
