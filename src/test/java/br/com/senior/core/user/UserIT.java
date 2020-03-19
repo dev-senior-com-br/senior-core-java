@@ -36,7 +36,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Exemplos de código do {@link br.com.senior.core.user.UserClient}  UserClient}
+ * Exemplos de código do {@link br.com.senior.core.user.UserClient UserClient}
  */
 public class UserIT extends BaseIT {
 

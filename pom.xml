@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.com.senior</groupId>
     <artifactId>senior-core-java</artifactId>
     <version>1.0.2-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <packaging>jar</packaging>
 
     <name>Senior Core SDK</name>
     <description>Senior Core SDK</description>
-    <url>https://github.com/dev-senior-com-br/senior-core-java</url>	
-	
+    <url>https://github.com/dev-senior-com-br/senior-core-java</url>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
     </properties>
-	
+
     <developers>
         <developer>
             <id>andremrezende</id>
@@ -24,67 +26,67 @@
             </roles>
             <timezone>-3</timezone>
         </developer>
-    </developers>	
-	
-	<issueManagement>
-		<system>GitHub Issues</system>
-		<url>https://github.com/dev-senior-com-br/senior-core-java/issues</url>
-	</issueManagement>	
-	
-	 <licenses>
-		<license>
-		  <name>Apache License, Version 2.0</name>
-		  <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-		  <distribution>repo</distribution>
-		</license>
-	  </licenses>
-	  
+    </developers>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/dev-senior-com-br/senior-core-java/issues</url>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <scm>
-		<url>https://github.com/dev-senior-com-br/senior-core-java.git</url>
+        <url>https://github.com/dev-senior-com-br/senior-core-java.git</url>
         <connection>scm:git:git@github.com:dev-senior-com-br/senior-core-java.git</connection>
         <developerConnection>scm:git:git@github.com:dev-senior-com-br/senior-core-java.git</developerConnection>
         <tag>HEAD</tag>
-    </scm>	  
-	
-	<distributionManagement>
-		<snapshotRepository>
-			<id>OSSRH-55606</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>OSSRH-55606</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>	
-	
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>OSSRH-55606</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>OSSRH-55606</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <build>
-		<finalName>${artifactId}-${version}</finalName>
+        <finalName>${artifactId}-${version}</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>src/test/java</testSourceDirectory>
-        <plugins>		
+        <plugins>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>2.5.3</version>
-				<configuration>
-					<localCheckout>true</localCheckout>
-					<pushChanges>false</pushChanges>
-					<mavenExecutorId>forked-path</mavenExecutorId>
-					<arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
-					<checkModificationExcludes>
-						  <checkModificationExclude>pom.xml</checkModificationExclude>
-					</checkModificationExcludes>					
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.apache.maven.scm</groupId>
-						<artifactId>maven-scm-provider-gitexe</artifactId>
-						<version>1.9.5</version>
-					</dependency>
-				</dependencies>
-			</plugin>		
-			
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <localCheckout>true</localCheckout>
+                    <pushChanges>false</pushChanges>
+                    <mavenExecutorId>forked-path</mavenExecutorId>
+                    <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
+                    <checkModificationExcludes>
+                        <checkModificationExclude>pom.xml</checkModificationExclude>
+                    </checkModificationExcludes>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>1.9.5</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>3.0.0</version>
@@ -97,8 +99,8 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>		
-		
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -113,18 +115,18 @@
                 </executions>
             </plugin>
 
-			<plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.6.7</version>
-				<extensions>true</extensions>
-				<configuration>
-					<serverId>OSSRH-55606</serverId>
-					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-					<autoReleaseAfterClose>true</autoReleaseAfterClose>
-				</configuration>
-			</plugin>
-			
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>OSSRH-55606</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -136,44 +138,47 @@
                         <version>2.18.1</version>
                     </dependency>
                 </dependencies>
-            </plugin>			
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							 <goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			
+            </plugin>
+
             <plugin>
-          		<groupId>org.apache.maven.plugins</groupId>
-          		<artifactId>maven-javadoc-plugin</artifactId>
-          		<version>2.9.1</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>				
-          		<executions>
-            	    <execution>
-              	      <id>attach-javadocs</id>
-              	      <goals>
-                	   	  <goal>jar</goal>
-              	      </goals>
-            	    </execution>
-          		</executions>
-            </plugin>		
-			
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <source>${maven.compiler.source}</source>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                <source>${maven.compiler.source}</source>
+                <target>${maven.compiler.source}</target>
                 </configuration>
             </plugin>
 
@@ -186,9 +191,9 @@
                         <format>html</format>
                         <format>xml</format>
                     </formats>
-                    <check />
+                    <check/>
                 </configuration>
-            </plugin>			
+            </plugin>
         </plugins>
     </build>
     <dependencies>

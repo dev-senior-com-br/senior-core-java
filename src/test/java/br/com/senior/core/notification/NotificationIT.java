@@ -1,8 +1,6 @@
 package br.com.senior.core.notification;
 
 import br.com.senior.core.BaseIT;
-import br.com.senior.core.authentication.AuthenticationClient;
-import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.notification.pojos.NotifyUserInput;
 import br.com.senior.core.notification.pojos.NotifyUserOutput;
 import br.com.senior.core.notification.pojos.UserNotificationKind;
@@ -14,7 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Exemplos de código do {@link br.com.senior.core.notification.NotificationClient}  NotificationClient}
+ * Exemplos de código do {@link br.com.senior.core.notification.NotificationClient NotificationClient}
  */
 public class NotificationIT extends BaseIT {
 
@@ -24,20 +22,20 @@ public class NotificationIT extends BaseIT {
     @BeforeClass
     public static void beforeClass() throws ServiceException {
         token = login().getJsonToken().getAccess_token();
+        client = new NotificationClient(token);
     }
 
     @Test
     public void testNotifyUser() throws ServiceException {
         NotifyUserInput input = NotifyUserInput.builder()
-                .destinationUser("user@tenant.com")
-                .notificationOrigin("USUÁRIO")
-                .notificationClass("br.com.senior.platform.user.model.Usuario")
-                .notificationKind(UserNotificationKind.Operational)
-                .notificationPriority(UserNotificationPriority.Alert)
-                .notificationContent("Usuário registrado com sucesso")
-                .notificationSubject("Registro de Usuário")
-                .sourceDomain("PLATFORM")
-                .sourceService("USER")
+                .destinationUser(System.getenv("USERNAME"))
+                .notificationOrigin("Teste")
+                .notificationKind(UserNotificationKind.OPERATIONAL)
+                .notificationPriority(UserNotificationPriority.ALERT)
+                .notificationContent("Teste")
+                .notificationSubject("Teste")
+                .sourceDomain("platform")
+                .sourceService("tenant")
                 .build();
 
         NotifyUserOutput output = client.notifyUser(input);

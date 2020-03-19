@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Payload de entrada do {@link br.com.senior.core.authentication.AuthenticationClient#login(LoginInput) login}
+ */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
@@ -29,6 +32,12 @@ public class LoginInput {
      */
     String scope;
 
+    /**
+     * Construtor
+     *
+     * @param username - Usuário
+     * @param password - Senha
+     */
     public LoginInput(String username, String password) {
         this.username = username;
         this.password = password;

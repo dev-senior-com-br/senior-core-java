@@ -1,5 +1,8 @@
 package br.com.senior.core.user;
 
+import br.com.senior.core.authentication.pojos.LoginInput;
+import br.com.senior.core.authentication.pojos.LoginMFAInput;
+import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
 import br.com.senior.core.user.pojos.CreateGroupInput;
 import br.com.senior.core.user.pojos.CreateGroupOutput;
 import br.com.senior.core.user.pojos.CreateUserInput;
@@ -30,11 +33,26 @@ public class UserClient extends BaseClient {
 
     private String token;
 
+    /**
+     * Construtor
+     *
+     * @param token - Access-token gerado no {@link br.com.senior.core.authentication.AuthenticationClient#login(LoginInput) login},
+     *              {@link br.com.senior.core.authentication.AuthenticationClient#loginMFA(LoginMFAInput) loginMFA} e
+     *              {@link br.com.senior.core.authentication.AuthenticationClient#loginWithKey(LoginWithKeyInput) loginWithKey}
+     */
     public UserClient(String token) {
         super("platform", "user");
         this.token = token;
     }
 
+    /**
+     * Construtor
+     *
+     * @param token - Access-token gerado no {@link br.com.senior.core.authentication.AuthenticationClient#login(LoginInput) login},
+     *              {@link br.com.senior.core.authentication.AuthenticationClient#loginMFA(LoginMFAInput) loginMFA} e
+     *              {@link br.com.senior.core.authentication.AuthenticationClient#loginWithKey(LoginWithKeyInput) loginWithKey}
+     * @param env   - Variáveis de ambiente
+     */
     public UserClient(String token, Environment env) {
         super("platform", "user", env);
         this.token = token;
@@ -43,9 +61,9 @@ public class UserClient extends BaseClient {
     /**
      * Retorna as informações básicas do usuário passado como parâmetro. Se o usuário não for informado, retorna os dados do usuário corrente (que efetuou o login)
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com o login do usuário
+     * @return - Payload de saída com os dados do usuário
+     * @throws ServiceException - Erro tratado de serviço
      */
     public GetUserOutput getUser(GetUserInput payload) throws ServiceException {
         return execute(getQueriesUrl(EndpointPath.User.GET_USER), payload, this.token, GetUserOutput.class);
@@ -54,9 +72,9 @@ public class UserClient extends BaseClient {
     /**
      * Insere um novo usuário na base
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com os dados do usuário
+     * @return - Payload de saída com o login do usuário
+     * @throws ServiceException - Erro tratado de serviço
      */
     public CreateUserOutput createUser(CreateUserInput payload) throws ServiceException {
         return execute(getQueriesUrl(EndpointPath.User.CREATE_USER), payload, this.token, CreateUserOutput.class);
@@ -65,9 +83,9 @@ public class UserClient extends BaseClient {
     /**
      * Altera as informações de um usuário
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com os dados do usuário
+     * @return - Payload de saída com o login do usuário
+     * @throws ServiceException - Erro tratado de serviço
      */
     public UpdateUserOutput updateUser(UpdateUserInput payload) throws ServiceException {
         return execute(getQueriesUrl(EndpointPath.User.UPDATE_USER), payload, this.token, UpdateUserOutput.class);
@@ -76,9 +94,9 @@ public class UserClient extends BaseClient {
     /**
      * Retorna as informações de um grupo
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com o identificado do grupo
+     * @return - Payload de saída com os dados do grupo
+     * @throws ServiceException - Erro tratado de serviço
      */
     public GetGroupOutput getGroup(GetGroupInput payload) throws ServiceException {
         return execute(getQueriesUrl(EndpointPath.User.GET_GROUP), payload, this.token, GetGroupOutput.class);
@@ -87,9 +105,9 @@ public class UserClient extends BaseClient {
     /**
      * Insere um novo grupo na base.
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com os dados do grupo
+     * @return - Payload de saída com o identificador do grupo
+     * @throws ServiceException - Erro tratado de serviço
      */
     public CreateGroupOutput createGroup(CreateGroupInput payload) throws ServiceException {
         return execute(getQueriesUrl(EndpointPath.User.CREATE_GROUP), payload, this.token, CreateGroupOutput.class);
@@ -120,9 +138,9 @@ public class UserClient extends BaseClient {
     /**
      * Atualiza as informações e os usuários de um grupo
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com os dados do grupo
+     * @return - Payload de saída com o identificador do grupo
+     * @throws ServiceException - Erro tratado de serviço
      */
     public UpdateGroupOutput updateGroup(UpdateGroupInput payload) throws ServiceException {
         return execute(getQueriesUrl(EndpointPath.User.UPDATE_GROUP), payload, this.token, UpdateGroupOutput.class);
@@ -131,9 +149,9 @@ public class UserClient extends BaseClient {
     /**
      * Obtém a lista de todos os grupos
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com os filtros para pesquisa
+     * @return - Payload de saída com a lista de grupos
+     * @throws ServiceException - Erro tratado de serviço
      */
     public ListGroupsOutput listGroups(ListGroupsInput payload) throws ServiceException {
         return execute(getQueriesUrl(EndpointPath.User.LIST_GROUPS), payload, this.token, ListGroupsOutput.class);
@@ -142,9 +160,9 @@ public class UserClient extends BaseClient {
     /**
      * Obtém a lista dos usuários do grupo
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com o identificado do grupo e outros filtros
+     * @return - Payload de saída com a lista de usuários do grupos
+     * @throws ServiceException - Erro tratado de serviço
      */
     public ListGroupUsersOutput listGroupUsers(ListGroupUsersInput payload) throws ServiceException {
         return execute(getQueriesUrl(EndpointPath.User.LIST_GROUP_USERS), payload, this.token, ListGroupUsersOutput.class);
@@ -153,9 +171,9 @@ public class UserClient extends BaseClient {
     /**
      * Adiciona e/ou remove usuários de um grupo
      *
-     * @param payload
-     * @return
-     * @throws ServiceException
+     * @param payload - Payload de entrada com o identificado do grupo e os usuários a serem adicionados e/ou removidos do grupo
+     * @return - Payload de saída vazio
+     * @throws ServiceException - Erro tratado de serviço
      */
     public UpdateGroupUsersOutput updateGroupUsers(UpdateGroupUsersInput payload) throws ServiceException {
         return execute(getQueriesUrl(EndpointPath.User.UPDATE_GROUP_USERS), payload, this.token, UpdateGroupUsersOutput.class);

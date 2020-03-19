@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Payload de entrada do {@link br.com.senior.core.authentication.AuthenticationClient#loginWithKey(LoginWithKeyInput) loginWithKey}
+ */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
@@ -29,6 +32,13 @@ public class LoginWithKeyInput {
      */
     String scope;
 
+    /**
+     * Construtor
+     *
+     * @param accessKey  - Chave de autenticação
+     * @param secret     - Senha de autenticação
+     * @param tenantName - Nome do tenant
+     */
     public LoginWithKeyInput(String accessKey, String secret, String tenantName) {
         this.accessKey = accessKey;
         this.secret = secret;

@@ -5,7 +5,10 @@ import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.authentication.pojos.LoginOutput;
 import br.com.senior.core.utils.ServiceException;
 
-public class BaseIT {
+/**
+ * Base para as classes de testes
+ */
+public abstract class BaseIT {
 
     protected static LoginOutput login() throws ServiceException {
         return login(System.getenv("SENIOR_USERNAME"), System.getenv("PASS"));

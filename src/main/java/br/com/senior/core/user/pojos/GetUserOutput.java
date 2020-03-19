@@ -95,7 +95,18 @@ public class GetUserOutput {
     Boolean allowedToChangePassword;
 
     /**
-     * This convenience constructor allows initialization of all required fields.
+     * @param id                      - Identificador do usuário
+     * @param username                - Nome do usuário
+     * @param fullName                - Nome completo do usuário
+     * @param email                   - Endereço de e-mail do usuário
+     * @param tenantDomain            - Domínio do tenant no login do usuário
+     * @param tenantName              - Nome do tenant do usuário
+     * @param tenantLocale            - Localidade do tenant do usuário
+     * @param blocked                 - Indica se o usuário está bloqueado
+     * @param authenticationType      - Tipo de autenticação utilizada pelo tenant deste usuário
+     * @param photo                   - Foto do usuário em Base64
+     * @param admin                   - Indica se o usuário é um admin de tenant
+     * @param allowedToChangePassword - Indica se permite o usuário trocar de senha no próximo logon
      */
     public GetUserOutput(String id, String username, String fullName, String email, String tenantDomain, String tenantName, String tenantLocale, Boolean blocked, AuthType authenticationType, String photo, Boolean admin, Boolean allowedToChangePassword) {
         this.id = id;
@@ -112,6 +123,11 @@ public class GetUserOutput {
         this.allowedToChangePassword = allowedToChangePassword;
     }
 
+    /**
+     * Construtor
+     *
+     * @param tenantName - Nome do tenant
+     */
     public GetUserOutput(String tenantName) {
         this.tenantName = tenantName;
     }

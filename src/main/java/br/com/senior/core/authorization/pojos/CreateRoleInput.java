@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Payload de entrada do {@link br.com.senior.core.authorization.AuthorizationClient#createRole(CreateRoleInput) createRole}
+ */
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
@@ -20,9 +23,5 @@ public class CreateRoleInput {
      * A descrição do papel
      */
     String description;
-
-    public CreateRoleInput(String name) {
-        this.name = name;
-    }
 
 }

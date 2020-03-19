@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Payload de saída da autenticação anônima do {@link br.com.senior.core.authentication.AuthenticationClient#refreshToken(RefreshTokenInput, String) refreshToken}
+ */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
