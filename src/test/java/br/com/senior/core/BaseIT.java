@@ -11,7 +11,7 @@ public class BaseIT {
         return login(System.getenv("SENIOR_USERNAME"), System.getenv("PASS"));
     }
 
-    protected LoginOutput login(String username, String password) throws ServiceException {
+    protected static LoginOutput login(String username, String password) throws ServiceException {
         LoginInput input = new LoginInput(username, password);
         return new AuthenticationClient().login(input);
     }
