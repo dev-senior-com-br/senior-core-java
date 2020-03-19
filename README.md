@@ -46,6 +46,11 @@ Definir as seguintes variáveis de ambiente:
 SENIOR_USERNAME=<usuario>
 PASS=<senha_do_usuario>
 TENANT_NAME=<nome_do_tenant>
+USERNAME_MFA=<nome_do_usuario_multifactor>
+PASSWORD_MFA=<senha_do_usuario_multifactor>
+ACCESS_KEY=<chave_de_acesso>
+SECRET=<secret_de_acesso>
+TENANT_DOMAIN=<dominio_do_tenant>
 ```
 
 ### Suporte
