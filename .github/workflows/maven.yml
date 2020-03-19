@@ -11,17 +11,8 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    env:
-      SENIOR_USERNAME: "username"
-      PASS: "password"
-      TENANT_NAME: "test"
-      TENANT_DOMAIN: "test.com.br"
-      USERNAME_MFA: "nome_do_usuario_multifactor"
-      PASSWORD_MFA: "senha_do_usuario_multifactor"
-      ACCESS_KEY: "chave_de_acesso"
-      SECRET: "secret_de_acesso"
+    
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.11
