@@ -28,7 +28,7 @@ public class NotificationClient extends BaseClient {
      *              {@link br.com.senior.core.authentication.AuthenticationClient#loginWithKey(LoginWithKeyInput) loginWithKey}
      */
     public NotificationClient(String token) {
-        super("platform", "notification");
+        super("platform", "notifications");
         this.token = token;
     }
 
@@ -41,7 +41,7 @@ public class NotificationClient extends BaseClient {
      *              {@link br.com.senior.core.authentication.AuthenticationClient#loginWithKey(LoginWithKeyInput) loginWithKey}
      */
     public NotificationClient(Environment env, String token) {
-        super("platform", "notification", env);
+        super("platform", "notifications", env);
         this.token = token;
     }
 

@@ -1,6 +1,5 @@
 package br.com.senior.core.tenant.pojos;
 
-import br.com.senior.core.authentication.pojos.LoginInput;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NonNull;
