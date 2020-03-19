@@ -1,15 +1,5 @@
 package br.com.senior.core.utils;
 
-import br.com.senior.core.tenant.utils.ErrorOutput;
-
-import com.google.gson.Gson;
-
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -21,6 +11,11 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+
+import com.google.gson.Gson;
+
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -48,6 +43,7 @@ public class RequestUtils {
         }
     }
 
+    /*
      * Executa a requisição
      *
      * @param url     - Url da requisição

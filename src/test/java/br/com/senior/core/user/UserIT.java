@@ -3,9 +3,14 @@ package br.com.senior.core.user;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import br.com.senior.core.BaseIT;
-import br.com.senior.core.authentication.AuthenticationClient;
-import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.user.pojos.CreateGroupInput;
 import br.com.senior.core.user.pojos.CreateGroupOutput;
 import br.com.senior.core.user.pojos.CreateUserInput;
@@ -25,15 +30,6 @@ import br.com.senior.core.user.pojos.UpdateGroupUsersOutput;
 import br.com.senior.core.user.pojos.UpdateUserInput;
 import br.com.senior.core.user.pojos.UpdateUserOutput;
 import br.com.senior.core.utils.ServiceException;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
-
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  * Exemplos de código do {@link br.com.senior.core.user.UserClient UserClient}

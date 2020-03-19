@@ -1,14 +1,23 @@
 package br.com.senior.core.authentication;
 
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import br.com.senior.core.BaseIT;
-import br.com.senior.core.authentication.pojos.*;
+import br.com.senior.core.authentication.pojos.LoginMFAInput;
+import br.com.senior.core.authentication.pojos.LoginOutput;
+import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
+import br.com.senior.core.authentication.pojos.LoginWithKeyOutput;
+import br.com.senior.core.authentication.pojos.LogoutInput;
+import br.com.senior.core.authentication.pojos.LogoutOutput;
+import br.com.senior.core.authentication.pojos.RefreshTokenInput;
+import br.com.senior.core.authentication.pojos.RefreshTokenOutput;
+import br.com.senior.core.authentication.pojos.Scope;
 import br.com.senior.core.user.UserClient;
 import br.com.senior.core.user.pojos.GetUserInput;
 import br.com.senior.core.user.pojos.GetUserOutput;
 import br.com.senior.core.utils.ServiceException;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
 
 /**
  * Exemplos de código do {@link br.com.senior.core.authentication.AuthenticationClient AuthenticationClient}
@@ -23,8 +32,7 @@ public class AuthenticationIT extends BaseIT {
     }
 
     @Test
-    public void testInvalidLogin() {
-        LoginInput input = login(System.getenv("SENIOR_USERNAME"), System.getenv("PASSWORD_INVALID"));
+    public void testInvalidLogin() throws ServiceException {
         Assert.assertThrows(ServiceException.class, () -> login(System.getenv("SENIOR_USERNAME"), System.getenv("PASSWORD_INVALID")));
     }
 

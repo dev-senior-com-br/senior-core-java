@@ -2,12 +2,10 @@ package br.com.senior.core.utils;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Base para os clientes dos serviços
  */
-@Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public abstract class BaseClient {
 
@@ -65,6 +63,7 @@ public abstract class BaseClient {
         RequestUtils.delete(url, token);
     }
 
+    /*
      * Requisição anônima
      *
      * @param url     - Url da requisição
