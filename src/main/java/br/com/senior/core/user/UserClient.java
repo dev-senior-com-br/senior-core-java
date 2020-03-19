@@ -117,7 +117,7 @@ public class UserClient extends BaseClient {
      * Remove um grupo na plataforma.
      *
      * @param id Identificador do grupo para ser removido.
-     * @throws ServiceException
+     * @throws ServiceException - Erro tratado de serviço
      */
     public void deleteGroup(String id) throws ServiceException {
         String endPointPath = getDelete(id, EndpointPath.User.DELETE_GROUP);
@@ -128,7 +128,7 @@ public class UserClient extends BaseClient {
      * Remove um usuário na plataforma.
      *
      * @param id Identificador do usuário para ser removido.
-     * @throws ServiceException
+     * @throws ServiceException - Erro tratado de serviço
      */
     public void deleteUser(String id) throws ServiceException {
         String endPointPath = getDelete(id, EndpointPath.User.DELETE_USER);
