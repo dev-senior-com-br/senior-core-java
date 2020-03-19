@@ -1,20 +1,22 @@
 package br.com.senior.core.utils;
 
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
 import com.google.gson.Gson;
+
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * Utilitário para requisições HTTP
@@ -24,6 +26,24 @@ import com.google.gson.Gson;
 public class RequestUtils {
 
     /**
+     * Remove entidade da Plataforma.
+     * @param url Endpoint.
+     * @param token AccessToken de authenticação.
+     * @throws ServiceException Caso serviço esteja fora ou HTTP Status Code de retorno seja diferente de 2xx.
+     */
+    public static void delete(String url, String token) throws ServiceException {
+        try (CloseableHttpClient client = HttpClients.createDefault()) {
+            HttpResponse response = executeDelete(url, client, token);
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode < 200 || statusCode > 207) {
+                throw new ServiceException(statusCode, String.format("Error to remove Group with HTTP Status code %s", statusCode));
+            }
+        } catch (IOException e) {
+            throw new ServiceException("Erro ao efetuar requisição", e);
+        }
+    }
+
+    /*
      * Executa a requisição
      *
      * @param url     - Url da requisição
@@ -83,5 +103,21 @@ public class RequestUtils {
             throw new ServiceException(statusCode, errorOutput.getMessage());
         }
         return new Gson().fromJson(new InputStreamReader(response.getEntity().getContent(), StandardCharsets.ISO_8859_1), clazz);
+    }
+
+    /**
+     * Executa requisição HTTP com metodo DELETE.
+     * @param url Enpoint.
+     * @param client Cliente HTTP.
+     * @param token Access Token obtido na authenticação.
+     * @return Resposta HTTP.
+     * @throws IOException
+     */
+    private static HttpResponse executeDelete(String url, CloseableHttpClient client, String token) throws IOException {
+        HttpDelete delete = new HttpDelete(url);
+        delete.setHeader("Content-Type", "application/json");
+        Optional.ofNullable(token).ifPresent(t -> delete.setHeader("Authorization", String.format("Bearer %s", t)));
+
+        return client.execute(delete);
     }
 }

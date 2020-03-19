@@ -1,8 +1,16 @@
 package br.com.senior.core.user;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import br.com.senior.core.BaseIT;
-import br.com.senior.core.authentication.AuthenticationClient;
-import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.user.pojos.CreateGroupInput;
 import br.com.senior.core.user.pojos.CreateGroupOutput;
 import br.com.senior.core.user.pojos.CreateUserInput;
@@ -23,22 +31,16 @@ import br.com.senior.core.user.pojos.UpdateUserInput;
 import br.com.senior.core.user.pojos.UpdateUserOutput;
 import br.com.senior.core.utils.ServiceException;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
-
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 /**
  * Exemplos de código do {@link br.com.senior.core.user.UserClient UserClient}
  */
 public class UserIT extends BaseIT {
 
-    private static final String USER_NAME = "UsuarioParaTestes";
+    private static final String USER_NAME = "teste";
+    private static final String USER_EMAIL = "teste@test.com.br";
+    private static String USER_ID;
 
-    private static final String GROUP_ID = UUID.randomUUID().toString();
+    private static String GROUP_ID;
     private static final String GROUP_NAME = "GrupoParaTestes";
 
     private static String usernameExpected;
@@ -47,83 +49,167 @@ public class UserIT extends BaseIT {
 
     @BeforeClass
     public static void beforeClass() throws ServiceException {
-        usernameExpected = Arrays.stream(System.getenv("USERNAME").split("@")).findFirst().orElse(null);
-        token = new AuthenticationClient().login(new LoginInput(System.getenv("username"), System.getenv("password_valid"))).getJsonToken().getAccess_token();
+        usernameExpected = Arrays.stream(System.getenv("SENIOR_USERNAME").split("@")).findFirst().orElse(null);
+        token = login().getJsonToken().getAccess_token();
         client = new UserClient(token);
     }
 
     @Test
     public void testCreateAndGetGroup() throws ServiceException {
-        CreateGroupOutput createGroupOutput = createGroup();
-        Assert.assertNotNull(createGroupOutput);
+        try {
+            CreateGroupOutput createGroupOutput = createGroup();
+            assertNotNull(createGroupOutput);
+            GROUP_ID = createGroupOutput.getId();
 
-        GetGroupOutput getGroupOutput = getGroup();
-        Assert.assertNotNull(getGroupOutput);
+            GetGroupOutput getGroupOutput = getGroup();
+            assertNotNull(getGroupOutput);
+        } finally {
+            deleteGroup();
+        }
     }
 
     @Test
     public void testCreateAndListGroups() throws ServiceException {
-        CreateUserOutput createUserOutput = createUser();
-        Assert.assertNotNull(createUserOutput);
+        try {
+            CreateUserOutput createUserOutput = createUser();
+            assertNotNull(createUserOutput);
+            USER_ID = getUser().getId();
 
-        CreateGroupOutput createGroupOutput = createGroup();
-        Assert.assertNotNull(createGroupOutput);
+            CreateGroupOutput createGroupOutput = createGroup();
+            assertNotNull(createGroupOutput);
+            GROUP_ID = createGroupOutput.getId();
 
-        ListGroupsOutput listGroupsOutput = listGroups();
-        Assert.assertNotNull(listGroupsOutput);
-        Assert.assertEquals(1, listGroupsOutput.groups.size());
+            ListGroupsOutput listGroupsOutput = listGroups();
+            assertNotNull(listGroupsOutput);
+            Assert.assertEquals(9, listGroupsOutput.groups.size());
+        } finally {
+            deleteUser();
+            deleteGroup();
+        }
+
     }
 
     @Test
     public void testCreateAndListGroupUsers() throws ServiceException {
-        CreateUserOutput createUserOutput = createUser();
-        Assert.assertNotNull(createUserOutput);
+        try {
+            CreateUserOutput createUserOutput = createUser();
+            assertNotNull(createUserOutput);
 
-        CreateGroupOutput createGroupOutput = createGroup();
-        Assert.assertNotNull(createGroupOutput);
+            GetUserOutput getUserOutput = getUser();
+            assertNotNull(getUserOutput);
+            USER_ID = getUserOutput.getId();
 
-        ListGroupUsersOutput listGroupUsersOutput = listGroupUsers();
-        Assert.assertNotNull(listGroupUsersOutput);
-        Assert.assertEquals(1, listGroupUsersOutput.users.size());
+            CreateGroupOutput createGroupOutput = createGroup();
+            assertNotNull(createGroupOutput);
+            GROUP_ID = createGroupOutput.getId();
+
+            ListGroupUsersOutput listGroupUsersOutput = listGroupUsers();
+            assertNotNull(listGroupUsersOutput);
+            Assert.assertEquals(0, listGroupUsersOutput.users.size());
+        } finally {
+            deleteUser();
+            deleteGroup();
+        }
     }
 
     @Test
     public void testGetAndUpdateGroup() throws ServiceException {
-        GetGroupOutput getGroupOutput = getGroup();
-        Assert.assertNotNull(getGroupOutput);
+        try {
+            CreateGroupOutput createGroupOutput = createGroup();
+            assertNotNull(createGroupOutput);
+            GROUP_ID = createGroupOutput.getId();
 
-        UpdateGroupOutput updateGroupOutput = updateGroup();
-        Assert.assertNotNull(updateGroupOutput);
+            GetGroupOutput getGroupOutput = getGroup();
+            assertNotNull(getGroupOutput);
+
+            UpdateGroupOutput updateGroupOutput = updateGroup();
+            assertNotNull(updateGroupOutput);
+        } finally {
+            deleteGroup();
+        }
     }
 
     @Test
     public void testGetAndUpdateGroupUsers() throws ServiceException {
-        GetGroupOutput getGroupOutput = getGroup();
-        Assert.assertNotNull(getGroupOutput);
+        try {
+            CreateUserOutput createUserOutput = createUser();
+            assertNotNull(createUserOutput);
 
-        GetUserOutput getUserOutput = getUser();
-        Assert.assertNotNull(getUserOutput);
+            GetUserOutput getUserOutput = getUser();
+            assertNotNull(getUserOutput);
+            USER_ID = getUserOutput.getId();
 
-        UpdateGroupUsersOutput updateGroupUsersOutput = updateGroupUsers();
-        Assert.assertNotNull(updateGroupUsersOutput);
+            CreateGroupOutput createGroupOutput = createGroup();
+            assertNotNull(createGroupOutput);
+            GROUP_ID = createGroupOutput.getId();
+
+            GetGroupOutput getGroupOutput = getGroup();
+            assertNotNull(getGroupOutput);
+
+            UpdateGroupUsersOutput updateGroupUsersOutput = updateGroupUsers();
+            assertNotNull(updateGroupUsersOutput);
+        } finally {
+            deleteUser();
+            deleteGroup();
+        }
     }
 
     @Test
     public void testCreateAndGetUser() throws ServiceException {
-        CreateUserOutput createUserOutput = createUser();
-        Assert.assertNotNull(createUserOutput);
+        try {
+            CreateUserOutput createUserOutput = createUser();
+            assertNotNull(createUserOutput);
 
-        GetUserOutput getUserOutput = getUser();
-        Assert.assertNotNull(getUserOutput);
+            GetUserOutput getUserOutput = getUser();
+            assertNotNull(getUserOutput);
+            USER_ID = getUserOutput.getId();
+        } finally {
+            deleteUser();
+        }
     }
 
     @Test
     public void testGetAndUpdateUser() throws ServiceException {
-        GetUserOutput getUserOutput = getUser();
-        Assert.assertNotNull(getUserOutput);
+        try {
+            CreateUserOutput createUserOutput = createUser();
+            assertNotNull(createUserOutput);
 
-        UpdateUserOutput updateUserOutput = updateUser();
-        Assert.assertNotNull(updateUserOutput);
+            GetUserOutput getUserOutput = getUser();
+            assertNotNull(getUserOutput);
+            USER_ID = getUserOutput.getId();
+
+            UpdateUserOutput updateUserOutput = updateUser();
+            assertNotNull(updateUserOutput);
+        } finally {
+            deleteUser();
+        }
+    }
+
+    @Test(expected = Exception.class)
+    public void testDeleteGroupException() throws ServiceException {
+        GROUP_ID = "XPTO1234";
+        deleteGroup();
+    }
+
+    @Test
+    public void testDeleteGroup() throws Exception {
+        CreateGroupOutput createGroupOutput = createGroup();
+        assertNotNull(createGroupOutput);
+        GROUP_ID = createGroupOutput.getId();
+
+        try {
+            deleteGroup();
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    private static void deleteGroup() throws ServiceException {
+        client.deleteGroup(GROUP_ID);
+    }
+
+    private static void deleteUser() throws ServiceException {
+        client.deleteUser(USER_ID);
     }
 
     private GetGroupOutput getGroup() throws ServiceException {
@@ -135,19 +221,17 @@ public class UserIT extends BaseIT {
         CreateGroupInput input = CreateGroupInput.builder()
                 .name(GROUP_NAME)
                 .description("Descricao do Grupo")
-                .email("email@group.com")
-//                .users(List.of(USER_NAME))
+                .email(USER_EMAIL)
                 .build();
 
         return client.createGroup(input);
     }
 
     private UpdateGroupOutput updateGroup() throws ServiceException {
-        UpdateGroupInput input = UpdateGroupInput.builder()
+        UpdateGroupInput input = UpdateGroupInput.builder().id(GROUP_ID)
                 .name(GROUP_NAME)
                 .description("Descricao do Grupo")
-                .email("email@group.com")
-//                .usersToRemove(List.of(USER_NAME))
+                .email(USER_EMAIL)
                 .build();
 
         return client.updateGroup(input);
@@ -164,13 +248,14 @@ public class UserIT extends BaseIT {
     }
 
     private GetUserOutput getUser() throws ServiceException {
-        GetUserInput input = new GetUserInput(USER_NAME);
+        GetUserInput input = new GetUserInput(USER_NAME, USER_EMAIL);
         return client.getUser(input);
     }
 
     private CreateUserOutput createUser() throws ServiceException {
         CreateUserInput input = CreateUserInput.builder()
                 .username(USER_NAME)
+                .email(USER_EMAIL)
                 .fullName("nome completo")
                 .password("SuaSenha123")
                 .changePassword(false)
@@ -194,8 +279,7 @@ public class UserIT extends BaseIT {
     private UpdateGroupUsersOutput updateGroupUsers() throws ServiceException {
         UpdateGroupUsersInput input = UpdateGroupUsersInput.builder()
                 .groupId(GROUP_ID)
-//                .usersToRemove(List.of())
-//                .usersToAdd(List.of(USER_NAME))
+                .usersToAdd(List.of(USER_NAME))
                 .build();
 
         return client.updateGroupUsers(input);

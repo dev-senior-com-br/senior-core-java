@@ -2,12 +2,10 @@ package br.com.senior.core.utils;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Base para os clientes dos serviços
  */
-@Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public abstract class BaseClient {
 
@@ -56,6 +54,16 @@ public abstract class BaseClient {
     }
 
     /**
+     * Remove entidade da Plataforma.
+     * @param url Endpoint.
+     * @param token AccessToken de authenticação.
+     * @throws ServiceException Caso serviço esteja fora ou HTTP Status Code de retorno seja diferente de 2xx.
+     */
+    protected void delete(String url, String token) throws ServiceException {
+        RequestUtils.delete(url, token);
+    }
+
+    /*
      * Requisição anônima
      *
      * @param url     - Url da requisição
@@ -100,4 +108,13 @@ public abstract class BaseClient {
         return String.format("%s/anonymous/rest/%s/%s/actions/%s", env.getUrl(), domain, service, path);
     }
 
+    /**
+     * Constrói URL do Endpoint de exclusão.
+     * @param id Identificador da entidade.
+     * @param path URL da API.
+     * @return String do path do Endpoint.
+     */
+    protected String getDelete(String id, String path) {
+        return String.format("%s/rest/%s/%s", env.getUrl(), path, id);
+    }
 }

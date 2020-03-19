@@ -103,7 +103,7 @@ public class UserClient extends BaseClient {
     }
 
     /**
-     * Insere um novo grupo na base
+     * Insere um novo grupo na base.
      *
      * @param payload - Payload de entrada com os dados do grupo
      * @return - Payload de saída com o identificador do grupo
@@ -111,6 +111,28 @@ public class UserClient extends BaseClient {
      */
     public CreateGroupOutput createGroup(CreateGroupInput payload) throws ServiceException {
         return execute(getQueriesUrl(EndpointPath.User.CREATE_GROUP), payload, this.token, CreateGroupOutput.class);
+    }
+
+    /**
+     * Remove um grupo na plataforma.
+     *
+     * @param id Identificador do grupo para ser removido.
+     * @throws ServiceException
+     */
+    public void deleteGroup(String id) throws ServiceException {
+        String endPointPath = getDelete(id, EndpointPath.User.DELETE_GROUP);
+        delete(endPointPath, this.token);
+    }
+
+    /**
+     * Remove um usuário na plataforma.
+     *
+     * @param id Identificador do usuário para ser removido.
+     * @throws ServiceException
+     */
+    public void deleteUser(String id) throws ServiceException {
+        String endPointPath = getDelete(id, EndpointPath.User.DELETE_USER);
+        delete(endPointPath, this.token);
     }
 
     /**

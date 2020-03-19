@@ -18,4 +18,10 @@ public class GetUserInput {
     @NonNull
     String username;
 
+    /**
+     * Email do usuário
+      */
+    @NonNull
+    String email;
+
 }

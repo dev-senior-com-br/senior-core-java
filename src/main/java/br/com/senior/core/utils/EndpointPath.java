@@ -54,6 +54,8 @@ public class EndpointPath {
         public static final String LIST_GROUPS = "listGroups";
         public static final String LIST_GROUP_USERS = "listGroupUsers";
         public static final String UPDATE_GROUP_USERS = "updateGroupUsers";
+        public static final String DELETE_GROUP = "usuarios/userManager/entities/Grupo";
+        public static final String DELETE_USER = "usuarios/userManager/entities/Usuario";
     }
 
     /**

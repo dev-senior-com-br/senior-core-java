@@ -11,7 +11,7 @@ import br.com.senior.core.utils.ServiceException;
 public abstract class BaseIT {
 
     protected static LoginOutput login() throws ServiceException {
-        return login(System.getenv("USERNAME"), System.getenv("PASSWORD_VALID"));
+        return login(System.getenv("SENIOR_USERNAME"), System.getenv("PASS"));
     }
 
     protected static LoginOutput login(String username, String password) throws ServiceException {
