@@ -8,7 +8,7 @@
 	<profiles>
 		<!-- GPG settings -->
 		<profile>
-			<id>gpg</id>
+			<id>deploy</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
