@@ -1,3 +1,5 @@
+name: Generate Github Release and tag
+
 on: 
   push:
     branches:
