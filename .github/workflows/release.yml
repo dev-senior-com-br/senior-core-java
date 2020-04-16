@@ -6,7 +6,7 @@ name: Release Senior SDK
 on:
   push:
     branches:
-      - master
+      - test-ci
 
 jobs:
   release:
@@ -20,11 +20,18 @@ jobs:
         with:
           java-version: 11
 
-      - name: Release Maven package
-        uses: samuelmeuli/action-maven-publish@v1
+      - name: release prepare
+        run: mvn --settings settings.xml -B release:prepare
         with:
           gpg_private_key: ${{ secrets.gpg_private_key }}
           gpg_passphrase: ${{ secrets.gpg_passphrase }}
           nexus_username: ${{ secrets.nexus_username }}
           nexus_password: ${{ secrets.nexus_password }}
-          server_id: OSSRH-55606
+
+      - name: release perform
+        run: mvn --settings settings.xml -B release:perform
+        with:
+          gpg_private_key: ${{ secrets.gpg_private_key }}
+          gpg_passphrase: ${{ secrets.gpg_passphrase }}
+          nexus_username: ${{ secrets.nexus_username }}
+          nexus_password: ${{ secrets.nexus_password }}

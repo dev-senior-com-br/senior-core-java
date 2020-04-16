@@ -23,10 +23,10 @@
 	<servers>
 		<!-- Sonatype OSSRH credentials -->
 		<server>
-			<id>${env.INPUT_SERVER_ID}</id>
+			<id>OSSRH-55606</id>
 			<!-- Load credentials from env variables -->
-			<username>${env.INPUT_NEXUS_USERNAME}</username>
-			<password>${env.INPUT_NEXUS_PASSWORD}</password>
+			<username>${env.NEXUS_USERNAME}</username>
+			<password>${env.NEXUS_PASSWORD}</password>
 		</server>
 	</servers>
 </settings>
