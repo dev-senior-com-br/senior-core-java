@@ -1,20 +1,14 @@
-name: Release and publish
+# This workflow will release and deploy project in mvnrepository
+# For more information see: https://github.com/samuelmeuli/action-maven-publish
+name: Release Senior SDK
 
-on: 
+# Run workflow on commits to the `master` branch
+on:
   push:
     branches:
       - master
 
 jobs:
-  release-on-push:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: rymndhng/release-on-push-action@master
-        with:
-          bump_version_scheme: norelease
-  
   release:
     runs-on: ubuntu-latest
     steps:
@@ -32,5 +26,5 @@ jobs:
           gpg_private_key: ${{ secrets.gpg_private_key }}
           gpg_passphrase: ${{ secrets.gpg_passphrase }}
           nexus_username: ${{ secrets.nexus_username }}
-          nexus_password: ${{ secrets.nexus_password }}  
+          nexus_password: ${{ secrets.nexus_password }}
           server_id: OSSRH-55606
