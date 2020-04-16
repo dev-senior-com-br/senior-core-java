@@ -24,7 +24,7 @@ jobs:
         run: mvn -B package
 
       - name: release prepare
-        run: mvn source:jar -DskipTests=true -Dgpg.skip=true --settings settings.xml -B deploy
+        run: mvn source:jar -DskipTests=true --settings settings.xml -B deploy
         env:
           OSSRH_USERNAME: ${{ secrets.nexus_username }}
           OSSRH_PASSWORD: ${{ secrets.nexus_password }}
