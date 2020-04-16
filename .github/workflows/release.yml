@@ -21,15 +21,7 @@ jobs:
           java-version: 11
 
       - name: release prepare
-        run: mvn --settings settings.xml -B release:prepare
-        env:
-          gpg_private_key: ${{ secrets.gpg_private_key }}
-          GPG_PASSPHRASE: ${{ secrets.gpg_passphrase }}
-          NEXUS_USERNAME: ${{ secrets.nexus_username }}
-          NEXUS_PASSWORD: ${{ secrets.nexus_password }}
-
-      - name: release perform
-        run: mvn --settings settings.xml -B release:perform
+        run: mvn --settings settings.xml -B deploy
         env:
           gpg_private_key: ${{ secrets.gpg_private_key }}
           GPG_PASSPHRASE: ${{ secrets.gpg_passphrase }}
