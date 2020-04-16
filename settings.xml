@@ -15,7 +15,7 @@
 			<properties>
 				<gpg.executable>gpg</gpg.executable>
 				<!-- Load passphrase from env variable -->
-				<gpg.passphrase>${env.INPUT_GPG_PASSPHRASE}</gpg.passphrase>
+				<gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
 			</properties>
 		</profile>
 	</profiles>

@@ -22,16 +22,16 @@ jobs:
 
       - name: release prepare
         run: mvn --settings settings.xml -B release:prepare
-        with:
+        env:
           gpg_private_key: ${{ secrets.gpg_private_key }}
-          gpg_passphrase: ${{ secrets.gpg_passphrase }}
-          nexus_username: ${{ secrets.nexus_username }}
-          nexus_password: ${{ secrets.nexus_password }}
+          GPG_PASSPHRASE: ${{ secrets.gpg_passphrase }}
+          NEXUS_USERNAME: ${{ secrets.nexus_username }}
+          NEXUS_PASSWORD: ${{ secrets.nexus_password }}
 
       - name: release perform
         run: mvn --settings settings.xml -B release:perform
-        with:
+        env:
           gpg_private_key: ${{ secrets.gpg_private_key }}
-          gpg_passphrase: ${{ secrets.gpg_passphrase }}
-          nexus_username: ${{ secrets.nexus_username }}
-          nexus_password: ${{ secrets.nexus_password }}
+          GPG_PASSPHRASE: ${{ secrets.gpg_passphrase }}
+          NEXUS_USERNAME: ${{ secrets.nexus_username }}
+          NEXUS_PASSWORD: ${{ secrets.nexus_password }}
