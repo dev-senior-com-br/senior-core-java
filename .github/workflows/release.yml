@@ -3,7 +3,7 @@ name: Release Senior SDK
 on:
   push:
     branches:
-      - test-ci
+      - master
 
 jobs:
   release:
@@ -40,3 +40,11 @@ jobs:
           cwd: "./"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release Maven package
+        uses: samuelmeuli/action-maven-publish@v1
+        with:
+          gpg_private_key: ${{ secrets.gpg_private_key_paulo }}
+          gpg_passphrase: ${{ secrets.gpg_passphrase_paulo }}
+          nexus_username: ${{ secrets.nexus_username }}
+          nexus_password: ${{ secrets.nexus_password }}
