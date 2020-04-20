@@ -17,14 +17,14 @@ jobs:
         with:
           java-version: 11
 
-      - name:
+      - name: Github release
         uses: rymndhng/release-on-push-action@master
         with:
-          bump_version_scheme: norelease
+          bump_version_scheme: minor
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Get Version name
+      - name: Get version name
         uses: Deep-Symmetry/github-version-action@v1
         with:
           mvn-var-name: 'version_name'
