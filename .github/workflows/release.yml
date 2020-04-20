@@ -20,13 +20,10 @@ jobs:
         with:
           java-version: 11
 
-      - name: Build with Maven
-        run: mvn -B package
-
-      - name: release prepare
-        run: mvn -DskipTests=true -Dgpg.passphrase=${{secrets.gpg_passphrase}} deploy
-        env:
-          OSSRH_USERNAME: ${{ secrets.nexus_username }}
-          OSSRH_PASSWORD: ${{ secrets.nexus_password }}
-          GPG_PASSPHRASE: ${{secrets.gpg_passphrase}}
-          GPG_PRIVATE_KEY: ${{ secrets.gpg_private_key }}
+      - name: Release Maven package
+        uses: samuelmeuli/action-maven-publish@v1
+        with:
+          gpg_private_key: ${{ secrets.gpg_private_key_paulo }}
+          gpg_passphrase: ${{ secrets.gpg_passphrase_paulo }}
+          nexus_username: ${{ secrets.nexus_username }}
+          nexus_password: ${{ secrets.nexus_password }}
