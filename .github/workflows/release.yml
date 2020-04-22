@@ -1,8 +1,5 @@
-# This workflow will release and deploy project in mvnrepository
-# For more information see: https://github.com/samuelmeuli/action-maven-publish
 name: Release Senior SDK
 
-# Run workflow on commits to the `master` branch
 on:
   push:
     branches:
@@ -20,11 +17,34 @@ jobs:
         with:
           java-version: 11
 
+      - name: Github release
+        uses: rymndhng/release-on-push-action@master
+        with:
+          bump_version_scheme: minor
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get version name
+        uses: Deep-Symmetry/github-version-action@v1
+        with:
+          mvn-var-name: 'version_name'
+
+      - name: Update pom.xml version
+        run: mvn versions:set -DnewVersion=$version_name
+
+      - name: Commit pom file
+        uses: EndBug/add-and-commit@v4
+        with:
+          message: "Commit da alteração de versão"
+          add: "pom.xml"
+          cwd: "./"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Release Maven package
         uses: samuelmeuli/action-maven-publish@v1
         with:
-          gpg_private_key: ${{ secrets.gpg_private_key }}
-          gpg_passphrase: ${{ secrets.gpg_passphrase }}
+          gpg_private_key: ${{ secrets.gpg_private_key_paulo }}
+          gpg_passphrase: ${{ secrets.gpg_passphrase_paulo }}
           nexus_username: ${{ secrets.nexus_username }}
           nexus_password: ${{ secrets.nexus_password }}
-          server_id: OSSRH-55606
