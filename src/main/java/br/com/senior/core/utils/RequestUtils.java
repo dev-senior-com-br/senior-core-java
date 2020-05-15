@@ -7,7 +7,9 @@ import java.util.Optional;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -27,7 +29,8 @@ public class RequestUtils {
 
     /**
      * Remove entidade da Plataforma.
-     * @param url Endpoint.
+     *
+     * @param url   Endpoint.
      * @param token AccessToken de authenticação.
      * @throws ServiceException Caso serviço esteja fora ou HTTP Status Code de retorno seja diferente de 2xx.
      */
@@ -56,8 +59,26 @@ public class RequestUtils {
      * @throws ServiceException - Erro tratado de serviço
      */
     public static <T> T execute(String url, Object payload, String token, String tenant, Class<T> clazz) throws ServiceException {
+        return execute(url, payload, token, tenant, clazz, HttpMethod.POST);
+    }
+
+    public static <T> T execute(String url, Object payload, String token, String tenant, Class<T> clazz, HttpMethod method) throws ServiceException {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
-            HttpResponse response = executePost(url, payload, client, token, tenant);
+            HttpResponse response = null;
+            switch (method) {
+                case GET:
+                    response = executeGet(url, client, token);
+                    break;
+                case POST:
+                    response = executePost(url, payload, client, token, tenant);
+                    break;
+                case PUT:
+                    response = executePut(url, payload, client, token);
+                    break;
+                case DELETE:
+                    response = executeDelete(url, client, token);
+                    break;
+            }
             return readResponse(response, clazz);
         } catch (IOException e) {
             throw new ServiceException("Erro ao efetuar requisição", e);
@@ -102,14 +123,18 @@ public class RequestUtils {
             log.error("Erro ao efetuar requisição, código de erro: {}. Erro retornado: {}", statusCode, errorOutput);
             throw new ServiceException(statusCode, errorOutput.getMessage());
         }
+        if (statusCode == 204 && response.getEntity() == null) {
+            return null;
+        }
         return new Gson().fromJson(new InputStreamReader(response.getEntity().getContent(), StandardCharsets.ISO_8859_1), clazz);
     }
 
     /**
      * Executa requisição HTTP com metodo DELETE.
-     * @param url Enpoint.
+     *
+     * @param url    Enpoint.
      * @param client Cliente HTTP.
-     * @param token Access Token obtido na authenticação.
+     * @param token  Access Token obtido na authenticação.
      * @return Resposta HTTP.
      * @throws IOException
      */
@@ -119,5 +144,22 @@ public class RequestUtils {
         Optional.ofNullable(token).ifPresent(t -> delete.setHeader("Authorization", String.format("Bearer %s", t)));
 
         return client.execute(delete);
+    }
+
+    private static HttpResponse executeGet(String url, CloseableHttpClient client, String token) throws IOException {
+        HttpGet get = new HttpGet(url);
+        get.setHeader("Content-Type", "application/json");
+        Optional.ofNullable(token).ifPresent(t -> get.setHeader("Authorization", String.format("Bearer %s", t)));
+
+        return client.execute(get);
+    }
+
+    private static HttpResponse executePut(String url, Object payload, CloseableHttpClient client, String token) throws IOException {
+        HttpPut put = new HttpPut(url);
+        put.setHeader("Content-Type", "application/json");
+        Optional.ofNullable(token).ifPresent(t -> put.setHeader("Authorization", String.format("Bearer %s", t)));
+        StringEntity userEntity = new StringEntity(new Gson().toJson(payload));
+        put.setEntity(userEntity);
+        return client.execute(put);
     }
 }
