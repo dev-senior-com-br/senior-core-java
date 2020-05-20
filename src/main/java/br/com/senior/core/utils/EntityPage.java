@@ -1,17 +1,21 @@
 package br.com.senior.core.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Array;
-
 public class EntityPage<T> {
-
 
     private long totalPages;
     private long totalElements;
     private T[] contents;
     private Class<T> clz;
+
+    public EntityPage() {
+    }
+
+    public EntityPage(long totalPages, long totalElements, T[] contents, Class<T> clz) {
+        this.totalPages = totalPages;
+        this.totalElements = totalElements;
+        this.contents = contents;
+        this.clz = clz;
+    }
 
     public void setClz(Class<T> clz) {
         this.clz = clz;
