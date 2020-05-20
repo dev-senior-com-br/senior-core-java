@@ -6,17 +6,34 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class EntityExamplesTest {
 
     public static final String ENTITY_NAME = "entityName";
-    private EntitiesUtils<EntityObject> entityUtils;
+    private EntityObject payload = new EntityObject(123);
+
+    @Mock
+    EntitiesUtils<EntityObject> entityUtils;
 
     @Before
     public void before() {
-        entityUtils = new EntitiesUtils<>(Environment.HOMOLOG, "domain", "service", "token", EntityObject.class);
+        EntityObject returnPayload = new EntityObject(123);
+        when(entityUtils.executeGet(ENTITY_NAME, null)).thenReturn(new EntityPage<>(1, 1, new EntityObject[]{returnPayload}, EntityObject.class));
+        when(entityUtils.executeGet(ENTITY_NAME, "?filter=id eq 123")).thenReturn(new EntityPage<>(1, 1, new EntityObject[]{returnPayload}, EntityObject.class));
+        when(entityUtils.executeGetById(ENTITY_NAME, "123")).thenReturn(returnPayload);
+        when(entityUtils.executePost(ENTITY_NAME, payload)).thenReturn(returnPayload);
+        when(entityUtils.executePut(ENTITY_NAME, payload)).thenReturn(returnPayload);
+        doNothing().when(entityUtils).executeDelete(ENTITY_NAME, "123");
+        System.out.println();
     }
 
     @Test

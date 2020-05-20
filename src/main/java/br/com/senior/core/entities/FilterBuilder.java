@@ -90,10 +90,10 @@ public class FilterBuilder {
 
     public String build() {
         List<String> values = new ArrayList<>();
-        Optional.of(filter).ifPresent(a -> values.add(a.toString().trim()));
-        Optional.of(offset).ifPresent(a -> values.add("offset=" + a));
-        Optional.of(size).ifPresent(a -> values.add("size=" + a));
-        Optional.of(orderBy).ifPresent(a -> values.add("orderby=" + a));
+        Optional.ofNullable(filter).ifPresent(a -> values.add(a.toString().trim()));
+        Optional.ofNullable(offset).ifPresent(a -> values.add("offset=" + a));
+        Optional.ofNullable(size).ifPresent(a -> values.add("size=" + a));
+        Optional.ofNullable(orderBy).ifPresent(a -> values.add("orderby=" + a));
         StringBuilder filter = new StringBuilder();
         filter.append("?filter=");
         for (int i = 0; i < values.size(); i++) {
