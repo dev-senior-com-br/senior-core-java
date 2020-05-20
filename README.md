@@ -53,6 +53,21 @@ SECRET=<secret_de_acesso>
 TENANT_DOMAIN=<dominio_do_tenant>
 ```
 
+### Entidades
+
+Implementamos a parte de utilidades para entidades, para facilitar as requisições realizadas para as mesmas. Conforme exemplos abaixo:
+
+Como realizar uma chamada rest de uma entidade:
+```
+// O Objeto.class defini ao objeto da entidade que você deseja requisitar.
+Objeto retorno = new EntityUtils<>(dominio, serviço, token de autenticação, Objeto.class).executeGet(entity_name, filter);
+
+// Caso seja necessário utilizar a classe de filtro
+String filter = new FilterBuilder().field("id").equals("123").build();
+// O mesmo terá como retorno o seguinte : ?filter=id eq 123
+```
+
+
 ### Suporte
 
 1. Criar um issue https://github.com/dev-senior-com-br/senior-core-java/issues
