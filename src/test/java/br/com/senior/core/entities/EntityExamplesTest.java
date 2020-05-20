@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
-public class EntityExamples {
+public class EntityExamplesTest {
 
     public static final String ENTITY_NAME = "entityName";
     private EntitiesUtils<EntityObject> entityUtils;
