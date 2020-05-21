@@ -38,7 +38,7 @@ public class RequestUtils {
             HttpResponse response = executeDelete(url, client, token);
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode < 200 || statusCode > 207) {
-                throw new ServiceException(statusCode, String.format("Error to remove Entity with HTTP Status code %s", statusCode));
+                throw new ServiceException(statusCode, String.format("Error to remove Entity with HTTP Status code %d", statusCode));
             }
         } catch (IOException e) {
             throw new ServiceException("Erro ao efetuar requisição", e);
@@ -124,7 +124,9 @@ public class RequestUtils {
         if (statusCode == 204 && response.getEntity() == null) {
             return null;
         }
-        return SeniorGsonBuilder.newGsonBuilder().fromJson(new InputStreamReader(response.getEntity().getContent(), StandardCharsets.ISO_8859_1), clazz);
+        try (InputStreamReader is = new InputStreamReader(response.getEntity().getContent(), StandardCharsets.ISO_8859_1)) {
+            return SeniorGsonBuilder.newGsonBuilder().fromJson(is, clazz);
+        }
     }
 
     /**
