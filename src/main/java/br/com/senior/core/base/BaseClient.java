@@ -1,5 +1,6 @@
-package br.com.senior.core.utils;
+package br.com.senior.core.base;
 
+import br.com.senior.core.utils.EndpointPath;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 

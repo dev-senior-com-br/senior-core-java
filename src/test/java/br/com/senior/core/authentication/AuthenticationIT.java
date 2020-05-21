@@ -17,7 +17,7 @@ import br.com.senior.core.authentication.pojos.Scope;
 import br.com.senior.core.user.UserClient;
 import br.com.senior.core.user.pojos.GetUserInput;
 import br.com.senior.core.user.pojos.GetUserOutput;
-import br.com.senior.core.utils.ServiceException;
+import br.com.senior.core.base.ServiceException;
 
 /**
  * Exemplos de código do {@link br.com.senior.core.authentication.AuthenticationClient AuthenticationClient}

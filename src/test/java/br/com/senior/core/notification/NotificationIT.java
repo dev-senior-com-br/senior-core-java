@@ -5,7 +5,7 @@ import br.com.senior.core.notification.pojos.NotifyUserInput;
 import br.com.senior.core.notification.pojos.NotifyUserOutput;
 import br.com.senior.core.notification.pojos.UserNotificationKind;
 import br.com.senior.core.notification.pojos.UserNotificationPriority;
-import br.com.senior.core.utils.ServiceException;
+import br.com.senior.core.base.ServiceException;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;

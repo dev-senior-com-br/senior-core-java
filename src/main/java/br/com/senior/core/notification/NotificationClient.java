@@ -5,10 +5,10 @@ import br.com.senior.core.authentication.pojos.LoginMFAInput;
 import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
 import br.com.senior.core.notification.pojos.NotifyUserInput;
 import br.com.senior.core.notification.pojos.NotifyUserOutput;
-import br.com.senior.core.utils.BaseClient;
+import br.com.senior.core.base.BaseClient;
 import br.com.senior.core.utils.EndpointPath;
-import br.com.senior.core.utils.Environment;
-import br.com.senior.core.utils.ServiceException;
+import br.com.senior.core.base.Environment;
+import br.com.senior.core.base.ServiceException;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
