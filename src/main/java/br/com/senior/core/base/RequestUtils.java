@@ -155,7 +155,7 @@ public class RequestUtils {
         HttpPut put = new HttpPut(url);
         put.setHeader("Content-Type", "application/json");
         Optional.ofNullable(token).ifPresent(t -> put.setHeader("Authorization", String.format("Bearer %s", t)));
-        StringEntity userEntity = new StringEntity(new Gson().toJson(payload));
+        StringEntity userEntity = new StringEntity(SeniorGsonBuilder.newGsonBuilder().toJson(payload));
         put.setEntity(userEntity);
         return client.execute(put);
     }
