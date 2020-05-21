@@ -4,7 +4,7 @@ import br.com.senior.core.BaseIT;
 import br.com.senior.core.authentication.AuthenticationClient;
 import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.tenant.pojos.TenantOutput;
-import br.com.senior.core.utils.ServiceException;
+import br.com.senior.core.base.ServiceException;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;

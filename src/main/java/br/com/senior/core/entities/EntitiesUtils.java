@@ -1,6 +1,9 @@
 package br.com.senior.core.entities;
 
-import br.com.senior.core.utils.*;
+import br.com.senior.core.base.Environment;
+import br.com.senior.core.base.HttpMethod;
+import br.com.senior.core.base.RequestUtils;
+import br.com.senior.core.base.ServiceException;
 
 public class EntitiesUtils<T> {
 

@@ -23,10 +23,10 @@ import br.com.senior.core.authorization.pojos.SaveResourcesInput;
 import br.com.senior.core.authorization.pojos.SaveResourcesOutput;
 import br.com.senior.core.authorization.pojos.UnassignUsersInput;
 import br.com.senior.core.authorization.pojos.UnassignUsersOutput;
-import br.com.senior.core.utils.BaseClient;
+import br.com.senior.core.base.BaseClient;
 import br.com.senior.core.utils.EndpointPath;
-import br.com.senior.core.utils.Environment;
-import br.com.senior.core.utils.ServiceException;
+import br.com.senior.core.base.Environment;
+import br.com.senior.core.base.ServiceException;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 

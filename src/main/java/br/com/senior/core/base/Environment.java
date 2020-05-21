@@ -1,4 +1,4 @@
-package br.com.senior.core.utils;
+package br.com.senior.core.base;
 
 import lombok.Getter;
 

@@ -1,9 +1,4 @@
-package br.com.senior.core.utils;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
+package br.com.senior.core.base;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
@@ -14,10 +9,14 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-import com.google.gson.Gson;
-
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.util.EntityUtils;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 
 
 /**
@@ -34,12 +33,12 @@ public class RequestUtils {
      * @param token AccessToken de authenticação.
      * @throws ServiceException Caso serviço esteja fora ou HTTP Status Code de retorno seja diferente de 2xx.
      */
-    public static void delete(String url, String token) throws ServiceException {
+    public void delete(String url, String token) throws ServiceException {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             HttpResponse response = executeDelete(url, client, token);
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode < 200 || statusCode > 207) {
-                throw new ServiceException(statusCode, String.format("Error to remove Group with HTTP Status code %s", statusCode));
+                throw new ServiceException(statusCode, String.format("Error to remove Entity with HTTP Status code %d", statusCode));
             }
         } catch (IOException e) {
             throw new ServiceException("Erro ao efetuar requisição", e);
@@ -58,7 +57,7 @@ public class RequestUtils {
      * @return - Payload de saída
      * @throws ServiceException - Erro tratado de serviço
      */
-    public static <T> T execute(String url, Object payload, String token, String tenant, Class<T> clazz) throws ServiceException {
+    public <T> T execute(String url, Object payload, String token, String tenant, Class<T> clazz) throws ServiceException {
         return execute(url, payload, token, tenant, clazz, HttpMethod.POST);
     }
 
@@ -101,7 +100,7 @@ public class RequestUtils {
         post.setHeader("Content-Type", "application/json");
         Optional.ofNullable(tenant).ifPresent(t -> post.setHeader("X-Tenant", t));
         Optional.ofNullable(token).ifPresent(t -> post.setHeader("Authorization", String.format("Bearer %s", t)));
-        StringEntity userEntity = new StringEntity(new Gson().toJson(payload));
+        StringEntity userEntity = new StringEntity(SeniorGsonBuilder.newGsonBuilder().toJson(payload));
         post.setEntity(userEntity);
         return client.execute(post);
     }
@@ -119,14 +118,15 @@ public class RequestUtils {
     private <T> T readResponse(HttpResponse response, Class<T> clazz) throws IOException, ServiceException {
         int statusCode = response.getStatusLine().getStatusCode();
         if (statusCode >= 400) {
-            ErrorOutput errorOutput = new Gson().fromJson(new InputStreamReader(response.getEntity().getContent(), StandardCharsets.ISO_8859_1), ErrorOutput.class);
-            log.error("Erro ao efetuar requisição, código de erro: {}. Erro retornado: {}", statusCode, errorOutput);
-            throw new ServiceException(statusCode, errorOutput.getMessage());
+            String body = EntityUtils.toString(response.getEntity());
+            throw new ServiceException(statusCode, body);
         }
         if (statusCode == 204 && response.getEntity() == null) {
             return null;
         }
-        return new Gson().fromJson(new InputStreamReader(response.getEntity().getContent(), StandardCharsets.ISO_8859_1), clazz);
+        try (InputStreamReader is = new InputStreamReader(response.getEntity().getContent(), StandardCharsets.ISO_8859_1)) {
+            return SeniorGsonBuilder.newGsonBuilder().fromJson(is, clazz);
+        }
     }
 
     /**
@@ -136,13 +136,12 @@ public class RequestUtils {
      * @param client Cliente HTTP.
      * @param token  Access Token obtido na authenticação.
      * @return Resposta HTTP.
-     * @throws IOException
+     * @throws IOException Erro de comunicação
      */
-    private static HttpResponse executeDelete(String url, CloseableHttpClient client, String token) throws IOException {
+    private HttpResponse executeDelete(String url, CloseableHttpClient client, String token) throws IOException {
         HttpDelete delete = new HttpDelete(url);
         delete.setHeader("Content-Type", "application/json");
         Optional.ofNullable(token).ifPresent(t -> delete.setHeader("Authorization", String.format("Bearer %s", t)));
-
         return client.execute(delete);
     }
 
@@ -158,7 +157,7 @@ public class RequestUtils {
         HttpPut put = new HttpPut(url);
         put.setHeader("Content-Type", "application/json");
         Optional.ofNullable(token).ifPresent(t -> put.setHeader("Authorization", String.format("Bearer %s", t)));
-        StringEntity userEntity = new StringEntity(new Gson().toJson(payload));
+        StringEntity userEntity = new StringEntity(SeniorGsonBuilder.newGsonBuilder().toJson(payload));
         put.setEntity(userEntity);
         return client.execute(put);
     }

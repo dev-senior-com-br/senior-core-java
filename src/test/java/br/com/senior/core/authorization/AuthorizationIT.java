@@ -29,7 +29,7 @@ import br.com.senior.core.authorization.pojos.Resource;
 import br.com.senior.core.authorization.pojos.SaveResourcesInput;
 import br.com.senior.core.authorization.pojos.SaveResourcesOutput;
 import br.com.senior.core.authorization.pojos.UnassignUsersInput;
-import br.com.senior.core.utils.ServiceException;
+import br.com.senior.core.base.ServiceException;
 
 /**
  * Exemplos de código do {@link br.com.senior.core.authorization.AuthorizationClient AuthorizationClient}

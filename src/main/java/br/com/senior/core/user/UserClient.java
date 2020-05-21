@@ -21,10 +21,10 @@ import br.com.senior.core.user.pojos.UpdateGroupUsersInput;
 import br.com.senior.core.user.pojos.UpdateGroupUsersOutput;
 import br.com.senior.core.user.pojos.UpdateUserInput;
 import br.com.senior.core.user.pojos.UpdateUserOutput;
-import br.com.senior.core.utils.BaseClient;
+import br.com.senior.core.base.BaseClient;
 import br.com.senior.core.utils.EndpointPath;
-import br.com.senior.core.utils.Environment;
-import br.com.senior.core.utils.ServiceException;
+import br.com.senior.core.base.Environment;
+import br.com.senior.core.base.ServiceException;
 
 /**
  * Cliente o serviço de <a href="https://dev.senior.com.br/apis/platform_user/">Usuários</a>

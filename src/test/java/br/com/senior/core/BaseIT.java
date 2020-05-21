@@ -3,7 +3,7 @@ package br.com.senior.core;
 import br.com.senior.core.authentication.AuthenticationClient;
 import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.authentication.pojos.LoginOutput;
-import br.com.senior.core.utils.ServiceException;
+import br.com.senior.core.base.ServiceException;
 
 /**
  * Base para as classes de testes

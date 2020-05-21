@@ -29,7 +29,7 @@ import br.com.senior.core.user.pojos.UpdateGroupUsersInput;
 import br.com.senior.core.user.pojos.UpdateGroupUsersOutput;
 import br.com.senior.core.user.pojos.UpdateUserInput;
 import br.com.senior.core.user.pojos.UpdateUserOutput;
-import br.com.senior.core.utils.ServiceException;
+import br.com.senior.core.base.ServiceException;
 
 /**
  * Exemplos de código do {@link br.com.senior.core.user.UserClient UserClient}

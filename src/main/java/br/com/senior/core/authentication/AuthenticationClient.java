@@ -13,10 +13,10 @@ import br.com.senior.core.authentication.pojos.RefreshTokenInput;
 import br.com.senior.core.authentication.pojos.RefreshTokenInternalOutput;
 import br.com.senior.core.authentication.pojos.RefreshTokenOutput;
 import br.com.senior.core.authentication.pojos.SeniorJsonToken;
-import br.com.senior.core.utils.BaseClient;
+import br.com.senior.core.base.BaseClient;
 import br.com.senior.core.utils.EndpointPath;
-import br.com.senior.core.utils.Environment;
-import br.com.senior.core.utils.ServiceException;
+import br.com.senior.core.base.Environment;
+import br.com.senior.core.base.ServiceException;
 
 import java.util.Optional;
 
