@@ -10,9 +10,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public abstract class BaseClient {
 
-    Environment env;
-    String domain;
-    String service;
+    protected Environment env;
+    protected String domain;
+    protected String service;
 
     /**
      * Construtor
