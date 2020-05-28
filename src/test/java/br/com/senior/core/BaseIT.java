@@ -11,7 +11,11 @@ import br.com.senior.core.base.ServiceException;
 public abstract class BaseIT {
 
     protected static LoginOutput login() throws ServiceException {
-        return login(System.getenv("SENIOR_USERNAME"), System.getenv("PASS"));
+        LoginOutput login = login(System.getenv("SENIOR_USERNAME"), System.getenv("PASS"));
+        if (login.getResetPasswordInfo() != null) {
+            throw new ServiceException(400, "Usuário informado inválido para os testes, é necessário fazer o login na plataforma ao menos uma vez após a sua criação para realizar a troca da senha.");
+        }
+        return login;
     }
 
     protected static LoginOutput login(String username, String password) throws ServiceException {
