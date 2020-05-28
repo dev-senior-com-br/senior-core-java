@@ -78,7 +78,8 @@ public class EntitiesUtils<T> {
     }
 
     private String getUrl(String entityName, String id, String filter) {
-        String url = String.format("%s/rest/%s/%s/entities/%s", env.getUrl(), domain, service, entityName);
+        String format = Environment.HOMOLOG.equals(env) ? "%s/rest/%s/%s/entities/%s" : "%s/%s/%s/entities/%s";
+        String url = String.format(format, env.getUrl(), domain, service, entityName);
         if (id != null) {
             return url + "/" + id;
         } else {
