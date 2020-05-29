@@ -20,6 +20,7 @@ Esta biblioteca permite desenvolvedores criar integrações das APIs da Senior.
     </dependencies>
     ...
   ```
+3. Para obter a última versão da SDK verifique no repositório. https://mvnrepository.com/artifact/br.com.senior/senior-core-java
 
 ## Exemplo Rápido
 
