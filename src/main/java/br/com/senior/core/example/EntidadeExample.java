@@ -27,8 +27,8 @@ public class EntidadeExample {
         String token = output.getJsonToken().getAccess_token();
 
         //POST
-        EntitiesUtils entityUtils = new EntitiesUtils<>("hcm","payroll", token, Syndicate.class);
-        syndicate = new Syndicate("4ca94ee8-a1c2-11ea-bb37-0242ad",2L,"Nome do Sindicato", 12L);
+        EntitiesUtils entityUtils = new EntitiesUtils<>("hcm", "payroll", token, Syndicate.class);
+        syndicate = new Syndicate("4ca94ee8-a1c2-11ea-bb37-0242ad", 2L, "Nome do Sindicato", 12L);
         syndicateResult = (Syndicate)entityUtils.executePost(ENTITY_NAME, syndicate);
 
         //GET
@@ -39,10 +39,10 @@ public class EntidadeExample {
 
         //GET com Filter
         String filter = new FilterBuilder().field("id").equals("4ca94ee8-a1c2-11ea-bb37-0242ad").build();
-        entityPage = new EntitiesUtils<>("hcm","payroll", token, Syndicate.class).executeGet("syndicate", filter);
+        entityPage = new EntitiesUtils<>("hcm", "payroll", token, Syndicate.class).executeGet("syndicate", filter);
 
         //PUT
-        Syndicate payload = new Syndicate("4ca94ee8-a1c2-11ea-bb37-0242ad",2L," de tudo", 12L);
+        Syndicate payload = new Syndicate("4ca94ee8-a1c2-11ea-bb37-0242ad", 2L, "Sindicato de tudo", 12L);
         syndicateResult = (Syndicate) entityUtils.executePut(ENTITY_NAME, "4ca94ee8-a1c2-11ea-bb37-0242ad", payload);
 
         //Delete
