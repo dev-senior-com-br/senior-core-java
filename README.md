@@ -61,7 +61,7 @@ Implementamos a parte de utilidades para entidades, para facilitar as requisiç�
 Como realizar uma chamada rest de uma entidade:
 ```
 // O Objeto.class defini ao objeto da entidade que você deseja requisitar.
-Objeto retorno = new EntityUtils<>(dominio, serviço, token de autenticação, Objeto.class).executeGet(entity_name, filter);
+Objeto retorno = new EntitiesUtils<>(dominio, serviço, token de autenticação, Objeto.class).executeGet(entity_name, filter);
 
 // Caso seja necessário utilizar a classe de filtro
 String filter = new FilterBuilder().field("id").equals("123").build();
