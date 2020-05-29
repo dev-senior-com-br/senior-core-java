@@ -28,7 +28,7 @@ public class EntityExamplesTest {
         when(entityUtils.executeGet(ENTITY_NAME, "?filter=id eq 123")).thenReturn(new EntityPage<>(1, 1, new EntityObject[]{returnPayload}, EntityObject.class));
         when(entityUtils.executeGetById(ENTITY_NAME, "123")).thenReturn(returnPayload);
         when(entityUtils.executePost(ENTITY_NAME, payload)).thenReturn(returnPayload);
-        when(entityUtils.executePut(ENTITY_NAME, payload)).thenReturn(returnPayload);
+        when(entityUtils.executePut(ENTITY_NAME, "123", payload)).thenReturn(returnPayload);
         doNothing().when(entityUtils).executeDelete(ENTITY_NAME, "123");
     }
 
@@ -54,7 +54,7 @@ public class EntityExamplesTest {
     @Test
     public void testPutEntity() {
         EntityObject payload = new EntityObject(123);
-        EntityObject putResult = entityUtils.executePost(ENTITY_NAME, payload);
+        EntityObject putResult = entityUtils.executePut(ENTITY_NAME, "123", payload);
         assertNotNull(putResult);
     }
 
