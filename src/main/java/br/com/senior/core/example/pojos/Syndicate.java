@@ -1,4 +1,4 @@
-package br.com.senior.core.example.entities;
+package br.com.senior.core.example.pojos;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

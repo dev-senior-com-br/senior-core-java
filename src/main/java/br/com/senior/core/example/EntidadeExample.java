@@ -7,7 +7,7 @@ import br.com.senior.core.base.ServiceException;
 import br.com.senior.core.entities.EntitiesUtils;
 import br.com.senior.core.entities.EntityPage;
 import br.com.senior.core.entities.FilterBuilder;
-import br.com.senior.core.example.entities.Syndicate;
+import br.com.senior.core.example.pojos.Syndicate;
 
 public class EntidadeExample {
 
