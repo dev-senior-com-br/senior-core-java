@@ -59,9 +59,9 @@ public class EntitiesUtils<T> {
         return null;
     }
 
-    public T executePut(String entityName, T payload) {
+    public T executePut(String entityName, String id, T payload) {
         try {
-            return RequestUtils.execute(getUrl(entityName, null, null), payload, token, null, clazz, HttpMethod.PUT);
+            return RequestUtils.execute(getUrl(entityName, id, null), payload, token, null, clazz, HttpMethod.PUT);
         } catch (ServiceException e) {
             e.printStackTrace();
         }
