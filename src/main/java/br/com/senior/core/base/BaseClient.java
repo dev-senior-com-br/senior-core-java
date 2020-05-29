@@ -56,7 +56,8 @@ public abstract class BaseClient {
 
     /**
      * Remove entidade da Plataforma.
-     * @param url Endpoint.
+     *
+     * @param url   Endpoint.
      * @param token AccessToken de authenticação.
      * @throws ServiceException Caso serviço esteja fora ou HTTP Status Code de retorno seja diferente de 2xx.
      */
@@ -86,7 +87,8 @@ public abstract class BaseClient {
      * @return - URL formatada
      */
     protected String getActionsUrl(String path) {
-        return String.format("%s/rest/%s/%s/actions/%s", env.getUrl(), domain, service, path);
+        String format = Environment.HOMOLOG.equals(env) ? "%s/rest/%s/%s/actions/%s" : "%s/%s/%s/actions/%s";
+        return String.format(format, env.getUrl(), domain, service, path);
     }
 
     /**
@@ -96,7 +98,8 @@ public abstract class BaseClient {
      * @return - URL formatada
      */
     protected String getQueriesUrl(String path) {
-        return String.format("%s/rest/%s/%s/queries/%s", env.getUrl(), domain, service, path);
+        String format = Environment.HOMOLOG.equals(env) ? "%s/rest/%s/%s/queries/%s" : "%s/%s/%s/queries/%s";
+        return String.format(format, env.getUrl(), domain, service, path);
     }
 
     /**
@@ -106,16 +109,19 @@ public abstract class BaseClient {
      * @return - URL formatada
      */
     protected String getAnonymousActionsUrl(String path) {
-        return String.format("%s/anonymous/rest/%s/%s/actions/%s", env.getUrl(), domain, service, path);
+        String format = Environment.HOMOLOG.equals(env) ? "%s/anonymous/rest/%s/%s/actions/%s" : "%s/%s/%s/anonymous/actions/%s";
+        return String.format(format, env.getUrl(), domain, service, path);
     }
 
     /**
      * Constrói URL do Endpoint de exclusão.
-     * @param id Identificador da entidade.
+     *
+     * @param id   Identificador da entidade.
      * @param path URL da API.
      * @return String do path do Endpoint.
      */
     protected String getDelete(String id, String path) {
-        return String.format("%s/rest/%s/%s", env.getUrl(), path, id);
+        String format = Environment.HOMOLOG.equals(env) ? "%s/rest/%s/%s" : "%s/%s/%s";
+        return String.format(format, env.getUrl(), path, id);
     }
 }
