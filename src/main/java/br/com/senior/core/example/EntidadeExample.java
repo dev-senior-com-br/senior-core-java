@@ -43,7 +43,7 @@ public class EntidadeExample {
 
         //PUT
         Syndicate payload = new Syndicate("4ca94ee8-a1c2-11ea-bb37-0242ad",2L," de tudo", 12L);
-        syndicateResult = (Syndicate) entityUtils.executePut(ENTITY_NAME, payload);
+        syndicateResult = (Syndicate) entityUtils.executePut(ENTITY_NAME, "4ca94ee8-a1c2-11ea-bb37-0242ad", payload);
 
         //Delete
         entityUtils.executeDelete(ENTITY_NAME, "4ca94ee8-a1c2-11ea-bb37-0242ad");
