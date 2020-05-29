@@ -9,12 +9,19 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class SeniorGsonBuilder {
+
+
+    private final static String DATE = "yyyy-MM-dd";
+    private final static String DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    private final static String[] DATE_FORMATS = new String[]{DATE, DATE_TIME};
 
     public static Gson newGsonBuilder() {
         GsonBuilder builder = new GsonBuilder();
@@ -40,11 +47,11 @@ public class SeniorGsonBuilder {
 
         public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
             if (json != null && !(json instanceof JsonNull)) {
-                try {
-                    return new Date(OffsetDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_DATE_TIME).toInstant().toEpochMilli());
-                } catch (DateTimeParseException var5) {
-                    throw new JsonParseException(var5);
+                Date date = doFormat(json.getAsString());
+                if (date == null) {
+                    throw new JsonParseException("Unable to parse date: " + json.getAsString());
                 }
+                return date;
             } else {
                 return null;
             }
@@ -258,4 +265,16 @@ public class SeniorGsonBuilder {
             }
         }
     }
+
+    private static Date doFormat(String strDate) {
+        for (String format : DATE_FORMATS) {
+            try {
+                return new SimpleDateFormat(format).parse(strDate);
+            } catch (ParseException e) {
+                //doNothing
+            }
+        }
+        return null;
+    }
+
 }
