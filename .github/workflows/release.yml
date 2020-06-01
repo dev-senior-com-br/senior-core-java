@@ -30,7 +30,7 @@ jobs:
           mvn-var-name: 'version_name'
 
       - name: Update pom.xml version
-        run: mvn versions:set -DnewVersion=$version_name
+        run: mvn versions:set -DnewVersion=$version_name$(date +%s)
 
       - name: Commit pom file
         uses: EndBug/add-and-commit@v4
