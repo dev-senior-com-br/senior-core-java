@@ -4,31 +4,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import br.com.senior.core.authorization.pojos.*;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.com.senior.core.BaseIT;
-import br.com.senior.core.authorization.pojos.Action;
-import br.com.senior.core.authorization.pojos.AssignUsersInput;
-import br.com.senior.core.authorization.pojos.CheckAccessInput;
-import br.com.senior.core.authorization.pojos.CheckAccessOutput;
-import br.com.senior.core.authorization.pojos.CreateRoleInput;
-import br.com.senior.core.authorization.pojos.CreateRoleOutput;
-import br.com.senior.core.authorization.pojos.DeleteResourcesInput;
-import br.com.senior.core.authorization.pojos.DeleteRoleInput;
-import br.com.senior.core.authorization.pojos.DeleteRoleOutput;
-import br.com.senior.core.authorization.pojos.GetAssignedUsersInput;
-import br.com.senior.core.authorization.pojos.GetAssignedUsersOutput;
-import br.com.senior.core.authorization.pojos.GetResourceInput;
-import br.com.senior.core.authorization.pojos.GetResourceOutput;
-import br.com.senior.core.authorization.pojos.GetRoleInput;
-import br.com.senior.core.authorization.pojos.GetRoleOutput;
-import br.com.senior.core.authorization.pojos.PermissionToCheck;
-import br.com.senior.core.authorization.pojos.Resource;
-import br.com.senior.core.authorization.pojos.SaveResourcesInput;
-import br.com.senior.core.authorization.pojos.SaveResourcesOutput;
-import br.com.senior.core.authorization.pojos.UnassignUsersInput;
 import br.com.senior.core.base.ServiceException;
 
 /**
@@ -96,6 +77,17 @@ public class AuthorizationIT extends BaseIT {
     }
 
     @Test
+    public void testCreateAndListRoles() throws ServiceException {
+        Assert.assertThrows(ServiceException.class, this::getRole);
+        try {
+            Assert.assertNotNull(createRole());
+            Assert.assertNotNull(listRoles());
+        } finally {
+            deleteRole();
+        }
+    }
+
+    @Test
     public void testCreateAndDeleteRoles() throws ServiceException {
         Assert.assertThrows(ServiceException.class, this::getRole);
         try {
@@ -155,6 +147,11 @@ public class AuthorizationIT extends BaseIT {
     private CreateRoleOutput createRole() throws ServiceException {
         CreateRoleInput input = new CreateRoleInput(ROLE_NAME, "papel para testes de integração");
         return new AuthorizationClient(token).createRole(input);
+    }
+
+    private ListRolesOutput listRoles() throws ServiceException {
+        ListRolesInput input = new ListRolesInput();
+        return new AuthorizationClient(token).listRoles(input);
     }
 
     private DeleteRoleOutput deleteRole() throws ServiceException {
