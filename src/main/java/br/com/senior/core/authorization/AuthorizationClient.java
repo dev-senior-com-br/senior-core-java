@@ -3,6 +3,9 @@ package br.com.senior.core.authorization;
 import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.authentication.pojos.LoginMFAInput;
 import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
+import br.com.senior.core.authentication.pojos.LoginInput;
+import br.com.senior.core.authentication.pojos.LoginMFAInput;
+import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
 import br.com.senior.core.authorization.pojos.AssignUsersInput;
 import br.com.senior.core.authorization.pojos.AssignUsersOutput;
 import br.com.senior.core.authorization.pojos.CheckAccessInput;
@@ -19,6 +22,8 @@ import br.com.senior.core.authorization.pojos.GetResourceInput;
 import br.com.senior.core.authorization.pojos.GetResourceOutput;
 import br.com.senior.core.authorization.pojos.GetRoleInput;
 import br.com.senior.core.authorization.pojos.GetRoleOutput;
+import br.com.senior.core.authorization.pojos.ListRolesInput;
+import br.com.senior.core.authorization.pojos.ListRolesOutput;
 import br.com.senior.core.authorization.pojos.SaveResourcesInput;
 import br.com.senior.core.authorization.pojos.SaveResourcesOutput;
 import br.com.senior.core.authorization.pojos.UnassignUsersInput;
@@ -36,7 +41,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthorizationClient extends BaseClient {
 
-    String token;
+    final String token;
 
     /**
      * Construtor
@@ -177,5 +182,16 @@ public class AuthorizationClient extends BaseClient {
      */
     public DeleteRoleOutput deleteRole(DeleteRoleInput payload) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.Authorization.DELETE_ROLE), payload, this.token, DeleteRoleOutput.class);
+    }
+
+    /**
+     * Retorna os dados de um papel
+     *
+     * @param payload - Payload de entrada com o nome do papel a ser consultado
+     * @return - Payload de saída com os dados do papel
+     * @throws ServiceException - Erro tratado de serviço
+     */
+    public ListRolesOutput listRoles(ListRolesInput payload) throws ServiceException {
+        return execute(getQueriesUrl(EndpointPath.Authorization.LIST_ROLES), payload, this.token, ListRolesOutput.class);
     }
 }
