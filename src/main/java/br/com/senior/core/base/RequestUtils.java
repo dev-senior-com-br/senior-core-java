@@ -1,5 +1,7 @@
 package br.com.senior.core.base;
 
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
@@ -8,9 +10,6 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
@@ -153,7 +152,7 @@ public class RequestUtils {
         return client.execute(get);
     }
 
-    private static HttpResponse executePut(String url, Object payload, CloseableHttpClient client, String token) throws IOException {
+    public static HttpResponse executePut(String url, Object payload, CloseableHttpClient client, String token) throws IOException {
         HttpPut put = new HttpPut(url);
         put.setHeader("Content-Type", "application/json");
         Optional.ofNullable(token).ifPresent(t -> put.setHeader("Authorization", String.format("Bearer %s", t)));
