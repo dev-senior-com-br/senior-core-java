@@ -22,6 +22,25 @@ Esta biblioteca permite desenvolvedores criar integrações das APIs da Senior.
   ```
 3. Para obter a última versão da SDK verifique no repositório. https://mvnrepository.com/artifact/br.com.senior/senior-core-java
 
+### Ambiente
+
+Atualmente o ambiente padrão para o desenvolvimento é o da Homologx.
+Para fazer a troca do ambiente basta chamar o construtor da api passando um dos Environments configurados:
+
+```java
+public enum Environment {
+
+    PROD("https://api.senior.com.br"),
+    HOMOLOG("https://platform-homologx.senior.com.br/t/senior.com.br/bridge/1.0");
+
+    private final String url;
+
+    Environment(String url) {
+        this.url = url;
+    }
+}
+```
+
 ## Exemplo Rápido
 
 Implementamos no pacote **/src/test/java/br/com/senior/core** um conjunto de testes de integração para cada serviço. Alguns serviços dependem de variáveis que precisam ser informadas pelos usuários, como login e senha para testar o login, ou token de acesso para os testes de autorização.
@@ -41,17 +60,31 @@ Utilizando como exemplo o login, caso a aplicação queira efetuar o login integ
     LoginOutput output = client.login(new LoginInput(username, password));
     ...
 ```
+
+Para mudar o ambiente para produção é necessário informar o environment ao chamar o construtor do Client:
+
+```java
+  AuthenticationClient client = new AuthenticationClient(Environment.PROD);
+```
+
 Definir as seguintes variáveis de ambiente:
 
 ```
+#Propriedades obrigatórias para todos os tipos de autenticação
+TENANT_DOMAIN=<dominio_do_tenant>
+TENANT_NAME=<nome_do_tenant>
+
+#Login
 SENIOR_USERNAME=<usuario>
 PASS=<senha_do_usuario>
-TENANT_NAME=<nome_do_tenant>
+
+#Login multifator 
 USERNAME_MFA=<nome_do_usuario_multifactor>
 PASSWORD_MFA=<senha_do_usuario_multifactor>
+
+#Login de aplicativo
 ACCESS_KEY=<chave_de_acesso>
 SECRET=<secret_de_acesso>
-TENANT_DOMAIN=<dominio_do_tenant>
 ```
 
 ### Entidades
