@@ -25,53 +25,53 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ResetPasswordInfo
+ * Input3
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-08-13T19:09:13.383Z")
 
 
 
-public class ResetPasswordInfo {
-  @SerializedName("temporaryToken")
-  private String temporaryToken = null;
+public class Input3 {
+  @SerializedName("scope")
+  private String scope = null;
 
-  @SerializedName("tenant")
-  private String tenant = null;
+  @SerializedName("tenantDomain")
+  private String tenantDomain = null;
 
-  public ResetPasswordInfo temporaryToken(String temporaryToken) {
-    this.temporaryToken = temporaryToken;
+  public Input3 scope(String scope) {
+    this.scope = scope;
     return this;
   }
 
    /**
-   * Token temporário gerado quando o usuário precisa alterar a senha
-   * @return temporaryToken
+   * Escopo personalizado para login via SAML, utilizado por aplicações mobile
+   * @return scope
   **/
-  @ApiModelProperty(value = "Token temporário gerado quando o usuário precisa alterar a senha")
-  public String getTemporaryToken() {
-    return temporaryToken;
+  @ApiModelProperty(value = "Escopo personalizado para login via SAML, utilizado por aplicações mobile")
+  public String getScope() {
+    return scope;
   }
 
-  public void setTemporaryToken(String temporaryToken) {
-    this.temporaryToken = temporaryToken;
+  public void setScope(String scope) {
+    this.scope = scope;
   }
 
-  public ResetPasswordInfo tenant(String tenant) {
-    this.tenant = tenant;
+  public Input3 tenantDomain(String tenantDomain) {
+    this.tenantDomain = tenantDomain;
     return this;
   }
 
    /**
-   * Nome do tenant
-   * @return tenant
+   * Domínio do tenant que deve as informações de login retornadas.
+   * @return tenantDomain
   **/
-  @ApiModelProperty(value = "Nome do tenant")
-  public String getTenant() {
-    return tenant;
+  @ApiModelProperty(required = true, value = "Domínio do tenant que deve as informações de login retornadas.")
+  public String getTenantDomain() {
+    return tenantDomain;
   }
 
-  public void setTenant(String tenant) {
-    this.tenant = tenant;
+  public void setTenantDomain(String tenantDomain) {
+    this.tenantDomain = tenantDomain;
   }
 
 
@@ -83,24 +83,24 @@ public class ResetPasswordInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResetPasswordInfo resetPasswordInfo = (ResetPasswordInfo) o;
-    return Objects.equals(this.temporaryToken, resetPasswordInfo.temporaryToken) &&
-        Objects.equals(this.tenant, resetPasswordInfo.tenant);
+    Input3 input3 = (Input3) o;
+    return Objects.equals(this.scope, input3.scope) &&
+        Objects.equals(this.tenantDomain, input3.tenantDomain);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(temporaryToken, tenant);
+    return Objects.hash(scope, tenantDomain);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResetPasswordInfo {\n");
+    sb.append("class Input3 {\n");
     
-    sb.append("    temporaryToken: ").append(toIndentedString(temporaryToken)).append("\n");
-    sb.append("    tenant: ").append(toIndentedString(tenant)).append("\n");
+    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+    sb.append("    tenantDomain: ").append(toIndentedString(tenantDomain)).append("\n");
     sb.append("}");
     return sb.toString();
   }

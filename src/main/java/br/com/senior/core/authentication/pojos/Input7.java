@@ -25,53 +25,53 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ResetPasswordInfo
+ * Input7
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-08-13T19:09:13.383Z")
 
 
 
-public class ResetPasswordInfo {
-  @SerializedName("temporaryToken")
-  private String temporaryToken = null;
+public class Input7 {
+  @SerializedName("scope")
+  private String scope = null;
 
-  @SerializedName("tenant")
-  private String tenant = null;
+  @SerializedName("refreshToken")
+  private String refreshToken = null;
 
-  public ResetPasswordInfo temporaryToken(String temporaryToken) {
-    this.temporaryToken = temporaryToken;
+  public Input7 scope(String scope) {
+    this.scope = scope;
     return this;
   }
 
    /**
-   * Token temporário gerado quando o usuário precisa alterar a senha
-   * @return temporaryToken
+   * Escopo do token. Pode ser um dos seguintes valores: phone, desktop, tablet, iot ou wearable. Se não fornecido, o valor padrão é desktop
+   * @return scope
   **/
-  @ApiModelProperty(value = "Token temporário gerado quando o usuário precisa alterar a senha")
-  public String getTemporaryToken() {
-    return temporaryToken;
+  @ApiModelProperty(value = "Escopo do token. Pode ser um dos seguintes valores: phone, desktop, tablet, iot ou wearable. Se não fornecido, o valor padrão é desktop")
+  public String getScope() {
+    return scope;
   }
 
-  public void setTemporaryToken(String temporaryToken) {
-    this.temporaryToken = temporaryToken;
+  public void setScope(String scope) {
+    this.scope = scope;
   }
 
-  public ResetPasswordInfo tenant(String tenant) {
-    this.tenant = tenant;
+  public Input7 refreshToken(String refreshToken) {
+    this.refreshToken = refreshToken;
     return this;
   }
 
    /**
-   * Nome do tenant
-   * @return tenant
+   * O refresh_token que foi retornado junto ao access_token durante o login.
+   * @return refreshToken
   **/
-  @ApiModelProperty(value = "Nome do tenant")
-  public String getTenant() {
-    return tenant;
+  @ApiModelProperty(required = true, value = "O refresh_token que foi retornado junto ao access_token durante o login.")
+  public String getRefreshToken() {
+    return refreshToken;
   }
 
-  public void setTenant(String tenant) {
-    this.tenant = tenant;
+  public void setRefreshToken(String refreshToken) {
+    this.refreshToken = refreshToken;
   }
 
 
@@ -83,24 +83,24 @@ public class ResetPasswordInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResetPasswordInfo resetPasswordInfo = (ResetPasswordInfo) o;
-    return Objects.equals(this.temporaryToken, resetPasswordInfo.temporaryToken) &&
-        Objects.equals(this.tenant, resetPasswordInfo.tenant);
+    Input7 input7 = (Input7) o;
+    return Objects.equals(this.scope, input7.scope) &&
+        Objects.equals(this.refreshToken, input7.refreshToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(temporaryToken, tenant);
+    return Objects.hash(scope, refreshToken);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResetPasswordInfo {\n");
+    sb.append("class Input7 {\n");
     
-    sb.append("    temporaryToken: ").append(toIndentedString(temporaryToken)).append("\n");
-    sb.append("    tenant: ").append(toIndentedString(tenant)).append("\n");
+    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+    sb.append("    refreshToken: ").append(toIndentedString(refreshToken)).append("\n");
     sb.append("}");
     return sb.toString();
   }

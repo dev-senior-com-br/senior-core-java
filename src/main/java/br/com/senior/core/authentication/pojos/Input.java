@@ -25,53 +25,32 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ResetPasswordInfo
+ * Input
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-08-13T19:09:13.383Z")
 
 
 
-public class ResetPasswordInfo {
-  @SerializedName("temporaryToken")
-  private String temporaryToken = null;
+public class Input {
+  @SerializedName("username")
+  private String username = null;
 
-  @SerializedName("tenant")
-  private String tenant = null;
-
-  public ResetPasswordInfo temporaryToken(String temporaryToken) {
-    this.temporaryToken = temporaryToken;
+  public Input username(String username) {
+    this.username = username;
     return this;
   }
 
    /**
-   * Token temporário gerado quando o usuário precisa alterar a senha
-   * @return temporaryToken
+   * Nome do usuário que efetuou logout
+   * @return username
   **/
-  @ApiModelProperty(value = "Token temporário gerado quando o usuário precisa alterar a senha")
-  public String getTemporaryToken() {
-    return temporaryToken;
+  @ApiModelProperty(required = true, value = "Nome do usuário que efetuou logout")
+  public String getUsername() {
+    return username;
   }
 
-  public void setTemporaryToken(String temporaryToken) {
-    this.temporaryToken = temporaryToken;
-  }
-
-  public ResetPasswordInfo tenant(String tenant) {
-    this.tenant = tenant;
-    return this;
-  }
-
-   /**
-   * Nome do tenant
-   * @return tenant
-  **/
-  @ApiModelProperty(value = "Nome do tenant")
-  public String getTenant() {
-    return tenant;
-  }
-
-  public void setTenant(String tenant) {
-    this.tenant = tenant;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
 
@@ -83,24 +62,22 @@ public class ResetPasswordInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResetPasswordInfo resetPasswordInfo = (ResetPasswordInfo) o;
-    return Objects.equals(this.temporaryToken, resetPasswordInfo.temporaryToken) &&
-        Objects.equals(this.tenant, resetPasswordInfo.tenant);
+    Input input = (Input) o;
+    return Objects.equals(this.username, input.username);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(temporaryToken, tenant);
+    return Objects.hash(username);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResetPasswordInfo {\n");
+    sb.append("class Input {\n");
     
-    sb.append("    temporaryToken: ").append(toIndentedString(temporaryToken)).append("\n");
-    sb.append("    tenant: ").append(toIndentedString(tenant)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("}");
     return sb.toString();
   }

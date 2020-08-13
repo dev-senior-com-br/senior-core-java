@@ -22,56 +22,36 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import br.com.senior.core.authentication.pojos.SamlProvider;
 import java.io.IOException;
 
 /**
- * ResetPasswordInfo
+ * LoginProviders
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-08-13T19:09:13.383Z")
 
 
 
-public class ResetPasswordInfo {
-  @SerializedName("temporaryToken")
-  private String temporaryToken = null;
+public class LoginProviders {
+  @SerializedName("saml")
+  private SamlProvider saml = null;
 
-  @SerializedName("tenant")
-  private String tenant = null;
-
-  public ResetPasswordInfo temporaryToken(String temporaryToken) {
-    this.temporaryToken = temporaryToken;
+  public LoginProviders saml(SamlProvider saml) {
+    this.saml = saml;
     return this;
   }
 
    /**
-   * Token temporário gerado quando o usuário precisa alterar a senha
-   * @return temporaryToken
+   * Get saml
+   * @return saml
   **/
-  @ApiModelProperty(value = "Token temporário gerado quando o usuário precisa alterar a senha")
-  public String getTemporaryToken() {
-    return temporaryToken;
+  @ApiModelProperty(value = "")
+  public SamlProvider getSaml() {
+    return saml;
   }
 
-  public void setTemporaryToken(String temporaryToken) {
-    this.temporaryToken = temporaryToken;
-  }
-
-  public ResetPasswordInfo tenant(String tenant) {
-    this.tenant = tenant;
-    return this;
-  }
-
-   /**
-   * Nome do tenant
-   * @return tenant
-  **/
-  @ApiModelProperty(value = "Nome do tenant")
-  public String getTenant() {
-    return tenant;
-  }
-
-  public void setTenant(String tenant) {
-    this.tenant = tenant;
+  public void setSaml(SamlProvider saml) {
+    this.saml = saml;
   }
 
 
@@ -83,24 +63,22 @@ public class ResetPasswordInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResetPasswordInfo resetPasswordInfo = (ResetPasswordInfo) o;
-    return Objects.equals(this.temporaryToken, resetPasswordInfo.temporaryToken) &&
-        Objects.equals(this.tenant, resetPasswordInfo.tenant);
+    LoginProviders loginProviders = (LoginProviders) o;
+    return Objects.equals(this.saml, loginProviders.saml);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(temporaryToken, tenant);
+    return Objects.hash(saml);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResetPasswordInfo {\n");
+    sb.append("class LoginProviders {\n");
     
-    sb.append("    temporaryToken: ").append(toIndentedString(temporaryToken)).append("\n");
-    sb.append("    tenant: ").append(toIndentedString(tenant)).append("\n");
+    sb.append("    saml: ").append(toIndentedString(saml)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -25,29 +25,32 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * ResetPasswordInfo
+ * Input2
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-08-13T19:09:13.383Z")
 
 
 
-public class ResetPasswordInfo {
+public class Input2 {
   @SerializedName("temporaryToken")
   private String temporaryToken = null;
 
-  @SerializedName("tenant")
-  private String tenant = null;
+  @SerializedName("newPassword")
+  private String newPassword = null;
 
-  public ResetPasswordInfo temporaryToken(String temporaryToken) {
+  @SerializedName("username")
+  private String username = null;
+
+  public Input2 temporaryToken(String temporaryToken) {
     this.temporaryToken = temporaryToken;
     return this;
   }
 
    /**
-   * Token temporário gerado quando o usuário precisa alterar a senha
+   * Teken temporário retornado pela primitiva &amp;#39;login&amp;#39;.
    * @return temporaryToken
   **/
-  @ApiModelProperty(value = "Token temporário gerado quando o usuário precisa alterar a senha")
+  @ApiModelProperty(required = true, value = "Teken temporário retornado pela primitiva &#39;login&#39;.")
   public String getTemporaryToken() {
     return temporaryToken;
   }
@@ -56,22 +59,40 @@ public class ResetPasswordInfo {
     this.temporaryToken = temporaryToken;
   }
 
-  public ResetPasswordInfo tenant(String tenant) {
-    this.tenant = tenant;
+  public Input2 newPassword(String newPassword) {
+    this.newPassword = newPassword;
     return this;
   }
 
    /**
-   * Nome do tenant
-   * @return tenant
+   * Nova senha que deve ser atribuída ao usuário associado ao token temporário
+   * @return newPassword
   **/
-  @ApiModelProperty(value = "Nome do tenant")
-  public String getTenant() {
-    return tenant;
+  @ApiModelProperty(required = true, value = "Nova senha que deve ser atribuída ao usuário associado ao token temporário")
+  public String getNewPassword() {
+    return newPassword;
   }
 
-  public void setTenant(String tenant) {
-    this.tenant = tenant;
+  public void setNewPassword(String newPassword) {
+    this.newPassword = newPassword;
+  }
+
+  public Input2 username(String username) {
+    this.username = username;
+    return this;
+  }
+
+   /**
+   * Nome do usuário incluindo o domínio. Exemplo: ana.silva@senior.com.br.
+   * @return username
+  **/
+  @ApiModelProperty(required = true, value = "Nome do usuário incluindo o domínio. Exemplo: ana.silva@senior.com.br.")
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
   }
 
 
@@ -83,24 +104,26 @@ public class ResetPasswordInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResetPasswordInfo resetPasswordInfo = (ResetPasswordInfo) o;
-    return Objects.equals(this.temporaryToken, resetPasswordInfo.temporaryToken) &&
-        Objects.equals(this.tenant, resetPasswordInfo.tenant);
+    Input2 input2 = (Input2) o;
+    return Objects.equals(this.temporaryToken, input2.temporaryToken) &&
+        Objects.equals(this.newPassword, input2.newPassword) &&
+        Objects.equals(this.username, input2.username);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(temporaryToken, tenant);
+    return Objects.hash(temporaryToken, newPassword, username);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResetPasswordInfo {\n");
+    sb.append("class Input2 {\n");
     
     sb.append("    temporaryToken: ").append(toIndentedString(temporaryToken)).append("\n");
-    sb.append("    tenant: ").append(toIndentedString(tenant)).append("\n");
+    sb.append("    newPassword: ").append(toIndentedString(newPassword)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("}");
     return sb.toString();
   }

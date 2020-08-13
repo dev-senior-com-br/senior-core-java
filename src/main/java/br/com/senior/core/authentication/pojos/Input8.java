@@ -22,54 +22,32 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import br.com.senior.core.authentication.pojos.UserOTPAuthStatusDTO;
 import java.io.IOException;
 
 /**
- * LoginMFAInfo
+ * Input8
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-08-13T19:09:13.383Z")
 
 
 
-public class LoginMFAInfo {
-  @SerializedName("mfaStatus")
-  private UserOTPAuthStatusDTO mfaStatus = null;
-
+public class Input8 {
   @SerializedName("temporaryToken")
   private String temporaryToken = null;
 
-  @SerializedName("tenant")
-  private String tenant = null;
+  @SerializedName("validationCode")
+  private Integer validationCode = null;
 
-  public LoginMFAInfo mfaStatus(UserOTPAuthStatusDTO mfaStatus) {
-    this.mfaStatus = mfaStatus;
-    return this;
-  }
-
-   /**
-   * Get mfaStatus
-   * @return mfaStatus
-  **/
-  @ApiModelProperty(value = "")
-  public UserOTPAuthStatusDTO getMfaStatus() {
-    return mfaStatus;
-  }
-
-  public void setMfaStatus(UserOTPAuthStatusDTO mfaStatus) {
-    this.mfaStatus = mfaStatus;
-  }
-
-  public LoginMFAInfo temporaryToken(String temporaryToken) {
+  public Input8 temporaryToken(String temporaryToken) {
     this.temporaryToken = temporaryToken;
     return this;
   }
 
    /**
-   * Token temporário gerado quando o usuário possui autenticação multifator habilitada.
+   * Token temporário que foi retornado pela primitiva &amp;#39;login&amp;#39;.
    * @return temporaryToken
   **/
-  @ApiModelProperty(value = "Token temporário gerado quando o usuário possui autenticação multifator habilitada.")
+  @ApiModelProperty(required = true, value = "Token temporário que foi retornado pela primitiva &#39;login&#39;.")
   public String getTemporaryToken() {
     return temporaryToken;
   }
@@ -78,22 +56,22 @@ public class LoginMFAInfo {
     this.temporaryToken = temporaryToken;
   }
 
-  public LoginMFAInfo tenant(String tenant) {
-    this.tenant = tenant;
+  public Input8 validationCode(Integer validationCode) {
+    this.validationCode = validationCode;
     return this;
   }
 
    /**
-   * Nome do tenant
-   * @return tenant
+   * Código de validação gerado pelo Google Authenticator
+   * @return validationCode
   **/
-  @ApiModelProperty(value = "Nome do tenant")
-  public String getTenant() {
-    return tenant;
+  @ApiModelProperty(required = true, value = "Código de validação gerado pelo Google Authenticator")
+  public Integer getValidationCode() {
+    return validationCode;
   }
 
-  public void setTenant(String tenant) {
-    this.tenant = tenant;
+  public void setValidationCode(Integer validationCode) {
+    this.validationCode = validationCode;
   }
 
 
@@ -105,26 +83,24 @@ public class LoginMFAInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    LoginMFAInfo loginMFAInfo = (LoginMFAInfo) o;
-    return Objects.equals(this.mfaStatus, loginMFAInfo.mfaStatus) &&
-        Objects.equals(this.temporaryToken, loginMFAInfo.temporaryToken) &&
-        Objects.equals(this.tenant, loginMFAInfo.tenant);
+    Input8 input8 = (Input8) o;
+    return Objects.equals(this.temporaryToken, input8.temporaryToken) &&
+        Objects.equals(this.validationCode, input8.validationCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(mfaStatus, temporaryToken, tenant);
+    return Objects.hash(temporaryToken, validationCode);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LoginMFAInfo {\n");
+    sb.append("class Input8 {\n");
     
-    sb.append("    mfaStatus: ").append(toIndentedString(mfaStatus)).append("\n");
     sb.append("    temporaryToken: ").append(toIndentedString(temporaryToken)).append("\n");
-    sb.append("    tenant: ").append(toIndentedString(tenant)).append("\n");
+    sb.append("    validationCode: ").append(toIndentedString(validationCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }

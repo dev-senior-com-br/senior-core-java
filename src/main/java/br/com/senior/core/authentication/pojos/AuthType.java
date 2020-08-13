@@ -24,20 +24,22 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets userOTPAuthStatusDTO
+ * Gets or Sets authType
  */
-@JsonAdapter(UserOTPAuthStatusDTO.Adapter.class)
-public enum UserOTPAuthStatusDTO {
+@JsonAdapter(AuthType.Adapter.class)
+public enum AuthType {
   
-  UNCONFIGURED("UNCONFIGURED"),
+  G7("G7"),
   
-  CONFIGURED("CONFIGURED"),
+  G5("G5"),
   
-  RESETTED("RESETTED");
+  LDAP("LDAP"),
+  
+  SAML("SAML");
 
   private String value;
 
-  UserOTPAuthStatusDTO(String value) {
+  AuthType(String value) {
     this.value = value;
   }
 
@@ -50,8 +52,8 @@ public enum UserOTPAuthStatusDTO {
     return String.valueOf(value);
   }
 
-  public static UserOTPAuthStatusDTO fromValue(String text) {
-    for (UserOTPAuthStatusDTO b : UserOTPAuthStatusDTO.values()) {
+  public static AuthType fromValue(String text) {
+    for (AuthType b : AuthType.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }
@@ -59,16 +61,16 @@ public enum UserOTPAuthStatusDTO {
     return null;
   }
 
-  public static class Adapter extends TypeAdapter<UserOTPAuthStatusDTO> {
+  public static class Adapter extends TypeAdapter<AuthType> {
     @Override
-    public void write(final JsonWriter jsonWriter, final UserOTPAuthStatusDTO enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final AuthType enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public UserOTPAuthStatusDTO read(final JsonReader jsonReader) throws IOException {
+    public AuthType read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return UserOTPAuthStatusDTO.fromValue(String.valueOf(value));
+      return AuthType.fromValue(String.valueOf(value));
     }
   }
 }

@@ -22,56 +22,36 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import br.com.senior.core.authentication.pojos.AuthType;
 import java.io.IOException;
 
 /**
- * ResetPasswordInfo
+ * InlineResponse2003
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-08-13T19:09:13.383Z")
 
 
 
-public class ResetPasswordInfo {
-  @SerializedName("temporaryToken")
-  private String temporaryToken = null;
+public class InlineResponse2003 {
+  @SerializedName("authenticationType")
+  private AuthType authenticationType = null;
 
-  @SerializedName("tenant")
-  private String tenant = null;
-
-  public ResetPasswordInfo temporaryToken(String temporaryToken) {
-    this.temporaryToken = temporaryToken;
+  public InlineResponse2003 authenticationType(AuthType authenticationType) {
+    this.authenticationType = authenticationType;
     return this;
   }
 
    /**
-   * Token temporário gerado quando o usuário precisa alterar a senha
-   * @return temporaryToken
+   * Get authenticationType
+   * @return authenticationType
   **/
-  @ApiModelProperty(value = "Token temporário gerado quando o usuário precisa alterar a senha")
-  public String getTemporaryToken() {
-    return temporaryToken;
+  @ApiModelProperty(required = true, value = "")
+  public AuthType getAuthenticationType() {
+    return authenticationType;
   }
 
-  public void setTemporaryToken(String temporaryToken) {
-    this.temporaryToken = temporaryToken;
-  }
-
-  public ResetPasswordInfo tenant(String tenant) {
-    this.tenant = tenant;
-    return this;
-  }
-
-   /**
-   * Nome do tenant
-   * @return tenant
-  **/
-  @ApiModelProperty(value = "Nome do tenant")
-  public String getTenant() {
-    return tenant;
-  }
-
-  public void setTenant(String tenant) {
-    this.tenant = tenant;
+  public void setAuthenticationType(AuthType authenticationType) {
+    this.authenticationType = authenticationType;
   }
 
 
@@ -83,24 +63,22 @@ public class ResetPasswordInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResetPasswordInfo resetPasswordInfo = (ResetPasswordInfo) o;
-    return Objects.equals(this.temporaryToken, resetPasswordInfo.temporaryToken) &&
-        Objects.equals(this.tenant, resetPasswordInfo.tenant);
+    InlineResponse2003 inlineResponse2003 = (InlineResponse2003) o;
+    return Objects.equals(this.authenticationType, inlineResponse2003.authenticationType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(temporaryToken, tenant);
+    return Objects.hash(authenticationType);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResetPasswordInfo {\n");
+    sb.append("class InlineResponse2003 {\n");
     
-    sb.append("    temporaryToken: ").append(toIndentedString(temporaryToken)).append("\n");
-    sb.append("    tenant: ").append(toIndentedString(tenant)).append("\n");
+    sb.append("    authenticationType: ").append(toIndentedString(authenticationType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
