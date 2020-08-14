@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.com.senior</groupId>
     <artifactId>senior-core-java</artifactId>
-    <version>0.1.01597268096</version>
+    <version>0.1.01597437002</version>
     <packaging>jar</packaging>
 
     <name>Senior Core SDK</name>
