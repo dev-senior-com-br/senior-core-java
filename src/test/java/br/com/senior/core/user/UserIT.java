@@ -1,16 +1,7 @@
 package br.com.senior.core.user;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
-
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 import br.com.senior.core.BaseIT;
+import br.com.senior.core.base.ServiceException;
 import br.com.senior.core.user.pojos.CreateGroupInput;
 import br.com.senior.core.user.pojos.CreateGroupOutput;
 import br.com.senior.core.user.pojos.CreateUserInput;
@@ -29,7 +20,15 @@ import br.com.senior.core.user.pojos.UpdateGroupUsersInput;
 import br.com.senior.core.user.pojos.UpdateGroupUsersOutput;
 import br.com.senior.core.user.pojos.UpdateUserInput;
 import br.com.senior.core.user.pojos.UpdateUserOutput;
-import br.com.senior.core.base.ServiceException;
+
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 /**
  * Exemplos de código do {@link br.com.senior.core.user.UserClient UserClient}
@@ -38,20 +37,24 @@ public class UserIT extends BaseIT {
 
     private static final String USER_NAME = "teste";
     private static final String USER_EMAIL = "teste@test.com.br";
-    private static String USER_ID;
-
-    private static String GROUP_ID;
     private static final String GROUP_NAME = "GrupoParaTestes";
-
-    private static String usernameExpected;
+    private static String USER_ID;
+    private static String GROUP_ID;
     private static String token;
     private static UserClient client;
 
     @BeforeClass
     public static void beforeClass() throws ServiceException {
-        usernameExpected = Arrays.stream(System.getenv("SENIOR_USERNAME").split("@")).findFirst().orElse(null);
         token = login().getJsonToken().getAccess_token();
         client = new UserClient(token);
+    }
+
+    private static void deleteGroup() throws ServiceException {
+        client.deleteGroup(GROUP_ID);
+    }
+
+    private static void deleteUser() throws ServiceException {
+        client.deleteUser(USER_ID);
     }
 
     @Test
@@ -204,14 +207,6 @@ public class UserIT extends BaseIT {
         }
     }
 
-    private static void deleteGroup() throws ServiceException {
-        client.deleteGroup(GROUP_ID);
-    }
-
-    private static void deleteUser() throws ServiceException {
-        client.deleteUser(USER_ID);
-    }
-
     private GetGroupOutput getGroup() throws ServiceException {
         GetGroupInput input = new GetGroupInput(GROUP_ID);
         return client.getGroup(input);
@@ -248,7 +243,7 @@ public class UserIT extends BaseIT {
     }
 
     private GetUserOutput getUser() throws ServiceException {
-        GetUserInput input = new GetUserInput(USER_NAME, USER_EMAIL);
+        GetUserInput input = new GetUserInput(USER_NAME);
         return client.getUser(input);
     }
 

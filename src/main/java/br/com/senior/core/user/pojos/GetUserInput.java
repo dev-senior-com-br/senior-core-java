@@ -13,15 +13,9 @@ import lombok.experimental.FieldDefaults;
 public class GetUserInput {
 
     /**
-     * "Nome do usuário no formato nome@dominio_tenant"
+     * Nome do usuário no formato nome@dominio_tenant
      */
     @NonNull
     String username;
-
-    /**
-     * Email do usuário
-      */
-    @NonNull
-    String email;
 
 }

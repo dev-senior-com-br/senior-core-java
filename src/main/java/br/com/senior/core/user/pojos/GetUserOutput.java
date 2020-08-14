@@ -16,83 +16,72 @@ public class GetUserOutput {
     /**
      * Identificador do usuário
      */
-    String id;
-
+     String id;
     /**
      * Nome do usuário
      */
-    String username;
-
+     String username;
     /**
      * Nome completo do usuário
      */
-    String fullName;
-
+     String fullName;
     /**
      * Descrição do usuário
      */
-    String description;
-
+     String description;
     /**
      * Endereço de e-mail do usuário
      */
-    String email;
-
+     String email;
     /**
      * localidade do usuário
      */
-    String locale;
-
+     String locale;
     /**
      * Domínio do tenant no login do usuário
      */
-    String tenantDomain;
-
+     String tenantDomain;
     /**
      * Nome do tenant do usuário
      */
-    String tenantName;
-
+     String tenantName;
     /**
      * Localidade do tenant do usuário
      */
-    String tenantLocale;
-
+     String tenantLocale;
     /**
      * Indica se o usuário está bloqueado
      */
-    Boolean blocked;
-
+     Boolean blocked;
     /**
      * Tipo de autenticação utilizada pelo tenant deste usuário
      */
-    AuthType authenticationType;
-
+     AuthType authenticationType;
+    /**
+     * Dados do usuário integrado pela G5, mas futuramente poderá ser utilizado para outras integrações se necessário
+     */
+     Integration integration;
     /**
      * Indica se o usuário precisa trocar de senha no próximo logon
      */
-    Boolean changePassword;
-
+     Boolean changePassword;
     /**
      * Foto do usuário em Base64
      */
-    String photo;
-
+     String photo;
     /**
      * Lista com as propriedades que este usuário possui (opcional)
      */
-    List properties;
-
+     java.util.List<Property> properties;
     /**
      * Indica se o usuário é um admin de tenant
      */
-    Boolean admin;
-
+     Boolean admin;
     /**
      * Indica se o usuário pode alterar a sua senha.
      * É possível alterar a senha quando o tipo de autenticação do tenant é G7 ou quando é G5 e o tenant está configurado para permitir alterar a senha pela G7.
      */
-    Boolean allowedToChangePassword;
+     Boolean allowedToChangePassword;
 
     /**
      * @param id                      - Identificador do usuário
