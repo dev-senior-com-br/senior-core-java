@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.23.1] - 2020-08-18
 
-## [0.1.0] - 2020-08-17
-
 ### Added
 
 ### Changed
@@ -22,5 +20,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [Unreleased]: https://github.com/dev-senior-com-br/senior-core-java/compare/v0.23.1...HEAD
 
 [0.23.1]: https://github.com/dev-senior-com-br/senior-core-java/compare/v0.1.0...0.23.1
-
-[0.1.0]: https://github.com/dev-senior-com-br/senior-core-java/releases/tag/v0.1.0
