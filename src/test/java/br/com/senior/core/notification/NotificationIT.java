@@ -11,6 +11,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * Exemplos de código do {@link br.com.senior.core.notification.NotificationClient NotificationClient}
  */
@@ -36,6 +38,7 @@ public class NotificationIT extends BaseIT {
                 .notificationSubject("Teste")
                 .sourceDomain("platform")
                 .sourceService("tenant")
+                .destinationUsers(Arrays.asList("teste@".concat(System.getenv("TENANT_DOMAIN"))))
                 .build();
 
         NotifyUserOutput output = client.notifyUser(input);
