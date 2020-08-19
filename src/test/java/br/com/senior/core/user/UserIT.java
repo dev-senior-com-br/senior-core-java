@@ -229,7 +229,7 @@ public class UserIT extends BaseIT {
             input.setPagination(pagination);
 
             ListGroupsOutput output = client.listGroups(input);
-            assertEquals(5, output.getGroups().size());
+            assertEquals(2, output.getGroups().size());
             assertTrue(output.listInformation.totalPages >= 2);
             assertTrue(output.listInformation.totalElements >= 4);
         } finally {
@@ -241,7 +241,7 @@ public class UserIT extends BaseIT {
 
     private List<CreateGroupOutput> createGroups() throws ServiceException {
         List<CreateGroupOutput> groups = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 4; i++) {
             groups.add(createGroup(GROUP_NAME + i));
         }
         return groups;
