@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+* ECOAPI-785 - Refatorado testes de exemplo da classe `UserIT`
+
+### Removed 
+
+* ECOAPI-785 - Removido campo email da classe `GetUserInput`
+
+### Fixed
+
+* ECOAPI-785 - Correção da URL quando a busca de entidades contém filtros
+
 ## [0.23.1] - 2020-08-18
 
 ### Added
