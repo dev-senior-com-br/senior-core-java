@@ -101,7 +101,12 @@ String filter = new FilterBuilder().field("id").equals("123").build();
 // O mesmo terá como retorno o seguinte : ?filter=id eq 123
 ```
 
+## [Guia de contribuição](https://dev.senior.com.br/guia-de-contribuicao/)
 
-### Suporte
+## Suporte
 
-1. Criar um issue https://github.com/dev-senior-com-br/senior-core-java/issues
+Criar um issue https://github.com/dev-senior-com-br/senior-core-java/issues
+
+## License
+
+Copyright © 2020.
