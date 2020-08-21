@@ -1,0 +1,62 @@
+name: Publish release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  update-publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get the version
+      id: get_version
+      run: |
+        echo ::set-output name=version::$(echo ${{ github.ref }} | sed -e 's/refs\/tags\///g')
+        echo ::set-output name=version_without_v::$(echo ${{ github.ref }} | sed -e 's/refs\/tags\/v//g')
+    - name: Update pom.xml
+      run: mvn versions:set -DnewVersion=${{ steps.get_version.outputs.version_without_v }}
+    - name: Update changelog
+      uses: thomaseizinger/keep-a-changelog-new-release@v1
+      with:
+        version: ${{ steps.get_version.outputs.version_without_v }}
+    - name: Commit changes master
+      uses: EndBug/add-and-commit@v4
+      with:
+        ref: 'master'
+        message: "[CI_PUBLISH] Updated CHANGELOG.md and pom.xml"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Update tag
+      run: |
+        tag=${{ steps.get_version.outputs.version }}
+        git_refs_url=$(jq .repository.git_refs_url $GITHUB_EVENT_PATH | tr -d '"' | sed 's/{\/sha}//g')
+        
+        echo "**pushing tag ${{ steps.get_version.outputs.version }} to repo $GITHUB_REPOSITORY"
+        sha=$(git rev-parse HEAD)
+        curl -s -X PATCH "$git_refs_url/tags/${{ steps.get_version.outputs.version }}" \
+        -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        -d @- << EOF
+        {
+          "sha": "$sha",
+          "force": true
+        }
+        EOF
+    - name: Set up JDK 1.11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
+    - name: Cache local m2 repository
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+    - name: Release Maven package
+      uses: samuelmeuli/action-maven-publish@v1
+      with:
+        gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+        gpg_passphrase: ${{ secrets.GPG_PASSPHRASE }}
+        nexus_username: ${{ secrets.NEXUS_USERNAME }}
+        nexus_password: ${{ secrets.NEXUS_PASSWORD }}

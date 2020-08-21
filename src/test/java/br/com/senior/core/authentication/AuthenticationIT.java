@@ -1,9 +1,5 @@
 package br.com.senior.core.authentication;
 
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import br.com.senior.core.BaseIT;
 import br.com.senior.core.authentication.pojos.LoginMFAInput;
 import br.com.senior.core.authentication.pojos.LoginOutput;
@@ -14,10 +10,14 @@ import br.com.senior.core.authentication.pojos.LogoutOutput;
 import br.com.senior.core.authentication.pojos.RefreshTokenInput;
 import br.com.senior.core.authentication.pojos.RefreshTokenOutput;
 import br.com.senior.core.authentication.pojos.Scope;
+import br.com.senior.core.base.ServiceException;
 import br.com.senior.core.user.UserClient;
 import br.com.senior.core.user.pojos.GetUserInput;
 import br.com.senior.core.user.pojos.GetUserOutput;
-import br.com.senior.core.base.ServiceException;
+
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  * Exemplos de código do {@link br.com.senior.core.authentication.AuthenticationClient AuthenticationClient}
@@ -32,7 +32,7 @@ public class AuthenticationIT extends BaseIT {
     }
 
     @Test
-    public void testInvalidLogin() throws ServiceException {
+    public void testInvalidLogin() {
         Assert.assertThrows(ServiceException.class, () -> login(System.getenv("SENIOR_USERNAME"), System.getenv("PASSWORD_INVALID")));
     }
 
@@ -81,11 +81,10 @@ public class AuthenticationIT extends BaseIT {
 
         LoginOutput loginOutput = login();
         String username = loginOutput.getJsonToken().getUsername();
-        String email = loginOutput.getJsonToken().getUsername();
         String accessToken = loginOutput.getJsonToken().getAccess_token();
         String refreshToken = loginOutput.getJsonToken().getRefresh_token();
 
-        GetUserInput getUserInput = new GetUserInput(username, email);
+        GetUserInput getUserInput = new GetUserInput(username);
         GetUserOutput getUserOutput = new UserClient(accessToken).getUser(getUserInput);
 
         RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken, Scope.DESKTOP.toString());
@@ -99,11 +98,10 @@ public class AuthenticationIT extends BaseIT {
     public void testRefreshTokenScopeLess() throws ServiceException {
         LoginOutput loginOutput = login();
         String username = loginOutput.getJsonToken().getUsername();
-        String email = loginOutput.getJsonToken().getUsername();
         String accessToken = loginOutput.getJsonToken().getAccess_token();
         String refreshToken = loginOutput.getJsonToken().getRefresh_token();
 
-        GetUserInput getUserInput = new GetUserInput(username, email);
+        GetUserInput getUserInput = new GetUserInput(username);
         GetUserOutput getUserOutput = new UserClient(accessToken).getUser(getUserInput);
 
         RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken);
