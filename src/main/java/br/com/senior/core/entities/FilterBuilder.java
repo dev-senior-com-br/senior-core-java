@@ -1,5 +1,7 @@
 package br.com.senior.core.entities;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -97,7 +99,7 @@ public class FilterBuilder {
         StringBuilder filter = new StringBuilder();
         filter.append("?filter=");
         for (int i = 0; i < values.size(); i++) {
-            filter.append(values.get(i));
+            filter.append(URLEncoder.encode(values.get(i), StandardCharsets.US_ASCII));
             if (i < values.size() - 1) {
                 filter.append("&");
             }
