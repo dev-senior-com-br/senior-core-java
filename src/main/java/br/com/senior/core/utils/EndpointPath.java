@@ -37,6 +37,7 @@ public class EndpointPath {
         public final String ASSIGN_USER = "assignUsers";
         public final String UNASSIGN_USER = "unassignUsers";
         public final String CHECK_ACCESS = "checkAccess";
+        public final String LIST_ROLES = "listRoles";
     }
 
     /**
