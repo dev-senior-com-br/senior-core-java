@@ -1,16 +1,16 @@
 package br.com.senior.core.blob;
 
 import br.com.senior.core.base.*;
-import br.com.senior.core.blob.pojos.*;
+import br.com.senior.core.blob.pojos.BlobDetails;
+import br.com.senior.core.blob.pojos.BlobRequest;
+import br.com.senior.core.blob.pojos.CommitFileInput;
+import br.com.senior.core.blob.pojos.CommitFileOutput;
 import br.com.senior.core.utils.EndpointPath;
 
-import java.util.Collections;
 import java.util.UUID;
 
 public class BlobClient extends BaseClient {
 
-    public static final String SERVICE_NAME = "core";
-    public static final String DOMAIN_NAME = "sdk";
     String token;
     String areaSecret;
 
@@ -26,41 +26,31 @@ public class BlobClient extends BaseClient {
         this.areaSecret = "sdkCore" + tenant;
     }
 
-    public CreateAreaOutput createArea(CreateAreaInput input) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.BlobService.CREATE_AREA), input, token, CreateAreaOutput.class);
-    }
-
-    public BlobDetails requestUpload(BlobRequest input) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.BlobService.REQUEST_UPLOAD), input, token, BlobDetails.class);
+    public BlobDetails uploadFile(BlobRequest input) throws ServiceException {
+        return execute(getActionsUrl(EndpointPath.BlobService.UPLOAD_FILE), input, token, BlobDetails.class);
     }
 
     public CommitFileOutput commitFile(CommitFileInput input) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.BlobService.COMMIT_FILE), input, token, CommitFileOutput.class);
     }
 
-    public BlobDetails uploadFile(long ttl, String fileName, byte[] fileBytes) throws ServiceException {
-        CreateAreaOutput createAreaOutput = createArea(new CreateAreaInput(DOMAIN_NAME, SERVICE_NAME, areaSecret));
-        if (!createAreaOutput.isSuccess()) {
-            return null;
-        }
+    public BlobDetails uploadAndCommitFile(BlobRequest blobRequest, byte[] fileBytes) throws ServiceException {
         BlobRequest input = new BlobRequest();
-        input.setDomainName(DOMAIN_NAME);
-        input.setTtl(ttl);
-        input.setFileName(fileName);
-        input.setServiceName(SERVICE_NAME);
+        input.setDomainName(blobRequest.getDomainName());
+        input.setFileName(blobRequest.getFileName());
+        input.setServiceName(blobRequest.getServiceName());
         input.setTargetObjectId(UUID.randomUUID().toString());
-        input.setRequirements(Collections.singletonList(Requirement.Open));
-        input.setSupportedProtocols(Collections.singletonList(Protocol.HTTP));
-        BlobDetails blobDetails = requestUpload(input);
-        blobDetails.setAreaSecret(areaSecret);
+
+        BlobDetails blobDetails = uploadFile(input);
+        blobDetails.setAreaSecret(blobDetails.getServiceName());
 
         RequestUtils.execute(blobDetails.getLocation().getUri(), fileBytes, null, null, Object.class, HttpMethod.PUT);
         CommitFileInput commitFileInput = new CommitFileInput();
-        commitFileInput.setAreaSecret(areaSecret);
-        commitFileInput.setDomainName(DOMAIN_NAME);
-        commitFileInput.setServiceName(SERVICE_NAME);
+        commitFileInput.setAreaSecret(blobDetails.getServiceName());
+        commitFileInput.setDomainName(blobRequest.getDomainName());
+        commitFileInput.setServiceName(blobRequest.getServiceName());
         commitFileInput.setTargetObject(blobDetails.getTargetObjectId());
-        commitFileInput.setFileName(fileName);
+        commitFileInput.setFileName(blobRequest.getFileName());
         commitFileInput.setVersion(blobDetails.getVersion());
         commitFileInput.setRelease(true);
         commitFile(commitFileInput);

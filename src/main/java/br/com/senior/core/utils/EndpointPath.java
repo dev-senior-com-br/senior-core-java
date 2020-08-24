@@ -80,8 +80,7 @@ public class EndpointPath {
 
     @UtilityClass
     public class BlobService {
-        public final String CREATE_AREA = "createArea";
-        public final String REQUEST_UPLOAD = "requestUpload";
         public final String COMMIT_FILE = "commitFile";
+        public final String UPLOAD_FILE = "uploadFile";
     }
 }

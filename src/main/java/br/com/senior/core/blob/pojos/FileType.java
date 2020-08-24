@@ -1,5 +1,8 @@
 package br.com.senior.core.blob.pojos;
 
+/**
+ * Todos os tipos de arquivos conhecidos.
+ */
 public enum FileType {
     Unknown,
     PDF,

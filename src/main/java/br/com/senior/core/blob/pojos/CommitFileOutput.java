@@ -11,9 +11,6 @@ public class CommitFileOutput {
     Integer size;
     FileType type;
     String title;
-    String summary;
-    String keyWords;
     String contentType;
-
 
 }
