@@ -14,11 +14,11 @@ public class EndpointPath {
     @UtilityClass
     public class Authentication {
 
-        public static final String LOGIN = "login";
-        public static final String LOGIN_MFA = "loginMFA";
-        public static final String LOGIN_WITH_KEY = "loginWithKey";
-        public static final String LOGOUT = "logout";
-        public static final String REFRESH_TOKEN = "refreshToken";
+        public final String LOGIN = "login";
+        public final String LOGIN_MFA = "loginMFA";
+        public final String LOGIN_WITH_KEY = "loginWithKey";
+        public final String LOGOUT = "logout";
+        public final String REFRESH_TOKEN = "refreshToken";
     }
 
     /**
@@ -27,17 +27,17 @@ public class EndpointPath {
     @UtilityClass
     public class Authorization {
 
-        public static final String GET_RESOURCES = "getResources";
-        public static final String SAVE_RESOURCES = "saveResources";
-        public static final String DELETE_RESOURCES = "deleteResources";
-        public static final String GET_ROLE = "getRole";
-        public static final String LIST_ROLES = "listRoles";
-        public static final String CREATE_ROLE = "createRole";
-        public static final String DELETE_ROLE = "deleteRole";
-        public static final String GET_ASSIGN_USERS = "getAssignedUsers";
-        public static final String ASSIGN_USER = "assignUsers";
-        public static final String UNASSIGN_USER = "unassignUsers";
-        public static final String CHECK_ACCESS = "checkAccess";
+        public final String GET_RESOURCES = "getResources";
+        public final String SAVE_RESOURCES = "saveResources";
+        public final String DELETE_RESOURCES = "deleteResources";
+        public final String GET_ROLE = "getRole";
+        public final String CREATE_ROLE = "createRole";
+        public final String DELETE_ROLE = "deleteRole";
+        public final String GET_ASSIGN_USERS = "getAssignedUsers";
+        public final String ASSIGN_USER = "assignUsers";
+        public final String UNASSIGN_USER = "unassignUsers";
+        public final String CHECK_ACCESS = "checkAccess";
+        public final String LIST_ROLES = "listRoles";
     }
 
     /**
@@ -46,17 +46,17 @@ public class EndpointPath {
     @UtilityClass
     public class User {
 
-        public static final String GET_USER = "getUser";
-        public static final String CREATE_USER = "createUser";
-        public static final String UPDATE_USER = "updateUser";
-        public static final String GET_GROUP = "getGroup";
-        public static final String CREATE_GROUP = "createGroup";
-        public static final String UPDATE_GROUP = "updateGroup";
-        public static final String LIST_GROUPS = "listGroups";
-        public static final String LIST_GROUP_USERS = "listGroupUsers";
-        public static final String UPDATE_GROUP_USERS = "updateGroupUsers";
-        public static final String DELETE_GROUP = "usuarios/userManager/entities/Grupo";
-        public static final String DELETE_USER = "usuarios/userManager/entities/Usuario";
+        public final String GET_USER = "getUser";
+        public final String CREATE_USER = "createUser";
+        public final String UPDATE_USER = "updateUser";
+        public final String GET_GROUP = "getGroup";
+        public final String CREATE_GROUP = "createGroup";
+        public final String UPDATE_GROUP = "updateGroup";
+        public final String LIST_GROUPS = "listGroups";
+        public final String LIST_GROUP_USERS = "listGroupUsers";
+        public final String UPDATE_GROUP_USERS = "updateGroupUsers";
+        public final String DELETE_GROUP = "usuarios/userManager/entities/Grupo";
+        public final String DELETE_USER = "usuarios/userManager/entities/Usuario";
     }
 
     /**
@@ -65,8 +65,8 @@ public class EndpointPath {
     @UtilityClass
     public class Tenant {
 
-        public static final String GET_TENANT_BY_DOMAIN = "getTenantByDomain";
-        public static final String GET_TENANT_BY_NAME = "getTenantByName";
+        public final String GET_TENANT_BY_DOMAIN = "getTenantByDomain";
+        public final String GET_TENANT_BY_NAME = "getTenantByName";
     }
 
     /**
@@ -75,7 +75,12 @@ public class EndpointPath {
     @UtilityClass
     public class Notification {
 
-        public static final String NOTIFY_USER = "notifyUser";
+        public final String NOTIFY_USER = "notifyUser";
     }
 
+    @UtilityClass
+    public class BlobService {
+        public final String COMMIT_FILE = "commitFile";
+        public final String UPLOAD_FILE = "uploadFile";
+    }
 }
