@@ -34,14 +34,14 @@ public class BlobClient extends BaseClient {
 
     public BlobDetails uploadAndCommitFile(BlobRequest blobRequest, byte[] fileBytes) throws ServiceException {
         BlobDetails blobDetails = uploadFile(blobRequest);
-        blobDetails.setAreaSecret(blobDetails.getAreaSecret());
+        blobDetails.setAreaSecret(blobRequest.getAreaSecret());
         RequestUtils.execute(blobDetails.getLocation().getUri(), fileBytes, null, null, Object.class, HttpMethod.PUT);
         CommitFileInput commitFileInput = new CommitFileInput();
         commitFileInput.setAreaSecret(blobDetails.getAreaSecret());
-        commitFileInput.setDomainName(blobRequest.getDomainName());
-        commitFileInput.setServiceName(blobRequest.getServiceName());
+        commitFileInput.setDomainName(blobDetails.getDomainName());
+        commitFileInput.setServiceName(blobDetails.getServiceName());
         commitFileInput.setTargetObject(blobDetails.getTargetObjectId());
-        commitFileInput.setFileName(blobRequest.getFileName());
+        commitFileInput.setFileName(blobDetails.getFileName());
         commitFileInput.setVersion(blobDetails.getVersion());
         commitFileInput.setRelease(true);
         commitFile(commitFileInput);
