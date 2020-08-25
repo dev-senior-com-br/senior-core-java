@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+* ECOAPI-222 - Criado classe `BlobClient` para realizar as chamadas para o serviço de manipulação de arquivos(`BlobService`)
+
 ### Changed
 
 * ECOAPI-785 - Refatorado testes de exemplo da classe `UserIT`
