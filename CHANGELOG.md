@@ -7,20 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2020-08-25
+
 ### Added
-* ECOAPI-222 - Criado classe `BlobClient` para realizar as chamadas para o serviço de manipulação de arquivos(`BlobService`)
+
+-   ECOAPI-222 - Criado classe `BlobClient` para realizar as chamadas para o serviço de manipulação de arquivos(`BlobService`)
 
 ### Changed
 
-* ECOAPI-785 - Refatorado testes de exemplo da classe `UserIT`
+-   ECOAPI-785 - Refatorado testes de exemplo da classe `UserIT`
 
-### Removed 
+### Removed
 
-* ECOAPI-785 - Removido campo email da classe `GetUserInput`
+-   ECOAPI-785 - Removido campo email da classe `GetUserInput`
 
 ### Fixed
 
-* ECOAPI-785 - Correção da URL quando a busca de entidades contém filtros
+-   ECOAPI-785 - Correção da URL quando a busca de entidades contém filtros
 
 ## [0.23.1] - 2020-08-18
 
@@ -32,6 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-[Unreleased]: https://github.com/dev-senior-com-br/senior-core-java/compare/v0.23.1...HEAD
+[Unreleased]: https://github.com/dev-senior-com-br/senior-core-java/compare/v1.0.0...HEAD
+
+[1.0.0]: https://github.com/dev-senior-com-br/senior-core-java/compare/v0.23.1...1.0.0
 
 [0.23.1]: https://github.com/dev-senior-com-br/senior-core-java/compare/v0.1.0...0.23.1
