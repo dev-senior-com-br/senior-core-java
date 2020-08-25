@@ -7,8 +7,6 @@ import br.com.senior.core.blob.pojos.CommitFileInput;
 import br.com.senior.core.blob.pojos.CommitFileOutput;
 import br.com.senior.core.utils.EndpointPath;
 
-import java.util.UUID;
-
 public class BlobClient extends BaseClient {
 
     String token;
@@ -35,18 +33,11 @@ public class BlobClient extends BaseClient {
     }
 
     public BlobDetails uploadAndCommitFile(BlobRequest blobRequest, byte[] fileBytes) throws ServiceException {
-        BlobRequest input = new BlobRequest();
-        input.setDomainName(blobRequest.getDomainName());
-        input.setFileName(blobRequest.getFileName());
-        input.setServiceName(blobRequest.getServiceName());
-        input.setTargetObjectId(UUID.randomUUID().toString());
-
-        BlobDetails blobDetails = uploadFile(input);
-        blobDetails.setAreaSecret(blobDetails.getServiceName());
-
+        BlobDetails blobDetails = uploadFile(blobRequest);
+        blobDetails.setAreaSecret(blobDetails.getAreaSecret());
         RequestUtils.execute(blobDetails.getLocation().getUri(), fileBytes, null, null, Object.class, HttpMethod.PUT);
         CommitFileInput commitFileInput = new CommitFileInput();
-        commitFileInput.setAreaSecret(blobDetails.getServiceName());
+        commitFileInput.setAreaSecret(blobDetails.getAreaSecret());
         commitFileInput.setDomainName(blobRequest.getDomainName());
         commitFileInput.setServiceName(blobRequest.getServiceName());
         commitFileInput.setTargetObject(blobDetails.getTargetObjectId());
