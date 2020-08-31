@@ -36,6 +36,7 @@ public class NotificationIT extends BaseIT {
                 .notificationPriority(UserNotificationPriority.ALERT)
                 .notificationContent("Teste")
                 .notificationSubject("Teste")
+                .notificationClass("Classe da notificação")
                 .sourceDomain("platform")
                 .sourceService("tenant")
                 .destinationUsers(Arrays.asList("teste@".concat(System.getenv("TENANT_DOMAIN"))))
