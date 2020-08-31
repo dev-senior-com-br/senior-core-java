@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2020-08-31
+
 ## [1.0.0] - 2020-08-25
 
 ### Added
@@ -35,7 +37,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-[Unreleased]: https://github.com/dev-senior-com-br/senior-core-java/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/dev-senior-com-br/senior-core-java/compare/v1.1.0...HEAD
+
+[1.1.0]: https://github.com/dev-senior-com-br/senior-core-java/compare/v1.0.0...1.1.0
 
 [1.0.0]: https://github.com/dev-senior-com-br/senior-core-java/compare/v0.23.1...1.0.0
 
