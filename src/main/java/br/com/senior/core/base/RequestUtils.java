@@ -120,7 +120,7 @@ public class RequestUtils {
             String body = EntityUtils.toString(response.getEntity());
             throw new ServiceException(statusCode, body);
         }
-        if (statusCode == 204 && response.getEntity() == null) {
+        if ((statusCode == 204 && response.getEntity() == null) || clazz == null) {
             return null;
         }
         try (InputStreamReader is = new InputStreamReader(response.getEntity().getContent(), StandardCharsets.ISO_8859_1)) {

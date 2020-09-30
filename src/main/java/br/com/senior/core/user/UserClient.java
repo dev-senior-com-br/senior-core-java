@@ -7,6 +7,8 @@ import br.com.senior.core.user.pojos.CreateGroupInput;
 import br.com.senior.core.user.pojos.CreateGroupOutput;
 import br.com.senior.core.user.pojos.CreateUserInput;
 import br.com.senior.core.user.pojos.CreateUserOutput;
+import br.com.senior.core.user.pojos.DeleteGroupInput;
+import br.com.senior.core.user.pojos.DeleteUserInput;
 import br.com.senior.core.user.pojos.GetGroupInput;
 import br.com.senior.core.user.pojos.GetGroupOutput;
 import br.com.senior.core.user.pojos.GetUserInput;
@@ -119,9 +121,8 @@ public class UserClient extends BaseClient {
      * @param id Identificador do grupo para ser removido.
      * @throws ServiceException - Erro tratado de serviço
      */
-    public void deleteGroup(String id) throws ServiceException {
-        String endPointPath = getDelete(id, EndpointPath.User.DELETE_GROUP);
-        delete(endPointPath, this.token);
+    public void deleteGroup(DeleteGroupInput payload) throws ServiceException {
+        return execute(getActionsUrl(EndpointPath.User.DELETE_GROUP), payload, this.token, null);
     }
 
     /**
@@ -130,9 +131,8 @@ public class UserClient extends BaseClient {
      * @param id Identificador do usuário para ser removido.
      * @throws ServiceException - Erro tratado de serviço
      */
-    public void deleteUser(String id) throws ServiceException {
-        String endPointPath = getDelete(id, EndpointPath.User.DELETE_USER);
-        delete(endPointPath, this.token);
+    public void deleteUser(DeleteUserInput payload) throws ServiceException {
+        return execute(getActionsUrl(EndpointPath.User.DELETE_USER), payload, this.token, null);
     }
 
     /**
