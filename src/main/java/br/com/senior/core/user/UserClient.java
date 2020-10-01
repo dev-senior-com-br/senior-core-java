@@ -118,7 +118,7 @@ public class UserClient extends BaseClient {
     /**
      * Remove um grupo na plataforma.
      *
-     * @param id Identificador do grupo para ser removido.
+     * @param payload - Payload de entrada
      * @throws ServiceException - Erro tratado de serviço
      */
     public void deleteGroup(DeleteGroupInput payload) throws ServiceException {
@@ -128,7 +128,7 @@ public class UserClient extends BaseClient {
     /**
      * Remove um usuário na plataforma.
      *
-     * @param id Identificador do usuário para ser removido.
+     * @param payload - Payload de entrada
      * @throws ServiceException - Erro tratado de serviço
      */
     public void deleteUser(DeleteUserInput payload) throws ServiceException {
