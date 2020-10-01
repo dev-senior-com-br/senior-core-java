@@ -122,7 +122,7 @@ public class UserClient extends BaseClient {
      * @throws ServiceException - Erro tratado de serviço
      */
     public void deleteGroup(DeleteGroupInput payload) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.User.DELETE_GROUP), payload, this.token, null);
+        execute(getActionsUrl(EndpointPath.User.DELETE_GROUP), payload, this.token, null);
     }
 
     /**
@@ -132,7 +132,7 @@ public class UserClient extends BaseClient {
      * @throws ServiceException - Erro tratado de serviço
      */
     public void deleteUser(DeleteUserInput payload) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.User.DELETE_USER), payload, this.token, null);
+        execute(getActionsUrl(EndpointPath.User.DELETE_USER), payload, this.token, null);
     }
 
     /**
