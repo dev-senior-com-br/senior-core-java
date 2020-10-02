@@ -6,6 +6,8 @@ import br.com.senior.core.user.pojos.CreateGroupInput;
 import br.com.senior.core.user.pojos.CreateGroupOutput;
 import br.com.senior.core.user.pojos.CreateUserInput;
 import br.com.senior.core.user.pojos.CreateUserOutput;
+import br.com.senior.core.user.pojos.DeleteGroupInput;
+import br.com.senior.core.user.pojos.DeleteUserInput;
 import br.com.senior.core.user.pojos.GetGroupInput;
 import br.com.senior.core.user.pojos.GetGroupOutput;
 import br.com.senior.core.user.pojos.GetUserInput;
@@ -69,11 +71,11 @@ public class UserIT extends BaseIT {
     @Test
     public void testCreateAndListGroups() throws ServiceException {
         String groupId = "";
-        String userId = "";
+        String username = "";
         try {
             CreateUserOutput createUserOutput = createUser();
             assertNotNull(createUserOutput);
-            userId = getUser().getId();
+            username = getUser().getUsername();
 
             CreateGroupOutput createGroupOutput = createGroup();
             assertNotNull(createGroupOutput);
@@ -84,7 +86,7 @@ public class UserIT extends BaseIT {
 
             Assert.assertTrue(listGroupsOutput.groups.size() > 1);
         } finally {
-            deleteUser(userId);
+            deleteUser(username);
             deleteGroup(groupId);
         }
     }
@@ -92,14 +94,14 @@ public class UserIT extends BaseIT {
     @Test
     public void testCreateAndListGroupUsers() throws ServiceException {
         String groupId = "";
-        String userId = "";
+        String username = "";
         try {
             CreateUserOutput createUserOutput = createUser();
             assertNotNull(createUserOutput);
 
             GetUserOutput getUserOutput = getUser();
             assertNotNull(getUserOutput);
-            userId = getUserOutput.getId();
+            username = getUserOutput.getUsername();
 
             CreateGroupOutput createGroupOutput = createGroup(Arrays.asList(USER_NAME));
             assertNotNull(createGroupOutput);
@@ -109,7 +111,7 @@ public class UserIT extends BaseIT {
             assertNotNull(listGroupUsersOutput);
             Assert.assertEquals(1, listGroupUsersOutput.users.size());
         } finally {
-            deleteUser(userId);
+            deleteUser(username);
             deleteGroup(groupId);
         }
     }
@@ -135,7 +137,7 @@ public class UserIT extends BaseIT {
     @Test
     public void testGetAndUpdateGroupUsers() throws ServiceException {
         String groupId = "";
-        String userId = "";
+        String username = "";
 
         try {
             CreateUserOutput createUserOutput = createUser();
@@ -143,7 +145,7 @@ public class UserIT extends BaseIT {
 
             GetUserOutput getUserOutput = getUser();
             assertNotNull(getUserOutput);
-            userId = getUserOutput.getId();
+            username = getUserOutput.getUsername();
 
             CreateGroupOutput createGroupOutput = createGroup();
             assertNotNull(createGroupOutput);
@@ -155,41 +157,41 @@ public class UserIT extends BaseIT {
             UpdateGroupUsersOutput updateGroupUsersOutput = updateGroupUsers(groupId);
             assertNotNull(updateGroupUsersOutput);
         } finally {
-            deleteUser(userId);
+            deleteUser(username);
             deleteGroup(groupId);
         }
     }
 
     @Test
     public void testCreateAndGetUser() throws ServiceException {
-        String userId = "";
+        String username = "";
         try {
             CreateUserOutput createUserOutput = createUser();
             assertNotNull(createUserOutput);
 
             GetUserOutput getUserOutput = getUser();
             assertNotNull(getUserOutput);
-            userId = getUserOutput.getId();
+            username = getUserOutput.getUsername();
         } finally {
-            deleteUser(userId);
+            deleteUser(username);
         }
     }
 
     @Test
     public void testGetAndUpdateUser() throws ServiceException {
-        String userId = "";
+        String username = "";
         try {
             CreateUserOutput createUserOutput = createUser();
             assertNotNull(createUserOutput);
 
             GetUserOutput getUserOutput = getUser();
             assertNotNull(getUserOutput);
-            userId = getUserOutput.getId();
+            username = getUserOutput.getUsername();
 
             UpdateUserOutput updateUserOutput = updateUser();
             assertNotNull(updateUserOutput);
         } finally {
-            deleteUser(userId);
+            deleteUser(username);
         }
     }
 
@@ -339,13 +341,15 @@ public class UserIT extends BaseIT {
 
     private static void deleteGroup(String groupId) throws ServiceException {
         if (null != groupId && !groupId.isEmpty()) {
-            client.deleteGroup(groupId);
+        DeleteGroupInput input = DeleteGroupInput.builder().id(groupId).build();
+            client.deleteGroup(input);
         }
     }
 
-    private static void deleteUser(String userId) throws ServiceException {
-        if (null != userId && !userId.isEmpty()) {
-            client.deleteUser(userId);
+    private static void deleteUser(String username) throws ServiceException {
+        if (null != username && !username.isEmpty()) {
+            DeleteUserInput input = DeleteUserInput.builder().username(username).build();
+            client.deleteUser(input);
         }
     }
 }
