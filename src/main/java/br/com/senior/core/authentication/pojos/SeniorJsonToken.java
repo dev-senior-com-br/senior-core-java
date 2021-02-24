@@ -4,6 +4,8 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Dados da autenticação
  */
@@ -13,19 +15,23 @@ public class SeniorJsonToken {
     /**
      * Tipo to token
      */
-    String token_type;
+    @SerializedName("token_type")
+    String tokenType;
     /**
      * Token de acesso
      */
-    String access_token;
+    @SerializedName("access_token")
+    String accessToken;
     /**
      * Token para geração de novo token de acesso
      */
-    String refresh_token;
+    @SerializedName("refresh_token")
+    String refreshToken;
     /**
      * Duração do token gerado
      */
-    long expires_in;
+    @SerializedName("expires_in")
+    long expiresIn;
     /**
      * Nome do usuário dono do token
      */

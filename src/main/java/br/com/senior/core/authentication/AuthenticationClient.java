@@ -46,7 +46,7 @@ public class AuthenticationClient extends BaseClient {
     /**
      * Realiza login na plataforma.
      * O login pode ser realizado informando usuário e senha OU o código de autorização obtido de um provedor externo (SAML, por exemplo).
-     * Se o usuário/tenant estiver configurado para usar autenticação multifator, será retornado, dentro do objeto 'mfaInfo', um token temporário que deverá ser utilizado na primitiva loginMFA para efetivamente realizar o login.
+     * Se o usuário/tenant estiver configurado para usar autenticação multi-fator, será retornado, dentro do objeto 'mfaInfo', um token temporário que deverá ser utilizado na primitiva loginMFA para efetivamente realizar o login.
      *
      * @param payload - Payload de entrada com os dados para autenticação
      * @return - Payload de saída com os tokens de autenticação
@@ -67,7 +67,9 @@ public class AuthenticationClient extends BaseClient {
      * @throws ServiceException - Erro tratado de serviço
      */
     public LoginMFAOutput loginMFA(LoginMFAInput payload) throws ServiceException {
-        return executeAnonymous(getActionsUrl(EndpointPath.Authentication.LOGIN_MFA), payload, null, LoginMFAOutput.class);
+        LoginInternalOutput internalOutput = executeAnonymous(getActionsUrl(EndpointPath.Authentication.LOGIN_MFA), payload, null, LoginInternalOutput.class);
+        SeniorJsonToken jsonToken = Optional.ofNullable(internalOutput.getJsonToken()).map(json -> new Gson().fromJson(json, SeniorJsonToken.class)).orElse(null);
+        return new LoginMFAOutput(jsonToken, internalOutput.getMfaInfo(), internalOutput.getResetPasswordInfo());
     }
 
     /**
@@ -78,7 +80,9 @@ public class AuthenticationClient extends BaseClient {
      * @throws ServiceException - Erro tratado de serviço
      */
     public LoginWithKeyOutput loginWithKey(LoginWithKeyInput payload) throws ServiceException {
-        return executeAnonymous(getAnonymousActionsUrl(EndpointPath.Authentication.LOGIN_WITH_KEY), payload, null, LoginWithKeyOutput.class);
+        LoginInternalOutput internalOutput = executeAnonymous(getAnonymousActionsUrl(EndpointPath.Authentication.LOGIN_WITH_KEY), payload, null, LoginInternalOutput.class);
+        SeniorJsonToken jsonToken = Optional.ofNullable(internalOutput.getJsonToken()).map(json -> new Gson().fromJson(json, SeniorJsonToken.class)).orElse(null);
+        return new LoginWithKeyOutput(jsonToken);
     }
 
     /**

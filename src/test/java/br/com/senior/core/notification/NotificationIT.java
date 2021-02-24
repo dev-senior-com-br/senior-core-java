@@ -23,7 +23,7 @@ public class NotificationIT extends BaseIT {
 
     @BeforeClass
     public static void beforeClass() throws ServiceException {
-        token = login().getJsonToken().getAccess_token();
+        token = login().getJsonToken().getAccessToken();
         client = new NotificationClient(token);
     }
 

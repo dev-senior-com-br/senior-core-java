@@ -22,6 +22,6 @@ public class LoginMFAInput {
     /**
      * Código de validação gerado pelo Google Authenticator
      */
-    Long validationCode;
+    int validationCode;
 
 }

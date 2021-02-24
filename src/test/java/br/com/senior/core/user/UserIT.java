@@ -49,7 +49,7 @@ public class UserIT extends BaseIT {
 
     @BeforeClass
     public static void beforeClass() throws ServiceException {
-        String token = login().getJsonToken().getAccess_token();
+        String token = login().getJsonToken().getAccessToken();
         client = new UserClient(token);
     }
 

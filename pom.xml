@@ -22,18 +22,6 @@
         <maven.compiler.source>11</maven.compiler.source>
     </properties>
 
-    <developers>
-        <developer>
-            <id>andremrezende</id>
-            <name>André Rezende</name>
-            <email>andre.rezende@senior.com.br</email>
-            <roles>
-                <role>Developer</role>
-            </roles>
-            <timezone>-3</timezone>
-        </developer>
-    </developers>
-
     <issueManagement>
         <system>GitHub Issues</system>
         <url>https://github.com/dev-senior-com-br/senior-core-java/issues</url>
