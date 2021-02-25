@@ -8,12 +8,12 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 /**
- * Payload de entrada do {@link br.com.senior.core.authorization.AuthorizationClient#getResource(GetResourceInput) getResource}
+ * Payload de entrada do {@link br.com.senior.core.authorization.AuthorizationClient#getResources(GetResourcesInput) getResource}
  */
 @Data
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GetResourceInput {
+public class GetResourcesInput {
 
     /**
      * Os identificadores únicos dos recursos

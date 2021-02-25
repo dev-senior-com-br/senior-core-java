@@ -3,9 +3,6 @@ package br.com.senior.core.authorization;
 import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.authentication.pojos.LoginMFAInput;
 import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
-import br.com.senior.core.authentication.pojos.LoginInput;
-import br.com.senior.core.authentication.pojos.LoginMFAInput;
-import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
 import br.com.senior.core.authorization.pojos.AssignUsersInput;
 import br.com.senior.core.authorization.pojos.AssignUsersOutput;
 import br.com.senior.core.authorization.pojos.CheckAccessInput;
@@ -18,8 +15,8 @@ import br.com.senior.core.authorization.pojos.DeleteRoleInput;
 import br.com.senior.core.authorization.pojos.DeleteRoleOutput;
 import br.com.senior.core.authorization.pojos.GetAssignedUsersInput;
 import br.com.senior.core.authorization.pojos.GetAssignedUsersOutput;
-import br.com.senior.core.authorization.pojos.GetResourceInput;
-import br.com.senior.core.authorization.pojos.GetResourceOutput;
+import br.com.senior.core.authorization.pojos.GetResourcesInput;
+import br.com.senior.core.authorization.pojos.GetResourcesOutput;
 import br.com.senior.core.authorization.pojos.GetRoleInput;
 import br.com.senior.core.authorization.pojos.GetRoleOutput;
 import br.com.senior.core.authorization.pojos.ListRolesInput;
@@ -114,8 +111,8 @@ public class AuthorizationClient extends BaseClient {
      * @return - Payload de saída com os recursos obtidos
      * @throws ServiceException - Erro tratado de serviço
      */
-    public GetResourceOutput getResource(GetResourceInput payload) throws ServiceException {
-        return execute(getActionsUrl(EndpointPath.Authorization.GET_RESOURCES), payload, this.token, GetResourceOutput.class);
+    public GetResourcesOutput getResources(GetResourcesInput payload) throws ServiceException {
+        return execute(getActionsUrl(EndpointPath.Authorization.GET_RESOURCES), payload, this.token, GetResourcesOutput.class);
     }
 
     /**

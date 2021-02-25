@@ -7,11 +7,11 @@ import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
 /**
- * Payload de saída do {@link br.com.senior.core.authorization.AuthorizationClient#getResource(GetResourceInput) getResource}
+ * Payload de saída do {@link br.com.senior.core.authorization.AuthorizationClient#getResources(GetResourcesInput) getResource}
  */
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GetResourceOutput {
+public class GetResourcesOutput {
 
     /**
      * Os recursos das URIs informadas

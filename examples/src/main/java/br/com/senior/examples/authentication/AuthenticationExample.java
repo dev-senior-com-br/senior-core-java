@@ -3,6 +3,7 @@ package br.com.senior.examples.authentication;
 import br.com.senior.core.authentication.AuthenticationClient;
 import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.authentication.pojos.LoginMFAInput;
+import br.com.senior.core.authentication.pojos.LoginMFAOutput;
 import br.com.senior.core.authentication.pojos.LoginOutput;
 import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
 import br.com.senior.core.authentication.pojos.LoginWithKeyOutput;
@@ -13,64 +14,74 @@ import br.com.senior.core.authentication.pojos.Scope;
 import br.com.senior.core.base.ServiceException;
 
 /**
- * Exemplos de código do {@link br.com.senior.core.authentication.AuthenticationClient AuthenticationClient}
+ * Exemplos de código do Serviço Authentication
  */
 public class AuthenticationExample {
 
     private static final AuthenticationClient client = new AuthenticationClient();
 
+    /**
+     * Utilizando o {@link br.com.senior.core.authentication.AuthenticationClient AuthenticationClient}
+     *
+     * @param args - Argumentos de linha de comando
+     * @throws ServiceException - Erro tratado de serviço
+     */
     public static void main(String[] args) throws ServiceException {
 
+        // Login
         String username = System.getenv("SENIOR_USERNAME");
         String password = System.getenv("PASS");
         String tenantName = System.getenv("TENANT_NAME");
 
-        LoginOutput loginOutput = loginDefault(username, password);
+        LoginInput loginInput = new LoginInput(username, password);
+        LoginOutput loginOutput = client.login(loginInput);
+
         String accessToken = loginOutput.getJsonToken().getAccessToken();
-        logout(accessToken);
-
-        loginOutput = loginDefault(username, password);
         String refreshToken = loginOutput.getJsonToken().getRefreshToken();
+        System.out.println("Login - Access-Token: " + accessToken);
+        System.out.println("Login - Refresh-Token: " + refreshToken);
 
+
+        // RefreshToken
         RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken, Scope.DESKTOP.name());
         RefreshTokenOutput refreshTokenOutput = client.refreshToken(refreshTokenInput, tenantName);
-        accessToken = refreshTokenOutput.getJsonToken().getAccessToken();
-        logout(accessToken);
 
+        accessToken = refreshTokenOutput.getJsonToken().getAccessToken();
+        System.out.println("RefreshToken - Access-Token: " + accessToken);
+
+
+        // Logout
+        LogoutInput logoutInput = new LogoutInput(accessToken);
+        client.logout(logoutInput);
+
+
+        // LoginWithKey
         String accessKey = System.getenv("ACCESS_KEY");
         String secret = System.getenv("SECRET");
 
-        LoginWithKeyOutput loginWithKeyOutput = loginWithKey(accessKey, secret, tenantName);
-        accessToken = loginWithKeyOutput.getJsonToken().getAccessToken();
-        logout(accessToken);
+        LoginWithKeyInput loginWithKeyInput = new LoginWithKeyInput(accessKey, secret, tenantName);
+        LoginWithKeyOutput loginWithKeyOutput = client.loginWithKey(loginWithKeyInput);
 
+        accessToken = loginWithKeyOutput.getJsonToken().getAccessToken();
+        System.out.println("LoginWithKey - Access-Token: " + accessToken);
+
+
+        // LoginMFA
         String usernameMFA = System.getenv("USERNAME_MFA");
         String passwordMFA = System.getenv("PASSWORD_MFA");
 
-        LoginOutput loginMFA = loginDefault(usernameMFA, passwordMFA);
-        int validationCode = -1; //Esse código vai aparecer no dispositivo configurado para login multi-fator e deve ser informado pelo usuário
+        loginInput = new LoginInput(usernameMFA, passwordMFA);
+        loginOutput = client.login(loginInput);
 
-        loginMFA(loginMFA.getMfaInfo().getTemporaryToken(), validationCode);
-    }
+        String validationCode = "021669"; //Esse código vai aparecer no dispositivo configurado para login multi-fator e deve ser informado pelo usuário
+        String temporaryToken = loginOutput.getMfaInfo().getTemporaryToken();
+        System.out.println("LoginMFA - Temporary-Token: " + temporaryToken);
 
-    private static LoginWithKeyOutput loginWithKey(String accessKey, String secret, String tenantName) throws ServiceException {
-        LoginWithKeyInput loginWithKeyInput = new LoginWithKeyInput(accessKey, secret, tenantName);
-        return client.loginWithKey(loginWithKeyInput);
-    }
-
-    private static void loginMFA(String temporaryToken, int validationCode) throws ServiceException {
         LoginMFAInput loginMFAInput = new LoginMFAInput(temporaryToken, validationCode);
-        client.loginMFA(loginMFAInput);
-    }
+        LoginMFAOutput loginMFAOutput = client.loginMFA(loginMFAInput);
 
-    private static LoginOutput loginDefault(String user, String pwd) throws ServiceException {
-        LoginInput loginInput = new LoginInput(user, pwd);
-        return client.login(loginInput);
-    }
-
-    private static void logout(String accessToken) throws ServiceException {
-        LogoutInput logoutInput = new LogoutInput(accessToken);
-        client.logout(logoutInput);
+        accessToken = loginMFAOutput.getJsonToken().getAccessToken();
+        System.out.println("LoginMFA - Access-Token: " + accessToken);
     }
 
 }

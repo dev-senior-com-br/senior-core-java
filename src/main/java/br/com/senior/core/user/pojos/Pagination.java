@@ -14,10 +14,10 @@ public class Pagination {
     /**
      * O número da página retornado. A primeira página corresponde ao índice 0
      */
-    public Long pageNumber = 0L;
+    public int pageNumber = 0;
     /**
      * Quantidade de registros por página
      */
-    public Long pageSize = 10L;
+    public int pageSize = 10;
 
 }

@@ -225,8 +225,8 @@ public class UserIT extends BaseIT {
             input.setSearchValue(GROUP_NAME);
 
             Pagination pagination = new Pagination();
-            pagination.setPageNumber(0L);
-            pagination.setPageSize(2L);
+            pagination.setPageNumber(0);
+            pagination.setPageSize(2);
 
             input.setPagination(pagination);
 
