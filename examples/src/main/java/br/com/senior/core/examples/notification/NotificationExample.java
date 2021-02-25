@@ -1,12 +1,12 @@
-package br.com.senior.examples.notification;
+package br.com.senior.core.examples.notification;
 
 import br.com.senior.core.base.ServiceException;
+import br.com.senior.core.examples.BaseExample;
 import br.com.senior.core.notification.NotificationClient;
 import br.com.senior.core.notification.pojos.NotifyUserInput;
 import br.com.senior.core.notification.pojos.NotifyUserOutput;
 import br.com.senior.core.notification.pojos.UserNotificationKind;
 import br.com.senior.core.notification.pojos.UserNotificationPriority;
-import br.com.senior.examples.BaseExample;
 
 import static java.util.List.of;
 
@@ -31,7 +31,7 @@ public class NotificationExample extends BaseExample {
         // Login
         String accessToken = getAccessToken();
 
-        client = new NotificationClient(ENVIRONMENT, accessToken);
+        client = new NotificationClient(accessToken);
 
 
         // NotifyUser

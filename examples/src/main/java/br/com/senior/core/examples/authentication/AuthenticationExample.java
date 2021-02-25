@@ -1,4 +1,4 @@
-package br.com.senior.examples.authentication;
+package br.com.senior.core.examples.authentication;
 
 import br.com.senior.core.authentication.AuthenticationClient;
 import br.com.senior.core.authentication.pojos.LoginInput;

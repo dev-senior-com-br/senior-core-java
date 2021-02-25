@@ -15,7 +15,7 @@ Esta biblioteca permite desenvolvedores criar integrações das APIs da Senior.
         <dependency>
             <groupId>br.com.senior</groupId>
             <artifactId>senior-core-java</artifactId>
-            <version>0.9.0</version>
+            <version>2.0.0</version>
         </dependency>
     </dependencies>
     ...
@@ -24,7 +24,7 @@ Esta biblioteca permite desenvolvedores criar integrações das APIs da Senior.
 
 ### Ambiente
 
-Atualmente o ambiente padrão para o desenvolvimento é o da Homologx.
+Atualmente o ambiente padrão para o desenvolvimento é o da **Homologx**.
 Para fazer a troca do ambiente basta chamar o construtor da api passando um dos Environments configurados:
 
 ```java
@@ -43,12 +43,12 @@ public enum Environment {
 
 ## Exemplo Rápido
 
-Implementamos no pacote **/src/test/java/br/com/senior/core** um conjunto de testes de integração para cada serviço. Alguns serviços dependem de variáveis que precisam ser informadas pelos usuários, como login e senha para testar o login, ou token de acesso para os testes de autorização.
-Testes de login multi fator por exemplo dependem de um usuário que esteja configurado dessa para tal.
+Implementamos no pacote **/examples/src/main/java/br/com/senior/core/examples/** um conjunto de classes de examplos para cada serviço. Alguns serviços dependem de variáveis que precisam ser informadas pelos usuários, como login e senha para testar o login, ou token de acesso para os testes de autorização.
+Testes de login multi-fator por exemplo dependem de um usuário que esteja configurado dessa para tal.
 
 O ambiente pode ser definido no construtor de cada client, por padrão é utilizado o ambiente de homologação.
 
-Os  testes servem como exemplos de implementação, basta copiar o código do exemplo que se deseja para sua aplicação.
+Os exemplos são implementações funcionais, basta copiar o código do exemplo que se deseja para sua aplicação.
 
 Utilizando como exemplo o login, caso a aplicação queira efetuar o login integrado com a Senior, basta adicionar a dependência no maven e utilizar o cliente de autenticação, por exemplo:
 
@@ -67,7 +67,18 @@ Para mudar o ambiente para produção é necessário informar o environment ao c
   AuthenticationClient client = new AuthenticationClient(Environment.PROD);
 ```
 
-Definir as seguintes variáveis de ambiente:
+### Exemplos implementados
+
+- [Authentication](examples/src/main/java/br/com/senior/core/examples/authentication/AuthenticationExample.java)
+- [Authorization](examples/src/main/java/br/com/senior/core/examples/authorization/AuthorizationExample.java)
+- [Blob]()
+- [Configuration]()
+- [Entity]()
+- [Notification](examples/src/main/java/br/com/senior/core/examples/notification/NotificationExample.java)
+- [Tenant]()
+- [Users]()
+
+### Variáveis de ambiente:
 
 ```
 #Propriedades obrigatórias para todos os tipos de autenticação
@@ -92,7 +103,7 @@ SECRET=<secret_de_acesso>
 Implementamos a parte de utilidades para entidades, para facilitar as requisições realizadas para as mesmas. Conforme exemplos abaixo:
 
 Como realizar uma chamada rest de uma entidade:
-```
+```java
 // O Objeto.class defini ao objeto da entidade que você deseja requisitar.
 Objeto retorno = new EntitiesUtils<>(dominio, serviço, token de autenticação, Objeto.class).executeGet(entity_name, filter);
 

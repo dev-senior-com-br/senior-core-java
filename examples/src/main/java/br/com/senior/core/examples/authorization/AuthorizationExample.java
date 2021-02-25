@@ -1,4 +1,4 @@
-package br.com.senior.examples.authorization;
+package br.com.senior.core.examples.authorization;
 
 import br.com.senior.core.authorization.AuthorizationClient;
 import br.com.senior.core.authorization.pojos.Action;
@@ -25,7 +25,7 @@ import br.com.senior.core.authorization.pojos.SaveResourcesOutput;
 import br.com.senior.core.authorization.pojos.UnassignUsersInput;
 import br.com.senior.core.base.ServiceException;
 import br.com.senior.core.user.pojos.Pagination;
-import br.com.senior.examples.BaseExample;
+import br.com.senior.core.examples.BaseExample;
 
 import static java.util.List.of;
 import static java.util.stream.Collectors.toList;
@@ -51,7 +51,7 @@ public class AuthorizationExample extends BaseExample {
         // Login
         String accessToken = getAccessToken();
 
-        client = new AuthorizationClient(ENVIRONMENT, accessToken);
+        client = new AuthorizationClient(accessToken);
 
 
         // SaveResources
