@@ -18,7 +18,7 @@ import br.com.senior.core.base.ServiceException;
  */
 public class AuthenticationExample {
 
-    private static final AuthenticationClient client = new AuthenticationClient();
+    private static AuthenticationClient client;
 
     /**
      * Utilizando o {@link br.com.senior.core.authentication.AuthenticationClient AuthenticationClient}
@@ -27,6 +27,8 @@ public class AuthenticationExample {
      * @throws ServiceException - Erro tratado de serviço
      */
     public static void main(String[] args) throws ServiceException {
+
+        client = new AuthenticationClient();
 
         // Login
         String username = System.getenv("SENIOR_USERNAME");
@@ -37,8 +39,9 @@ public class AuthenticationExample {
         LoginOutput loginOutput = client.login(loginInput);
 
         String accessToken = loginOutput.getJsonToken().getAccessToken();
-        String refreshToken = loginOutput.getJsonToken().getRefreshToken();
         System.out.println("Login - Access-Token: " + accessToken);
+
+        String refreshToken = loginOutput.getJsonToken().getRefreshToken();
         System.out.println("Login - Refresh-Token: " + refreshToken);
 
 

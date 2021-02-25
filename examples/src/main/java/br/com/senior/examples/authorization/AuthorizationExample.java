@@ -30,6 +30,9 @@ import br.com.senior.examples.BaseExample;
 import static java.util.List.of;
 import static java.util.stream.Collectors.toList;
 
+/**
+ * Exemplos de código do Serviço Authorization
+ */
 public class AuthorizationExample extends BaseExample {
 
     private static final String RESOURCE_URI = "res://tenant/dominio/servico/recurso";
@@ -37,12 +40,19 @@ public class AuthorizationExample extends BaseExample {
 
     private static AuthorizationClient client;
 
+    /**
+     * Utilizando o {@link br.com.senior.core.authorization.AuthorizationClient AuthorizationClient}
+     *
+     * @param args - Argumentos de linha de comando
+     * @throws ServiceException - Erro tratado de serviço
+     */
     public static void main(String[] args) throws ServiceException {
 
-        // Authentication
+        // Login
         String accessToken = getAccessToken();
-        
+
         client = new AuthorizationClient(ENVIRONMENT, accessToken);
+
 
         // SaveResources
         Resource resource = new Resource("Recurso de Exemplo", RESOURCE_URI,
@@ -102,6 +112,7 @@ public class AuthorizationExample extends BaseExample {
 
         System.out.println("GetAssignedUsers: " + getAssignedUsersOutput.users.get(0));
 
+
         // UnassignUsers
         UnassignUsersInput unassignUsersInput = new UnassignUsersInput(of(ROLE_NAME), of(user));
         client.unassignUsers(unassignUsersInput);
@@ -121,8 +132,6 @@ public class AuthorizationExample extends BaseExample {
         // DeleteRole
         DeleteRoleInput deleteRoleInput = new DeleteRoleInput(ROLE_NAME);
         DeleteRoleOutput deleteRoleOutput = client.deleteRole(deleteRoleInput);
-
     }
-
 
 }

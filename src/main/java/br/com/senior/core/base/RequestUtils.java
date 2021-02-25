@@ -2,6 +2,12 @@ package br.com.senior.core.base;
 
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Optional;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
@@ -11,11 +17,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
 
 
 /**
@@ -99,7 +100,7 @@ public class RequestUtils {
         post.setHeader("Content-Type", "application/json");
         Optional.ofNullable(tenant).ifPresent(t -> post.setHeader("X-Tenant", t));
         Optional.ofNullable(token).ifPresent(t -> post.setHeader("Authorization", String.format("Bearer %s", t)));
-        StringEntity userEntity = new StringEntity(SeniorGsonBuilder.newGsonBuilder().toJson(payload));
+        StringEntity userEntity = new StringEntity(SeniorGsonBuilder.newGsonBuilder().toJson(payload), StandardCharsets.UTF_8);
         post.setEntity(userEntity);
         return client.execute(post);
     }
@@ -123,7 +124,7 @@ public class RequestUtils {
         if ((statusCode == 204 && response.getEntity() == null) || clazz == null) {
             return null;
         }
-        try (InputStreamReader is = new InputStreamReader(response.getEntity().getContent(), StandardCharsets.ISO_8859_1)) {
+        try (InputStreamReader is = new InputStreamReader(response.getEntity().getContent(), StandardCharsets.UTF_8)) {
             return SeniorGsonBuilder.newGsonBuilder().fromJson(is, clazz);
         }
     }
@@ -156,7 +157,7 @@ public class RequestUtils {
         HttpPut put = new HttpPut(url);
         put.setHeader("Content-Type", "application/json");
         Optional.ofNullable(token).ifPresent(t -> put.setHeader("Authorization", String.format("Bearer %s", t)));
-        StringEntity userEntity = new StringEntity(SeniorGsonBuilder.newGsonBuilder().toJson(payload));
+        StringEntity userEntity = new StringEntity(SeniorGsonBuilder.newGsonBuilder().toJson(payload), StandardCharsets.UTF_8);
         put.setEntity(userEntity);
         return client.execute(put);
     }

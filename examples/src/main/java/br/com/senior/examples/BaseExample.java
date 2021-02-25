@@ -14,7 +14,7 @@ public abstract class BaseExample {
 
     protected static String getAccessToken() throws ServiceException {
         String accessToken = login().getJsonToken().getAccessToken();
-        System.out.println("Login - Access-Token: " + accessToken);
+        System.out.println("Access-Token: " + accessToken);
         return accessToken;
     }
 
