@@ -1,6 +1,5 @@
-package br.com.senior.core.examples.authentication;
+package br.com.senior.core.authentication;
 
-import br.com.senior.core.authentication.AuthenticationClient;
 import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.authentication.pojos.LoginMFAInput;
 import br.com.senior.core.authentication.pojos.LoginMFAOutput;
@@ -35,7 +34,10 @@ public class AuthenticationExample {
         String password = System.getenv("PASS");
         String tenantName = System.getenv("TENANT_NAME");
 
-        LoginInput loginInput = new LoginInput(username, password);
+        LoginInput loginInput = LoginInput.builder()
+                .username(username)
+                .password(password)
+                .build();
         LoginOutput loginOutput = client.login(loginInput);
 
         String accessToken = loginOutput.getJsonToken().getAccessToken();
@@ -46,7 +48,10 @@ public class AuthenticationExample {
 
 
         // RefreshToken
-        RefreshTokenInput refreshTokenInput = new RefreshTokenInput(refreshToken, Scope.DESKTOP.name());
+        RefreshTokenInput refreshTokenInput = RefreshTokenInput.builder()
+                .refreshToken(refreshToken)
+                .scope(Scope.DESKTOP.name())
+                .build();
         RefreshTokenOutput refreshTokenOutput = client.refreshToken(refreshTokenInput, tenantName);
 
         accessToken = refreshTokenOutput.getJsonToken().getAccessToken();
@@ -54,7 +59,9 @@ public class AuthenticationExample {
 
 
         // Logout
-        LogoutInput logoutInput = new LogoutInput(accessToken);
+        LogoutInput logoutInput = LogoutInput.builder()
+                .accessToken(accessToken)
+                .build();
         client.logout(logoutInput);
 
 
@@ -62,7 +69,11 @@ public class AuthenticationExample {
         String accessKey = System.getenv("ACCESS_KEY");
         String secret = System.getenv("SECRET");
 
-        LoginWithKeyInput loginWithKeyInput = new LoginWithKeyInput(accessKey, secret, tenantName);
+        LoginWithKeyInput loginWithKeyInput = LoginWithKeyInput.builder()
+                .accessKey(accessKey)
+                .secret(secret)
+                .tenantName(tenantName)
+                .build();
         LoginWithKeyOutput loginWithKeyOutput = client.loginWithKey(loginWithKeyInput);
 
         accessToken = loginWithKeyOutput.getJsonToken().getAccessToken();
@@ -73,14 +84,20 @@ public class AuthenticationExample {
         String usernameMFA = System.getenv("USERNAME_MFA");
         String passwordMFA = System.getenv("PASSWORD_MFA");
 
-        loginInput = new LoginInput(usernameMFA, passwordMFA);
+        loginInput = LoginInput.builder()
+                .username(usernameMFA)
+                .password(passwordMFA)
+                .build();
         loginOutput = client.login(loginInput);
 
         String validationCode = "021669"; //Esse código vai aparecer no dispositivo configurado para login multi-fator e deve ser informado pelo usuário
         String temporaryToken = loginOutput.getMfaInfo().getTemporaryToken();
         System.out.println("LoginMFA - Temporary-Token: " + temporaryToken);
 
-        LoginMFAInput loginMFAInput = new LoginMFAInput(temporaryToken, validationCode);
+        LoginMFAInput loginMFAInput = LoginMFAInput.builder()
+                .temporaryToken(temporaryToken)
+                .validationCode(validationCode)
+                .build();
         LoginMFAOutput loginMFAOutput = client.loginMFA(loginMFAInput);
 
         accessToken = loginMFAOutput.getJsonToken().getAccessToken();

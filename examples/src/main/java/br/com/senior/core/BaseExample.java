@@ -1,4 +1,4 @@
-package br.com.senior.core.examples;
+package br.com.senior.core;
 
 import br.com.senior.core.authentication.AuthenticationClient;
 import br.com.senior.core.authentication.pojos.LoginInput;
@@ -24,7 +24,10 @@ public abstract class BaseExample {
     }
 
     protected static LoginOutput login(String username, String password) throws ServiceException {
-        LoginInput input = new LoginInput(username, password);
+        LoginInput input = LoginInput.builder()
+                .username(username)
+                .password(password)
+                .build();
         return new AuthenticationClient().login(input);
     }
 

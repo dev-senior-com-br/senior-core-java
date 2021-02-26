@@ -1,6 +1,6 @@
-package br.com.senior.core.examples.authorization;
+package br.com.senior.core.authorization;
 
-import br.com.senior.core.authorization.AuthorizationClient;
+import br.com.senior.core.BaseExample;
 import br.com.senior.core.authorization.pojos.Action;
 import br.com.senior.core.authorization.pojos.AssignUsersInput;
 import br.com.senior.core.authorization.pojos.CheckAccessInput;
@@ -25,7 +25,6 @@ import br.com.senior.core.authorization.pojos.SaveResourcesOutput;
 import br.com.senior.core.authorization.pojos.UnassignUsersInput;
 import br.com.senior.core.base.ServiceException;
 import br.com.senior.core.user.pojos.Pagination;
-import br.com.senior.core.examples.BaseExample;
 
 import static java.util.List.of;
 import static java.util.stream.Collectors.toList;
@@ -55,46 +54,72 @@ public class AuthorizationExample extends BaseExample {
 
 
         // SaveResources
-        Resource resource = new Resource("Recurso de Exemplo", RESOURCE_URI,
-                of(new Action("Visualizar"), new Action("Editar")));
+        Action view = Action.builder()
+                .name("Visualizar")
+                .build();
+        Action edit = Action.builder()
+                .name("Editar")
+                .build();
+        Resource resource = Resource.builder()
+                .name("Recurso de Exemplo")
+                .actions(of(view, edit))
+                .uri(RESOURCE_URI)
+                .build();
 
-        SaveResourcesInput saveResourcesInput = new SaveResourcesInput(of(resource));
+        SaveResourcesInput saveResourcesInput = SaveResourcesInput.builder()
+                .resources(of(resource))
+                .build();
         SaveResourcesOutput saveResourcesOutput = client.saveResources(saveResourcesInput);
 
         System.out.println("SaveResources: " + String.join(", ", saveResourcesOutput.getResources().stream().map(Resource::getUri).collect(toList())));
 
 
         // GetResources
-        GetResourcesInput getResourcesInput = new GetResourcesInput(of(RESOURCE_URI));
+        GetResourcesInput getResourcesInput = GetResourcesInput.builder()
+                .uris(of(RESOURCE_URI))
+                .build();
         GetResourcesOutput getResourcesOutput = client.getResources(getResourcesInput);
 
         System.out.println("GetResources: " + getResourcesOutput.getResources().get(0).getUri());
 
 
         // DeleteResources
-        DeleteResourcesInput deleteResourcesInput = new DeleteResourcesInput(of(RESOURCE_URI));
+        DeleteResourcesInput deleteResourcesInput = DeleteResourcesInput.builder()
+                .resources(of(RESOURCE_URI))
+                .build();
         client.deleteResources(deleteResourcesInput);
 
 
         // CheckAccess
-        PermissionToCheck permissionToCheck = new PermissionToCheck(
-                "res://senior.com.br/security/usermanager/usuario",
-                "Visualizar");
-        CheckAccessInput checkAccessInput = new CheckAccessInput(of(permissionToCheck), false, false);
+        PermissionToCheck permissionToCheck = PermissionToCheck.builder()
+                .resource("res://senior.com.br/security/usermanager/usuario")
+                .action("Visualizar")
+                .build();
+
+        CheckAccessInput checkAccessInput = CheckAccessInput.builder()
+                .permissions(of(permissionToCheck))
+                .includeDelegations(false)
+                .includeFilters(false)
+                .build();
         CheckAccessOutput checkAccessOutput = client.checkAccess(checkAccessInput);
 
         System.out.println("CheckAccess: " + checkAccessOutput.getAuthorized());
 
 
         // CreateRole
-        CreateRoleInput createRoleInput = new CreateRoleInput(ROLE_NAME, "papel para testes de integração");
+        CreateRoleInput createRoleInput = CreateRoleInput.builder()
+                .name(ROLE_NAME)
+                .description("papel para testes de integração")
+                .build();
         CreateRoleOutput createRoleOutput = client.createRole(createRoleInput);
 
         System.out.println("CreateRole : " + createRoleOutput.getName());
 
 
         // GetRole
-        GetRoleInput getRoleInput = new GetRoleInput(ROLE_NAME);
+        GetRoleInput getRoleInput = GetRoleInput.builder()
+                .name(ROLE_NAME)
+                .build();
         GetRoleOutput getRoleOutput = client.getRole(getRoleInput);
 
         System.out.println("GetRole : " + getRoleOutput.getRole().getName());
@@ -102,35 +127,50 @@ public class AuthorizationExample extends BaseExample {
 
         // AssignUsers
         String user = getUsernameWithoutDomain();
-        AssignUsersInput assignUsersInput = new AssignUsersInput(of(ROLE_NAME), of(user));
+
+        AssignUsersInput assignUsersInput = AssignUsersInput.builder()
+                .roles(of(ROLE_NAME))
+                .users(of(user))
+                .build();
         client.assignUsers(assignUsersInput);
 
 
         // GetAssignedUsers
-        GetAssignedUsersInput getAssignedUsersInput = new GetAssignedUsersInput(of(ROLE_NAME));
+        GetAssignedUsersInput getAssignedUsersInput = GetAssignedUsersInput.builder()
+                .roles(of(ROLE_NAME))
+                .build();
         GetAssignedUsersOutput getAssignedUsersOutput = client.getAssignedUsers(getAssignedUsersInput);
 
         System.out.println("GetAssignedUsers: " + getAssignedUsersOutput.users.get(0));
 
 
         // UnassignUsers
-        UnassignUsersInput unassignUsersInput = new UnassignUsersInput(of(ROLE_NAME), of(user));
+        UnassignUsersInput unassignUsersInput = UnassignUsersInput.builder()
+                .roles(of(ROLE_NAME))
+                .users(of(user))
+                .build();
         client.unassignUsers(unassignUsersInput);
 
 
         // ListRoles
-        Pagination pagination = new Pagination();
-        pagination.pageNumber = 0;
-        pagination.pageSize = 1;
+        Pagination pagination = Pagination.builder()
+                .pageNumber(0)
+                .pageSize(1)
+                .build();
 
-        ListRolesInput listRolesInput = new ListRolesInput(ROLE_NAME, pagination);
+        ListRolesInput listRolesInput = ListRolesInput.builder()
+                .searchValue(ROLE_NAME)
+                .pagination(pagination)
+                .build();
         ListRolesOutput listRolesOutput = client.listRoles(listRolesInput);
 
         System.out.println("ListRoles: " + listRolesOutput.getRoles().get(0).getName());
 
 
         // DeleteRole
-        DeleteRoleInput deleteRoleInput = new DeleteRoleInput(ROLE_NAME);
+        DeleteRoleInput deleteRoleInput = DeleteRoleInput.builder()
+                .name(ROLE_NAME)
+                .build();
         DeleteRoleOutput deleteRoleOutput = client.deleteRole(deleteRoleInput);
     }
 

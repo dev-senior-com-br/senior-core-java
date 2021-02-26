@@ -1,8 +1,7 @@
-package br.com.senior.core.examples.notification;
+package br.com.senior.core.notification;
 
+import br.com.senior.core.BaseExample;
 import br.com.senior.core.base.ServiceException;
-import br.com.senior.core.examples.BaseExample;
-import br.com.senior.core.notification.NotificationClient;
 import br.com.senior.core.notification.pojos.NotifyUserInput;
 import br.com.senior.core.notification.pojos.NotifyUserOutput;
 import br.com.senior.core.notification.pojos.UserNotificationKind;
@@ -47,8 +46,8 @@ public class NotificationExample extends BaseExample {
                 .sourceService("tenant")
                 .destinationUsers(of(System.getenv("SENIOR_USERNAME")))
                 .build();
-
         NotifyUserOutput notifyUserOutput = client.notifyUser(notifyUserInput);
+
         System.out.println("NotifyUser: " + notifyUserOutput.ok);
     }
 

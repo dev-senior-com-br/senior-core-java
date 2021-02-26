@@ -25,7 +25,7 @@ public class EntidadeExample {
 
         //Autenticação
         AuthenticationClient client = new AuthenticationClient();
-        LoginOutput output = client.login(new LoginInput(username, password));
+        LoginOutput output = client.login(LoginInput.builder().username(username).password(password).build());
         String token = output.getJsonToken().getAccessToken();
         log.info(token);
 

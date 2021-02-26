@@ -2,15 +2,11 @@ package br.com.senior.core.authorization.pojos;
 
 import br.com.senior.core.user.pojos.Pagination;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Builder;
 import lombok.experimental.FieldDefaults;
 
-@Getter
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
-@NoArgsConstructor
 public class ListRolesInput {
 
     /**
