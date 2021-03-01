@@ -6,7 +6,7 @@ import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
 /**
- * Payload de entrada do {@link br.com.senior.core.tenant.TenantClient#getTenantByName(String) getTenantByName}
+ * Payload de entrada do {@link br.com.senior.core.tenant.TenantClient#getTenantByName(GetTenantByNameInput)}  getTenantByName}
  */
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)

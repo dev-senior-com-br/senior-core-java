@@ -27,7 +27,7 @@ public class BlobExample extends BaseExample {
         BlobClient client = new BlobClient(accessToken, System.getenv("TENANT_DOMAIN"));
 
 
-        // UploadFile
+        // UploadAndCommitFile
         String areaSecret = "testSecret";
         InputStream inputStream = BlobExample.class.getResourceAsStream("/Example.txt");
 
@@ -38,9 +38,6 @@ public class BlobExample extends BaseExample {
                 .serviceName("testServiceName")
                 .domainName("testDomainName")
                 .build();
-
-
-        // UploadAndCommitFile
         CommitFileOutput commitFileOutput = client.uploadAndCommitFile(uploadFileInput, inputStream.readAllBytes());
 
         System.out.println("UploadAndCommitFile: " + commitFileOutput.getLocation().getUri());

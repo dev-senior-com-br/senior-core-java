@@ -28,11 +28,11 @@ public class BlobClient extends BaseClient {
         this.areaSecret = "sdkCore" + tenant;
     }
 
-    public UploadFileOutput uploadFile(UploadFileInput input) throws ServiceException {
+    private UploadFileOutput uploadFile(UploadFileInput input) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.BlobService.UPLOAD_FILE), input, token, UploadFileOutput.class);
     }
 
-    public CommitFileOutput commitFile(CommitFileInput input) throws ServiceException {
+    private CommitFileOutput commitFile(CommitFileInput input) throws ServiceException {
         return execute(getActionsUrl(EndpointPath.BlobService.COMMIT_FILE), input, token, CommitFileOutput.class);
     }
 

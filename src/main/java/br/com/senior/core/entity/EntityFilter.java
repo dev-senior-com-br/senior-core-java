@@ -1,4 +1,4 @@
-package br.com.senior.core.entities;
+package br.com.senior.core.entity;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -6,89 +6,105 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class FilterBuilder {
+public class EntityFilter {
 
     private static final char WHITE_CHARACTER = ' ';
+
     private StringBuilder filter = new StringBuilder();
     private String orderBy;
     private String size;
     private String offset;
 
-    public FilterBuilder field(String fieldName) {
+    private EntityFilter() {
+    }
+
+    public static EntityFilter builder() {
+        return new EntityFilter();
+    }
+
+    private String getField(String value) {
+        try {
+            Integer.parseInt(value);
+            return value;
+        } catch (NumberFormatException ignored) {
+            return "'" + value + "'";
+        }
+    }
+
+    public EntityFilter field(String fieldName) {
         filter.append(WHITE_CHARACTER).append(fieldName);
         return this;
     }
 
-    public FilterBuilder or() {
+    public EntityFilter or() {
         filter.append(WHITE_CHARACTER).append("or");
         return this;
     }
 
-    public FilterBuilder equals(String value) {
+    public EntityFilter equals(String value) {
         filter.append(WHITE_CHARACTER).append("eq").append(WHITE_CHARACTER).append(getField(value));
         return this;
     }
 
-    public FilterBuilder notEquals(String value) {
+    public EntityFilter notEquals(String value) {
         filter.append(WHITE_CHARACTER).append("ne").append(WHITE_CHARACTER).append(getField(value));
         return this;
     }
 
-    public FilterBuilder lowerThan(String value) {
+    public EntityFilter lowerThan(String value) {
         filter.append(WHITE_CHARACTER).append("lt").append(WHITE_CHARACTER).append(value);
         return this;
     }
 
-    public FilterBuilder greaterThan(String value) {
+    public EntityFilter greaterThan(String value) {
         filter.append(WHITE_CHARACTER).append("gt").append(WHITE_CHARACTER).append(value);
         return this;
     }
 
-    public FilterBuilder lowerOrEquals(String value) {
+    public EntityFilter lowerOrEquals(String value) {
         filter.append(WHITE_CHARACTER).append("le").append(WHITE_CHARACTER).append(value);
         return this;
     }
 
-    public FilterBuilder greaterOrEquals(String value) {
+    public EntityFilter greaterOrEquals(String value) {
         filter.append(WHITE_CHARACTER).append("ge").append(WHITE_CHARACTER).append(value);
         return this;
     }
 
-    public FilterBuilder and() {
+    public EntityFilter and() {
         filter.append(WHITE_CHARACTER).append("and");
         return this;
     }
 
-    public FilterBuilder containing(String fieldName, String value) {
+    public EntityFilter containing(String fieldName, String value) {
         filter.append(WHITE_CHARACTER).append("containing(").append(fieldName).append(",'").append(value).append("')");
         return this;
     }
 
-    public FilterBuilder isNull() {
+    public EntityFilter isNull() {
         filter.append(WHITE_CHARACTER).append("is null");
         return this;
     }
 
-    public FilterBuilder orderBy(String orderBy) {
+    public EntityFilter orderBy(String orderBy) {
         this.orderBy = orderBy;
         return this;
     }
 
-    public FilterBuilder size(int size) {
+    public EntityFilter size(int size) {
         this.size = String.valueOf(size);
         return this;
     }
 
-    public FilterBuilder offset(int offset) {
+    public EntityFilter offset(int offset) {
         this.offset = String.valueOf(offset);
         return this;
     }
 
-    public FilterBuilder withCustomFilter(String filter) {
+    public EntityFilter withCustomFilter(String filter) {
         this.filter = new StringBuilder(filter);
         return this;
     }
-
 
     public String build() {
         List<String> values = new ArrayList<>();
@@ -96,8 +112,10 @@ public class FilterBuilder {
         Optional.ofNullable(offset).ifPresent(a -> values.add("offset=" + a));
         Optional.ofNullable(size).ifPresent(a -> values.add("size=" + a));
         Optional.ofNullable(orderBy).ifPresent(a -> values.add("orderby=" + a));
+
         StringBuilder filter = new StringBuilder();
         filter.append("?filter=");
+
         for (int i = 0; i < values.size(); i++) {
             filter.append(URLEncoder.encode(values.get(i), StandardCharsets.US_ASCII));
             if (i < values.size() - 1) {
@@ -105,15 +123,6 @@ public class FilterBuilder {
             }
         }
         return filter.toString();
-    }
-
-    private static String getField(String value) {
-        try {
-            Integer.parseInt(value);
-            return value;
-        } catch (NumberFormatException ignored) {
-            return "'" + value + "'";
-        }
     }
 
 }

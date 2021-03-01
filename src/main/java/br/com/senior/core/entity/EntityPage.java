@@ -1,16 +1,18 @@
-package br.com.senior.core.entities;
+package br.com.senior.core.entity;
+
+import java.util.List;
 
 public class EntityPage<T> {
 
     private long totalPages;
     private long totalElements;
-    private T[] contents;
+    private List<T> contents;
     private Class<T> clz;
 
     public EntityPage() {
     }
 
-    public EntityPage(long totalPages, long totalElements, T[] contents, Class<T> clz) {
+    public EntityPage(long totalPages, long totalElements, List<T> contents, Class<T> clz) {
         this.totalPages = totalPages;
         this.totalElements = totalElements;
         this.contents = contents;
@@ -37,11 +39,11 @@ public class EntityPage<T> {
         this.totalElements = totalElements;
     }
 
-    public T[] getContents() {
+    public List<T> getContents() {
         return contents;
     }
 
-    public void setContents(T[] contents) {
+    public void setContents(List<T> contents) {
         this.contents = contents;
     }
 }
