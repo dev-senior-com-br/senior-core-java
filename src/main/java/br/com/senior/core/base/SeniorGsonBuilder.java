@@ -18,10 +18,11 @@ import java.util.*;
 
 public class SeniorGsonBuilder {
 
-
     private final static String DATE = "yyyy-MM-dd";
     private final static String DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
     private final static String[] DATE_FORMATS = new String[]{DATE, DATE_TIME};
+
+    private SeniorGsonBuilder(){}
 
     public static Gson newGsonBuilder() {
         GsonBuilder builder = new GsonBuilder();

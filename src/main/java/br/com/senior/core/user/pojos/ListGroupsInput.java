@@ -2,7 +2,6 @@ package br.com.senior.core.user.pojos;
 
 import lombok.AccessLevel;
 import lombok.Builder;
-import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 /**

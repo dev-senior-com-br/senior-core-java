@@ -113,16 +113,16 @@ public class EntityFilter {
         Optional.ofNullable(size).ifPresent(a -> values.add("size=" + a));
         Optional.ofNullable(orderBy).ifPresent(a -> values.add("orderby=" + a));
 
-        StringBuilder filter = new StringBuilder();
-        filter.append("?filter=");
+        StringBuilder sb = new StringBuilder();
+        sb.append("?sb=");
 
         for (int i = 0; i < values.size(); i++) {
-            filter.append(URLEncoder.encode(values.get(i), StandardCharsets.US_ASCII));
+            sb.append(URLEncoder.encode(values.get(i), StandardCharsets.US_ASCII));
             if (i < values.size() - 1) {
-                filter.append("&");
+                sb.append("&");
             }
         }
-        return filter.toString();
+        return sb.toString();
     }
 
 }

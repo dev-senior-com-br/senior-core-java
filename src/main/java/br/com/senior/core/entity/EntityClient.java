@@ -42,7 +42,6 @@ public class EntityClient<T> {
 
     public EntityPage<T> getWithFilter(String entityName, String filter) throws ServiceException {
         EntityPage<T> execute = RequestUtils.execute(getUrl(entityName, null, filter), null, token, null, EntityPage.class, HttpMethod.GET);
-        execute.setClz(clazz);
 
         Gson gson = new Gson();
         JsonElement json = gson.toJsonTree(execute.getContents());
@@ -50,7 +49,7 @@ public class EntityClient<T> {
 
         List<T> list = gson.fromJson(json, type);
 
-        return new EntityPage<T>(execute.getTotalPages(), execute.getTotalElements(), list, clazz);
+        return new EntityPage<T>(execute.getTotalPages(), execute.getTotalElements(), list);
     }
 
     public T getById(String entityName, String id) throws ServiceException {

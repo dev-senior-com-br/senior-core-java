@@ -13,10 +13,13 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+
+import static org.apache.http.HttpHeaders.CONTENT_TYPE;
 
 
 /**
@@ -25,6 +28,8 @@ import org.apache.http.util.EntityUtils;
 @UtilityClass
 @Slf4j
 public class RequestUtils {
+
+    public static final String APPLICATION_JSON = ContentType.APPLICATION_JSON.getMimeType();
 
     /**
      * Remove entidade da Plataforma.
@@ -97,7 +102,7 @@ public class RequestUtils {
      */
     private HttpResponse executePost(String url, Object payload, CloseableHttpClient client, String token, String tenant) throws IOException {
         HttpPost post = new HttpPost(url);
-        post.setHeader("Content-Type", "application/json");
+        post.setHeader(CONTENT_TYPE, APPLICATION_JSON);
         Optional.ofNullable(tenant).ifPresent(t -> post.setHeader("X-Tenant", t));
         Optional.ofNullable(token).ifPresent(t -> post.setHeader("Authorization", String.format("Bearer %s", t)));
         StringEntity userEntity = new StringEntity(SeniorGsonBuilder.newGsonBuilder().toJson(payload), StandardCharsets.UTF_8);
@@ -140,14 +145,14 @@ public class RequestUtils {
      */
     private HttpResponse executeDelete(String url, CloseableHttpClient client, String token) throws IOException {
         HttpDelete delete = new HttpDelete(url);
-        delete.setHeader("Content-Type", "application/json");
+        delete.setHeader(CONTENT_TYPE, APPLICATION_JSON);
         Optional.ofNullable(token).ifPresent(t -> delete.setHeader("Authorization", String.format("Bearer %s", t)));
         return client.execute(delete);
     }
 
     private static HttpResponse executeGet(String url, CloseableHttpClient client, String token) throws IOException {
         HttpGet get = new HttpGet(url);
-        get.setHeader("Content-Type", "application/json");
+        get.setHeader(CONTENT_TYPE, APPLICATION_JSON);
         Optional.ofNullable(token).ifPresent(t -> get.setHeader("Authorization", String.format("Bearer %s", t)));
 
         return client.execute(get);
@@ -155,7 +160,7 @@ public class RequestUtils {
 
     public static HttpResponse executePut(String url, Object payload, CloseableHttpClient client, String token) throws IOException {
         HttpPut put = new HttpPut(url);
-        put.setHeader("Content-Type", "application/json");
+        put.setHeader(CONTENT_TYPE, APPLICATION_JSON);
         Optional.ofNullable(token).ifPresent(t -> put.setHeader("Authorization", String.format("Bearer %s", t)));
         StringEntity userEntity = new StringEntity(SeniorGsonBuilder.newGsonBuilder().toJson(payload), StandardCharsets.UTF_8);
         put.setEntity(userEntity);
