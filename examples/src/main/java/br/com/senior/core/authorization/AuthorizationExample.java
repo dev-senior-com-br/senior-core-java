@@ -20,6 +20,7 @@ import br.com.senior.core.authorization.pojos.ListRolesInput;
 import br.com.senior.core.authorization.pojos.ListRolesOutput;
 import br.com.senior.core.authorization.pojos.PermissionToCheck;
 import br.com.senior.core.authorization.pojos.Resource;
+import br.com.senior.core.authorization.pojos.Role;
 import br.com.senior.core.authorization.pojos.SaveResourcesInput;
 import br.com.senior.core.authorization.pojos.SaveResourcesOutput;
 import br.com.senior.core.authorization.pojos.UnassignUsersInput;
@@ -71,7 +72,10 @@ public class AuthorizationExample extends BaseExample {
                 .build();
         SaveResourcesOutput saveResourcesOutput = client.saveResources(saveResourcesInput);
 
-        System.out.println("SaveResources: " + String.join(", ", saveResourcesOutput.getResources().stream().map(Resource::getUri).collect(toList())));
+        System.out.println("SaveResources: " + String.join(", ",
+                saveResourcesOutput.getResources()
+                        .stream().map(Resource::getUri)
+                        .collect(toList())));
 
 
         // GetResources
@@ -80,7 +84,10 @@ public class AuthorizationExample extends BaseExample {
                 .build();
         GetResourcesOutput getResourcesOutput = client.getResources(getResourcesInput);
 
-        System.out.println("GetResources: " + getResourcesOutput.getResources().get(0).getUri());
+        System.out.println("GetResources: " + String.join(", ",
+                getResourcesOutput.getResources()
+                        .stream().map(Resource::getUri)
+                        .collect(toList())));
 
 
         // DeleteResources
@@ -141,7 +148,7 @@ public class AuthorizationExample extends BaseExample {
                 .build();
         GetAssignedUsersOutput getAssignedUsersOutput = client.getAssignedUsers(getAssignedUsersInput);
 
-        System.out.println("GetAssignedUsers: " + getAssignedUsersOutput.users.get(0));
+        System.out.println("GetAssignedUsers: " + String.join(", ", getAssignedUsersOutput.users));
 
 
         // UnassignUsers
@@ -164,7 +171,10 @@ public class AuthorizationExample extends BaseExample {
                 .build();
         ListRolesOutput listRolesOutput = client.listRoles(listRolesInput);
 
-        System.out.println("ListRoles: " + listRolesOutput.getRoles().get(0).getName());
+        System.out.println("ListRoles: " + String.join(", ",
+                listRolesOutput.getRoles()
+                        .stream().map(Role::getName)
+                        .collect(toList())));
 
 
         // DeleteRole

@@ -3,13 +3,13 @@ package br.com.senior.core.tenant;
 import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.authentication.pojos.LoginMFAInput;
 import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
+import br.com.senior.core.base.BaseClient;
+import br.com.senior.core.base.Environment;
+import br.com.senior.core.base.ServiceException;
 import br.com.senior.core.tenant.pojos.GetTenantByDomainInput;
 import br.com.senior.core.tenant.pojos.GetTenantByNameInput;
 import br.com.senior.core.tenant.pojos.TenantOutput;
-import br.com.senior.core.base.BaseClient;
 import br.com.senior.core.utils.EndpointPath;
-import br.com.senior.core.base.Environment;
-import br.com.senior.core.base.ServiceException;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
@@ -49,23 +49,23 @@ public class TenantClient extends BaseClient {
     /**
      * Obtêm os dados de um tenant
      *
-     * @param tenantName - Nome do tenant
+     * @param input - Payload de entrada
      * @return - Os dados do tenant
      * @throws ServiceException - Erro tratado de serviço
      */
-    public TenantOutput getTenantByName(String tenantName) throws ServiceException {
-        return execute(getQueriesUrl(EndpointPath.Tenant.GET_TENANT_BY_NAME), new GetTenantByNameInput(tenantName), this.token, TenantOutput.class);
+    public TenantOutput getTenantByName(GetTenantByNameInput input) throws ServiceException {
+        return execute(getQueriesUrl(EndpointPath.Tenant.GET_TENANT_BY_NAME), input, this.token, TenantOutput.class);
     }
 
     /**
      * Obtêm os dados de um tenant
      *
-     * @param tenantDomain - Domínio do tenant
+     * @param input - Payload de entrada
      * @return - Os dados do tenant
      * @throws ServiceException - Erro tratado de serviço
      */
-    public TenantOutput getTenantByDomain(String tenantDomain) throws ServiceException {
-        return execute(getQueriesUrl(EndpointPath.Tenant.GET_TENANT_BY_DOMAIN), new GetTenantByDomainInput(tenantDomain), this.token, TenantOutput.class);
+    public TenantOutput getTenantByDomain(GetTenantByDomainInput input) throws ServiceException {
+        return execute(getQueriesUrl(EndpointPath.Tenant.GET_TENANT_BY_DOMAIN), input, this.token, TenantOutput.class);
     }
 
 }

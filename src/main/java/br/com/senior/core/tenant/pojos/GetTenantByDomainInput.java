@@ -1,14 +1,14 @@
 package br.com.senior.core.tenant.pojos;
 
 import lombok.AccessLevel;
-import lombok.Data;
+import lombok.Builder;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
 /**
  * Payload de entrada do {@link br.com.senior.core.tenant.TenantClient#getTenantByDomain(String) getTenantByDomain}
  */
-@Data
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class GetTenantByDomainInput {
     /**

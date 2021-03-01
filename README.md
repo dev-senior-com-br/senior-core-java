@@ -43,7 +43,7 @@ public enum Environment {
 
 ## Exemplo Rápido
 
-Implementamos no pacote `examples/src/main/java/br/com/senior/core/` um conjunto de classes de examplos para cada serviço. Alguns serviços dependem de variáveis que precisam ser informadas pelos usuários, como login e senha para testar o login, ou token de acesso para os testes de autorização.
+Implementamos no pacote `examples/src/main/java/br/com/senior/core/` um conjunto de classes de exemplos para cada serviço. Alguns serviços dependem de variáveis que precisam ser informadas pelos usuários, como login e senha para testar o login, ou token de acesso para os testes de autorização.
 Testes de login multi-fator por exemplo dependem de um usuário que esteja configurado dessa para tal.
 
 O ambiente pode ser definido no construtor de cada client, por padrão é utilizado o ambiente de homologação.
@@ -71,11 +71,11 @@ Para mudar o ambiente para produção é necessário informar o environment ao c
 
 - [Authentication](examples/src/main/java/br/com/senior/core/authentication/AuthenticationExample.java)
 - [Authorization](examples/src/main/java/br/com/senior/core/authorization/AuthorizationExample.java)
-- [Blob]()
+- [Blob](examples/src/main/java/br/com/senior/core/blob/BlobExample.java)
 - [Configuration]()
 - [Entity]()
 - [Notification](examples/src/main/java/br/com/senior/core/notification/NotificationExample.java)
-- [Tenant]()
+- [Tenant](examples/src/main/java/br/com/senior/core/tenant/TenantExample.java)
 - [Users](examples/src/main/java/br/com/senior/core/user/UserExample.java)
 
 ### Variáveis de ambiente:

@@ -102,6 +102,15 @@ public class UserExample extends BaseExample {
         System.out.println("CreateGroup: " + groupId);
 
 
+        // GetGroup
+        GetGroupInput getGroupInput = GetGroupInput.builder()
+                .id(groupId)
+                .build();
+        GetGroupOutput getGroupOutput = client.getGroup(getGroupInput);
+
+        System.out.println("GetGroup: " + getGroupOutput.name + " - " + getGroupOutput.description);
+
+
         // UpdateGroup
         UpdateGroupInput updateGroupInput = UpdateGroupInput.builder()
                 .id(groupId)
@@ -112,15 +121,6 @@ public class UserExample extends BaseExample {
         UpdateGroupOutput updateGroupOutput = client.updateGroup(updateGroupInput);
 
         System.out.println("UpdateGroup: " + updateGroupOutput.id);
-
-
-        // GetGroup
-        GetGroupInput getGroupInput = GetGroupInput.builder()
-                .id(groupId)
-                .build();
-        GetGroupOutput getGroupOutput = client.getGroup(getGroupInput);
-
-        System.out.println("GetGroup: " + getGroupOutput.name + " - " + getGroupOutput.description);
 
 
         // ListGroups
@@ -141,9 +141,10 @@ public class UserExample extends BaseExample {
                 .build();
         ListGroupUsersOutput listGroupUsersOutput = client.listGroupUsers(input);
 
-        System.out.println("ListGroupUsers: " + listGroupUsersOutput.users
-                .stream().map(GroupBasicUser::getUsername)
-                .collect(toList()));
+        System.out.println("ListGroupUsers: " + String.join(", ",
+                listGroupUsersOutput.users
+                        .stream().map(GroupBasicUser::getUsername)
+                        .collect(toList())));
 
 
         // UpdateGroupUsers
