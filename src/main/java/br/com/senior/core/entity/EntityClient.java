@@ -4,7 +4,6 @@ import br.com.senior.core.base.Environment;
 import br.com.senior.core.base.HttpMethod;
 import br.com.senior.core.base.RequestUtils;
 import br.com.senior.core.base.ServiceException;
-import br.com.senior.core.entity.pojos.Pessoa;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -44,16 +43,13 @@ public class EntityClient<T> {
     public EntityPage<T> getWithFilter(String entityName, String filter) throws ServiceException {
         EntityPage<T> execute = RequestUtils.execute(getUrl(entityName, null, filter), null, token, null, EntityPage.class, HttpMethod.GET);
         execute.setClz(clazz);
+
         Gson gson = new Gson();
         JsonElement json = gson.toJsonTree(execute.getContents());
+        Type type = new TypeToken<List<T>>() {}.getType();
 
-        Type type = new TypeToken<List<Pessoa>>() {}.getType();
         List<T> list = gson.fromJson(json, type);
 
-//        gson.fromJson(jsonObject, clazz);
-
-//        byte[] json = mapper.writeValueAsBytes(singleObject);
-//        List<T> list = Optional.ofNullable(execute.getContents()).map(json -> new Gson().fromJson(json, clazz)).stream().collect(toList()).orElse(null) ;
         return new EntityPage<T>(execute.getTotalPages(), execute.getTotalElements(), list, clazz);
     }
 

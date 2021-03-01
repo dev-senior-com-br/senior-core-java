@@ -20,8 +20,10 @@ public class Pessoa {
     String id;
     @SerializedName("apePes")
     String nomeFantasia;
-    String cnpCpf;
-    int codPes;
+    @SerializedName("cnpCpf")
+    String documento;
+    @SerializedName("codPes")
+    int codigo;
     String codSuf;
     List custom;
     @ToString.Include
