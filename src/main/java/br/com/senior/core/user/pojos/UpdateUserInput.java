@@ -4,6 +4,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 /**
  * Payload de entrada do {@link br.com.senior.core.user.UserClient#updateUser(UpdateUserInput) updateUser}
  */
@@ -14,37 +16,37 @@ public class UpdateUserInput {
     /**
      * Nome do usuário
      */
-    public String username;
+    String username;
     /**
      * Nome completo do usuário
      */
-    public String fullName;
+    String fullName;
     /**
      * Endereço de e-mail do usuário
      */
-    public String email;
+    String email;
     /**
      * Descrição do usuário
      */
-    public String description;
+    String description;
     /**
      * Idioma preferêncial do usuário
      */
-    public String locale;
+    String locale;
     /**
      * Foto do usuário em Base64
      */
-    public String photo;
+    String photo;
     /**
      * Indica se o usuário está bloqueado
      */
-    public Boolean blocked;
+    Boolean blocked;
     /**
      * Indica se o usuário precisa trocar de senha no próximo logon
      */
-    public Boolean changePassword;
+    Boolean changePassword;
     /**
      * Lista com as propriedades que este usuário possui (opcional)
      */
-    public java.util.List<Property> properties;
+    List<Property> properties;
 }

@@ -4,6 +4,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 /**
  * Payload de entrada do {@link br.com.senior.core.user.UserClient#updateGroupUsers(UpdateGroupUsersInput) updateGroupUsers}
  */
@@ -14,13 +16,13 @@ public class UpdateGroupUsersInput {
     /**
      * Lista de usuários que serão incluídos
      */
-    public java.util.List<String> usersToAdd;
+    List<String> usersToAdd;
     /**
      * Lista de usuários que serão removidos
      */
-    public java.util.List<String> usersToRemove;
+    List<String> usersToRemove;
     /**
      * Identificador do Grupo
      */
-    public String groupId;
+    String groupId;
 }

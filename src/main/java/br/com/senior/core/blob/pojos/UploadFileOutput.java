@@ -1,41 +1,46 @@
 package br.com.senior.core.blob.pojos;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 /**
  * Representa o output das operações de blob.
  */
-@Data
-public class BlobDetails {
+@Getter
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
+public class UploadFileOutput {
     /**
      * Nome do domínio para solicitar a operação
      */
-    private String domainName;
+    String domainName;
     /**
      * Nome do serviço para solicitar a operação
      */
-    private String serviceName;
+    String serviceName;
     /**
      * Identifica exclusivamente o objeto de destino em seu serviço
      */
-    private String targetObjectId;
+    String targetObjectId;
     /**
      * Se esta for uma cópia do blob real, qual versão ele realmente está?
      */
-    private String version;
+    String version;
     /**
      * Um token secreto necessário para acessar um blob protegido
      */
-    private String token;
+    String token;
     /**
      * O local onde o arquivo reside ou deveria residir
      */
-    private Location location;
+    Location location;
     /**
      * O nome real do arquivo permanente
      */
-    private String fileName;
-
-    private String areaSecret;
+    String fileName;
 
 }

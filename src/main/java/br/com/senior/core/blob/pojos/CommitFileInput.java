@@ -1,20 +1,23 @@
 package br.com.senior.core.blob.pojos;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
-@Data
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CommitFileInput {
-    private String domainName;
-    private String serviceName;
-    private String targetObject;
-    private String version;
-    private String areaSecret;
-    private boolean release;
-    private String fileName;
-    private String defaultStyle;
-    private List<String> styles;
-    private boolean extractMetadata;
-    private Integer cacheTimeToExpireInMonths;
+    String domainName;
+    String serviceName;
+    String targetObject;
+    String version;
+    String areaSecret;
+    boolean release;
+    String fileName;
+    String defaultStyle;
+    List<String> styles;
+    boolean extractMetadata;
+    Integer cacheTimeToExpireInMonths;
 }

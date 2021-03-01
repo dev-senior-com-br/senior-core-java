@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
@@ -16,7 +18,7 @@ public class ListRolesOutput {
     /**
      * Os elementos retornados pela listagem
      */
-    java.util.List<Role> roles;
+    List<Role> roles;
     /**
      * Informações sobre os resultados da listagem
      */

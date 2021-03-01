@@ -1,36 +1,41 @@
 package br.com.senior.core.user.pojos;
 
 import lombok.AccessLevel;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
 
 /**
  * Payload de saída do {@link br.com.senior.core.user.UserClient#getGroup(GetGroupInput) getGroup}
  */
-@Data
+@Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class GetGroupOutput {
 
     /**
      * Identificador do Grupo
      */
-    public String id;
+    String id;
     /**
      * Nome do Grupo
      */
-    public String name;
+    String name;
     /**
      * Descrição do Grupo
      */
-    public String description;
+    String description;
     /**
      * E-mail do grupo
      */
-    public String email;
-
+    String email;
     /**
      * Informações básicas dos usuários do grupo
      */
-    public java.util.List<GroupBasicUser> users;
+    List<GroupBasicUser> users;
 
 }

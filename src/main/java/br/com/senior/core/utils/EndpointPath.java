@@ -9,7 +9,7 @@ import lombok.experimental.UtilityClass;
 public class EndpointPath {
 
     /**
-     * Caminhos do serviço de Autenticação
+     * Caminhos do serviço Authentication
      */
     @UtilityClass
     public class Authentication {
@@ -22,7 +22,7 @@ public class EndpointPath {
     }
 
     /**
-     * Caminhos do serviço de Autorização
+     * Caminhos do serviço Authorization
      */
     @UtilityClass
     public class Authorization {
@@ -41,7 +41,7 @@ public class EndpointPath {
     }
 
     /**
-     * Caminhos do serviço de Usuário
+     * Caminhos do serviço User
      */
     @UtilityClass
     public class User {
@@ -60,7 +60,7 @@ public class EndpointPath {
     }
 
     /**
-     * Caminhos do serviço de tenant
+     * Caminhos do serviço Tenant
      */
     @UtilityClass
     public class Tenant {
@@ -70,7 +70,7 @@ public class EndpointPath {
     }
 
     /**
-     * Caminhos do serviço de Notificação
+     * Caminhos do serviço Notification
      */
     @UtilityClass
     public class Notification {
@@ -78,6 +78,9 @@ public class EndpointPath {
         public final String NOTIFY_USER = "notifyUser";
     }
 
+    /**
+     * Caminhos do serviço Blob Service
+     */
     @UtilityClass
     public class BlobService {
         public final String COMMIT_FILE = "commitFile";

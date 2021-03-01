@@ -20,10 +20,10 @@ public class CheckAccessInput {
     /**
      * Retornar os filtros de serviço e recurso associados se possuir permissão no recurso
      */
-    Boolean includeFilters = false;
+    boolean includeFilters;
     /**
      * Retornar as delegações associadas se possuir permissão no recurso
      */
-    Boolean includeDelegations = false;
+    boolean includeDelegations;
 
 }

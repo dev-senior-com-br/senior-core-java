@@ -22,14 +22,14 @@ public class Action {
     /**
      * Indica se a ação pode ser somente utilizada por tenants master
      */
-    Boolean master;
+    boolean master;
     /**
      * Informação se a ação possui atributos, somente consulta
      */
-    Boolean hasAttributes;
+    boolean hasAttributes;
     /**
      * Informa se a ação está bloqueada
      */
-    Boolean locked = false;
+    boolean locked;
 
 }

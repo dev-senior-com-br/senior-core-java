@@ -43,7 +43,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.23.1] - 2020-08-18
 
-- Versão inicial
+### Added
+
+### Changed
+
+### Fixed
+
+### Removed
 
 [Unreleased]: https://github.com/dev-senior-com-br/senior-core-java/compare/v1.2.0...HEAD
 

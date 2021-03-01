@@ -1,30 +1,37 @@
 package br.com.senior.core.blob.pojos;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.experimental.FieldDefaults;
 
 /**
  * Represents the input to request upload the blob operations
  */
-@Data
-public class BlobRequest {
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class UploadFileInput {
     /**
      * Uma string com o nome do domínio
      */
-    private String domainName;
+    String domainName;
     /**
      * Nome do serviço que esta enviando o arquivo
      */
-    private String serviceName;
+    String serviceName;
     /**
      * Nome da pasta ou área de armazenamento
      */
-    private String areaSecret;
+    String areaSecret;
     /**
      * Identificador do arquivo no serviço onde é utilizado
      */
-    private String targetObjectId;
+    String targetObjectId;
     /**
      * Nome do arquivo
      */
-    private String fileName;
+    String fileName;
+
+    public String getAreaSecret() {
+        return areaSecret;
+    }
 }

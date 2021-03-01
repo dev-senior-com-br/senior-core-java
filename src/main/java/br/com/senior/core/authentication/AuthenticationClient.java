@@ -10,13 +10,12 @@ import br.com.senior.core.authentication.pojos.LoginWithKeyOutput;
 import br.com.senior.core.authentication.pojos.LogoutInput;
 import br.com.senior.core.authentication.pojos.LogoutOutput;
 import br.com.senior.core.authentication.pojos.RefreshTokenInput;
-import br.com.senior.core.authentication.pojos.RefreshTokenInternalOutput;
 import br.com.senior.core.authentication.pojos.RefreshTokenOutput;
 import br.com.senior.core.authentication.pojos.SeniorJsonToken;
 import br.com.senior.core.base.BaseClient;
-import br.com.senior.core.utils.EndpointPath;
 import br.com.senior.core.base.Environment;
 import br.com.senior.core.base.ServiceException;
+import br.com.senior.core.utils.EndpointPath;
 
 import java.util.Optional;
 
@@ -54,7 +53,7 @@ public class AuthenticationClient extends BaseClient {
      */
     public LoginOutput login(LoginInput payload) throws ServiceException {
         LoginInternalOutput internalOutput = executeAnonymous(getActionsUrl(EndpointPath.Authentication.LOGIN), payload, null, LoginInternalOutput.class);
-        SeniorJsonToken jsonToken = Optional.ofNullable(internalOutput.getJsonToken()).map(json -> new Gson().fromJson(json, SeniorJsonToken.class)).orElse(null);
+        SeniorJsonToken jsonToken = convertJsonToken(internalOutput.getJsonToken());
         return new LoginOutput(jsonToken, internalOutput.getMfaInfo(), internalOutput.getResetPasswordInfo());
     }
 
@@ -68,7 +67,7 @@ public class AuthenticationClient extends BaseClient {
      */
     public LoginMFAOutput loginMFA(LoginMFAInput payload) throws ServiceException {
         LoginInternalOutput internalOutput = executeAnonymous(getActionsUrl(EndpointPath.Authentication.LOGIN_MFA), payload, null, LoginInternalOutput.class);
-        SeniorJsonToken jsonToken = Optional.ofNullable(internalOutput.getJsonToken()).map(json -> new Gson().fromJson(json, SeniorJsonToken.class)).orElse(null);
+        SeniorJsonToken jsonToken = convertJsonToken(internalOutput.getJsonToken());
         return new LoginMFAOutput(jsonToken, internalOutput.getMfaInfo(), internalOutput.getResetPasswordInfo());
     }
 
@@ -81,7 +80,7 @@ public class AuthenticationClient extends BaseClient {
      */
     public LoginWithKeyOutput loginWithKey(LoginWithKeyInput payload) throws ServiceException {
         LoginInternalOutput internalOutput = executeAnonymous(getAnonymousActionsUrl(EndpointPath.Authentication.LOGIN_WITH_KEY), payload, null, LoginInternalOutput.class);
-        SeniorJsonToken jsonToken = Optional.ofNullable(internalOutput.getJsonToken()).map(json -> new Gson().fromJson(json, SeniorJsonToken.class)).orElse(null);
+        SeniorJsonToken jsonToken = convertJsonToken(internalOutput.getJsonToken());
         return new LoginWithKeyOutput(jsonToken);
     }
 
@@ -105,9 +104,13 @@ public class AuthenticationClient extends BaseClient {
      * @throws ServiceException - Erro tratado de serviço
      */
     public RefreshTokenOutput refreshToken(RefreshTokenInput payload, String tenant) throws ServiceException {
-        RefreshTokenInternalOutput internalOutput = executeAnonymous(getActionsUrl(EndpointPath.Authentication.REFRESH_TOKEN), payload, tenant, RefreshTokenInternalOutput.class);
-        SeniorJsonToken jsonToken = Optional.ofNullable(internalOutput.getJsonToken()).map(json -> new Gson().fromJson(json, SeniorJsonToken.class)).orElse(null);
+        LoginInternalOutput internalOutput = executeAnonymous(getActionsUrl(EndpointPath.Authentication.REFRESH_TOKEN), payload, tenant, LoginInternalOutput.class);
+        SeniorJsonToken jsonToken = convertJsonToken(internalOutput.getJsonToken());
         return new RefreshTokenOutput(jsonToken);
+    }
+
+    private SeniorJsonToken convertJsonToken(String jsonToken2) {
+        return Optional.ofNullable(jsonToken2).map(json -> new Gson().fromJson(json, SeniorJsonToken.class)).orElse(null);
     }
 
 }

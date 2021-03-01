@@ -14,11 +14,6 @@ import static java.util.List.of;
  */
 public class NotificationExample extends BaseExample {
 
-    private static final String RESOURCE_URI = "res://tenant/dominio/servico/recurso";
-    private static final String ROLE_NAME = "PapelParaTestes";
-
-    private static NotificationClient client;
-
     /**
      * Utilizando o {@link br.com.senior.core.notification.NotificationClient NotificationClient}
      *
@@ -30,7 +25,7 @@ public class NotificationExample extends BaseExample {
         // Login
         String accessToken = getAccessToken();
 
-        client = new NotificationClient(accessToken);
+        NotificationClient client = new NotificationClient(accessToken);
 
 
         // NotifyUser
@@ -48,7 +43,7 @@ public class NotificationExample extends BaseExample {
                 .build();
         NotifyUserOutput notifyUserOutput = client.notifyUser(notifyUserInput);
 
-        System.out.println("NotifyUser: " + notifyUserOutput.ok);
+        System.out.println("NotifyUser: " + notifyUserOutput.getOk());
     }
 
 }

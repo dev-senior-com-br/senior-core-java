@@ -11,8 +11,6 @@ import br.com.senior.core.tenant.pojos.TenantOutput;
  */
 public class TenantExample extends BaseExample {
 
-    private static TenantClient client;
-
     /**
      * Utilizando o {@link br.com.senior.core.tenant.TenantClient TenantClient}
      *
@@ -24,7 +22,7 @@ public class TenantExample extends BaseExample {
         // Login
         String accessToken = getAccessToken();
 
-        client = new TenantClient(accessToken);
+        TenantClient client = new TenantClient(accessToken);
 
 
         // GetTenantByDomain

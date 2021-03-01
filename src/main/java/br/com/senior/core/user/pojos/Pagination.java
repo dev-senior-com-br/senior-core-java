@@ -14,10 +14,12 @@ public class Pagination {
     /**
      * O número da página retornado. A primeira página corresponde ao índice 0
      */
+    @Builder.Default
     int pageNumber = 0;
     /**
      * Quantidade de registros por página
      */
+    @Builder.Default
     int pageSize = 10;
 
 }

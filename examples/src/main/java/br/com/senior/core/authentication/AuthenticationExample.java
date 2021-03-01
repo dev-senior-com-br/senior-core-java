@@ -17,8 +17,6 @@ import br.com.senior.core.base.ServiceException;
  */
 public class AuthenticationExample {
 
-    private static AuthenticationClient client;
-
     /**
      * Utilizando o {@link br.com.senior.core.authentication.AuthenticationClient AuthenticationClient}
      *
@@ -27,7 +25,7 @@ public class AuthenticationExample {
      */
     public static void main(String[] args) throws ServiceException {
 
-        client = new AuthenticationClient();
+        AuthenticationClient client = new AuthenticationClient();
 
         // Login
         String username = System.getenv("SENIOR_USERNAME");
