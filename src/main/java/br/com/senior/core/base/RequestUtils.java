@@ -32,11 +32,11 @@ public class RequestUtils {
     public static final String APPLICATION_JSON = ContentType.APPLICATION_JSON.getMimeType();
 
     /**
-     * Remove entidade da Plataforma.
+     * Remove entidade da Plataforma
      *
-     * @param url   Endpoint.
-     * @param token AccessToken de authenticação.
-     * @throws ServiceException Caso serviço esteja fora ou HTTP Status Code de retorno seja diferente de 2xx.
+     * @param url   - Endpoint
+     * @param token - AccessToken de autenticação
+     * @throws ServiceException - Caso serviço esteja fora ou HTTP Status Code de retorno seja diferente de 2xx.
      */
     public void delete(String url, String token) throws ServiceException {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
@@ -50,7 +50,7 @@ public class RequestUtils {
         }
     }
 
-    /*
+    /**
      * Executa a requisição
      *
      * @param url     - Url da requisição
@@ -66,6 +66,19 @@ public class RequestUtils {
         return execute(url, payload, token, tenant, clazz, HttpMethod.POST);
     }
 
+    /**
+     * Executa a requisição
+     *
+     * @param url     - Url da requisição
+     * @param payload - Payload de entrada
+     * @param token   - Access-token de autenticação
+     * @param tenant  - Tenant
+     * @param clazz   - Classe de payload de saída
+     * @param method  - Método HTTP
+     * @param <T>     - Tipo de classe
+     * @return - Payload de saída
+     * @throws ServiceException - Erro tratado de serviço
+     */
     public static <T> T execute(String url, Object payload, String token, String tenant, Class<T> clazz, HttpMethod method) throws ServiceException {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             HttpResponse response = null;
@@ -90,7 +103,7 @@ public class RequestUtils {
     }
 
     /**
-     * Executa a requisição POST
+     * Executa requisição HTTP com método POST
      *
      * @param url     - Url da requisição
      * @param payload - Payload de entrada
@@ -115,7 +128,7 @@ public class RequestUtils {
      *
      * @param response - Resposta http
      * @param clazz    - Classe de payload de saída
-     * @param <T>-     Tipo de classe
+     * @param <T>      - Tipo de classe
      * @return - Resposta em json
      * @throws IOException      - Erro de comunicação
      * @throws ServiceException - Erro tratado de serviço
@@ -135,13 +148,13 @@ public class RequestUtils {
     }
 
     /**
-     * Executa requisição HTTP com metodo DELETE.
+     * Executa requisição HTTP com método DELETE
      *
-     * @param url    Enpoint.
-     * @param client Cliente HTTP.
-     * @param token  Access Token obtido na authenticação.
-     * @return Resposta HTTP.
-     * @throws IOException Erro de comunicação
+     * @param url    - Endpoint
+     * @param client - Cliente HTTP
+     * @param token  - Access Token obtido na autenticação
+     * @return - Resposta HTTP
+     * @throws IOException - Erro de comunicação
      */
     private HttpResponse executeDelete(String url, CloseableHttpClient client, String token) throws IOException {
         HttpDelete delete = new HttpDelete(url);
@@ -150,6 +163,15 @@ public class RequestUtils {
         return client.execute(delete);
     }
 
+    /**
+     * Executa a requisição HTTP com método GET
+     *
+     * @param url    - Endpoint
+     * @param client - Cliente HTTP
+     * @param token  - Access Token obtido na autenticação
+     * @return - Resposta HTTP
+     * @throws IOException - Erro de comunicação
+     */
     private static HttpResponse executeGet(String url, CloseableHttpClient client, String token) throws IOException {
         HttpGet get = new HttpGet(url);
         get.setHeader(CONTENT_TYPE, APPLICATION_JSON);
@@ -158,6 +180,16 @@ public class RequestUtils {
         return client.execute(get);
     }
 
+    /**
+     * Executa a requisição HTTP com método PUT
+     *
+     * @param url     - Endpoint
+     * @param payload - Payload de Entrada
+     * @param client  - Cliente HTTP
+     * @param token   - Access Token obtido na autenticação
+     * @return - Resposta HTTP
+     * @throws IOException - Erro de comunicação
+     */
     public static HttpResponse executePut(String url, Object payload, CloseableHttpClient client, String token) throws IOException {
         HttpPut put = new HttpPut(url);
         put.setHeader(CONTENT_TYPE, APPLICATION_JSON);
