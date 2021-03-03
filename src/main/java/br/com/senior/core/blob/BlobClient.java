@@ -11,6 +11,9 @@ import br.com.senior.core.blob.pojos.UploadFileInput;
 import br.com.senior.core.blob.pojos.UploadFileOutput;
 import br.com.senior.core.utils.EndpointPath;
 
+/**
+ * Cliente do serviço de  <a href="https://dev.senior.com.br/api_publica/platform_blob_service/">tenant</a>
+ */
 public class BlobClient extends BaseClient {
 
     String token;
