@@ -49,23 +49,23 @@ public class TenantClient extends BaseClient {
     /**
      * Obtêm os dados de um tenant
      *
-     * @param input - Payload de entrada
+     * @param tenantName - Nome do tenant
      * @return - Os dados do tenant
      * @throws ServiceException - Erro tratado de serviço
      */
-    public TenantOutput getTenantByName(GetTenantByNameInput input) throws ServiceException {
-        return execute(getQueriesUrl(EndpointPath.Tenant.GET_TENANT_BY_NAME), input, this.token, TenantOutput.class);
+    public TenantOutput getTenantByName(String tenantName) throws ServiceException {
+        return execute(getQueriesUrl(EndpointPath.Tenant.GET_TENANT_BY_NAME), new GetTenantByNameInput(tenantName), this.token, TenantOutput.class);
     }
 
     /**
      * Obtêm os dados de um tenant
      *
-     * @param input - Payload de entrada
+     * @param tenantDomain - Domínio do tenant
      * @return - Os dados do tenant
      * @throws ServiceException - Erro tratado de serviço
      */
-    public TenantOutput getTenantByDomain(GetTenantByDomainInput input) throws ServiceException {
-        return execute(getQueriesUrl(EndpointPath.Tenant.GET_TENANT_BY_DOMAIN), input, this.token, TenantOutput.class);
+    public TenantOutput getTenantByDomain(String tenantDomain) throws ServiceException {
+        return execute(getQueriesUrl(EndpointPath.Tenant.GET_TENANT_BY_DOMAIN), new GetTenantByDomainInput(tenantDomain), this.token, TenantOutput.class);
     }
 
 }

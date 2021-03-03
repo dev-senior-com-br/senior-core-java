@@ -2,8 +2,6 @@ package br.com.senior.core.tenant;
 
 import br.com.senior.core.BaseExample;
 import br.com.senior.core.base.ServiceException;
-import br.com.senior.core.tenant.pojos.GetTenantByDomainInput;
-import br.com.senior.core.tenant.pojos.GetTenantByNameInput;
 import br.com.senior.core.tenant.pojos.TenantOutput;
 
 /**
@@ -26,18 +24,12 @@ public class TenantExample extends BaseExample {
 
 
         // GetTenantByDomain
-        GetTenantByDomainInput getTenantByDomainInput = GetTenantByDomainInput.builder()
-                .tenantDomain(System.getenv("TENANT_DOMAIN"))
-                .build();
-        TenantOutput tenantByDomainOutput = client.getTenantByDomain(getTenantByDomainInput);
-        System.out.println("GetTenantByDomain: " + tenantByDomainOutput.getTenant().getName());
+        TenantOutput tenantByDomainOutput = client.getTenantByDomain(System.getenv("TENANT_DOMAIN"));
+        System.out.println("GetTenantByDomain: " + tenantByDomainOutput.getTenant().getDomain());
 
 
         // GetTenantByName
-        GetTenantByNameInput getTenantByNameInput = GetTenantByNameInput.builder()
-                .tenantName(System.getenv("TENANT_NAME"))
-                .build();
-        TenantOutput tenantByNameOutput = client.getTenantByName(getTenantByNameInput);
+        TenantOutput tenantByNameOutput = client.getTenantByName(System.getenv("TENANT_NAME"));
         System.out.println("GetTenantByName: " + tenantByNameOutput.getTenant().getName());
     }
 
