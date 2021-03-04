@@ -36,5 +36,4 @@ public class SeniorJsonToken {
      * Nome do usuário dono do token
      */
     String username;
-
 }

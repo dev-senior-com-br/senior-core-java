@@ -53,7 +53,7 @@ public class EndpointPath {
     }
 
     /**
-     * Caminhos do serviço de Usuário
+     * Caminhos do serviço User
      */
     @UtilityClass
     public class User {
