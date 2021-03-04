@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 /**
  * Payload de entrada do {@link br.com.senior.core.user.UserClient#createGroup(CreateGroupInput) createGroup}
  */
@@ -16,19 +18,19 @@ public class CreateGroupInput {
      * Nome do grupo
      */
     @NonNull
-    public String name;
+    String name;
     /**
      * Descrição do grupo
      */
-    public String description;
+    String description;
     /**
      * E-mail do grupo
      */
     @NonNull
-    public String email;
+    String email;
     /**
      * Lista de usuários a serem associados ao grupo
      */
-    public java.util.List<String> users;
+    List<String> users;
 
 }

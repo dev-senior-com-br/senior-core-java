@@ -16,8 +16,10 @@ import lombok.experimental.FieldDefaults;
 public class LoginWithKeyOutput {
 
     /**
-     * String contendo um json com o token de acesso e tempo de validade do token de acesso
+     * Contém os tokens de acesso, de refresh, o tempo de validade restante para o token de acesso e o nome do usuário.
+     * Se o usuário/tenant estiver configurado para usar autenticação multifator, esse token não será retornado. Ao invés disso, será retornado um token temporário, dentro do 'mfaInfo', que
+     * deverá ser enviado na primitiva loginMFA.
      */
-    String jsonToken;
+    SeniorJsonToken jsonToken;
 
 }

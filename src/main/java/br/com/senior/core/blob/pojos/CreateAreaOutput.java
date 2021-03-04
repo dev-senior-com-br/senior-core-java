@@ -1,8 +1,17 @@
 package br.com.senior.core.blob.pojos;
 
-import lombok.Data;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
-@Data
+@Getter
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreateAreaOutput {
-    private boolean success;
+
+    boolean success;
+
 }

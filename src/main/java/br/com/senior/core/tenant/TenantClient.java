@@ -3,13 +3,13 @@ package br.com.senior.core.tenant;
 import br.com.senior.core.authentication.pojos.LoginInput;
 import br.com.senior.core.authentication.pojos.LoginMFAInput;
 import br.com.senior.core.authentication.pojos.LoginWithKeyInput;
+import br.com.senior.core.base.BaseClient;
+import br.com.senior.core.base.Environment;
+import br.com.senior.core.base.ServiceException;
 import br.com.senior.core.tenant.pojos.GetTenantByDomainInput;
 import br.com.senior.core.tenant.pojos.GetTenantByNameInput;
 import br.com.senior.core.tenant.pojos.TenantOutput;
-import br.com.senior.core.base.BaseClient;
 import br.com.senior.core.utils.EndpointPath;
-import br.com.senior.core.base.Environment;
-import br.com.senior.core.base.ServiceException;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 

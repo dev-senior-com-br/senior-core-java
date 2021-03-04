@@ -4,6 +4,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 /**
  * Payload de entrada do {@link br.com.senior.core.notification.NotificationClient#notifyUser(NotifyUserInput) notifyUser}
  */
@@ -15,46 +17,46 @@ public class NotifyUserInput {
      * Class of notification. Identifies the context of the notification/group of notifications.
      * ATTENTION: THIS FIELD WILL BECOME REQUIRED AS OF AUGUST 2019.
      */
-    public String notificationClass;
+    String notificationClass;
     /**
      * Origin of notification. Free text.
      */
-    public String notificationOrigin;
+    String notificationOrigin;
     /**
      * Notification kind
      */
-    public UserNotificationKind notificationKind;
+    UserNotificationKind notificationKind;
     /**
      * Notification priority
      */
-    public UserNotificationPriority notificationPriority;
+    UserNotificationPriority notificationPriority;
     /**
      * Notification subject
      */
-    public String notificationSubject;
+    String notificationSubject;
     /**
      * Notification content
      */
-    public String notificationContent;
+    String notificationContent;
     /**
      * Domain that generates the notification
      */
-    public String sourceDomain;
+    String sourceDomain;
     /**
      * Service that generates the notification
      */
-    public String sourceService;
+    String sourceService;
     /**
      * Names of the destination users
      */
-    public java.util.List<String> destinationUsers;
+    List<String> destinationUsers;
     /**
      * Name of the destination user
      */
-    public String destinationUser;
+    String destinationUser;
     /**
      * Notification link.
      */
-    public String link;
+    String link;
 
 }

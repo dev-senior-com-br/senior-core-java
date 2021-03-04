@@ -20,7 +20,7 @@ public abstract class BaseClient {
      * @param domain  - Domínio
      * @param service - Serviço
      */
-    public BaseClient(String domain, String service) {
+    protected BaseClient(String domain, String service) {
         this.domain = domain;
         this.service = service;
         this.env = Environment.HOMOLOG;
@@ -33,7 +33,7 @@ public abstract class BaseClient {
      * @param service - Serviço
      * @param env     - Variáveis de ambiente
      */
-    public BaseClient(String domain, String service, Environment env) {
+    protected BaseClient(String domain, String service, Environment env) {
         this.domain = domain;
         this.service = service;
         this.env = env;

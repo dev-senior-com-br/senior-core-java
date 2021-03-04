@@ -1,16 +1,14 @@
 package br.com.senior.core.authentication.pojos;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
 import lombok.experimental.FieldDefaults;
 
 /**
  * Payload de entrada do {@link br.com.senior.core.authentication.AuthenticationClient#login(LoginInput) login}
  */
-@Data
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
 public class LoginInput {
 
     /**
@@ -31,16 +29,5 @@ public class LoginInput {
      * Escopo do token da autenticação. Opcional, se não for informado será usado o valor padrão 'desktop'
      */
     String scope;
-
-    /**
-     * Construtor
-     *
-     * @param username - Usuário
-     * @param password - Senha
-     */
-    public LoginInput(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 
 }

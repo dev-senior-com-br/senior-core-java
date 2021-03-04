@@ -1,18 +1,16 @@
 package br.com.senior.core.authorization.pojos;
 
-import java.util.List;
-
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
 
 /**
  * Payload de entrada do {@link br.com.senior.core.authorization.AuthorizationClient#saveResources(SaveResourcesInput) saveResources}
  */
-@Data
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
 public class SaveResourcesInput {
 
     /**

@@ -1,18 +1,14 @@
 package br.com.senior.core.authentication.pojos;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Builder;
 import lombok.experimental.FieldDefaults;
 
 /**
  * Payload de entrada do {@link br.com.senior.core.authentication.AuthenticationClient#loginMFA(LoginMFAInput) loginMFA}
  */
-@Getter
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
-@NoArgsConstructor
 public class LoginMFAInput {
 
     /**
@@ -22,6 +18,6 @@ public class LoginMFAInput {
     /**
      * Código de validação gerado pelo Google Authenticator
      */
-    Long validationCode;
+    String validationCode;
 
 }

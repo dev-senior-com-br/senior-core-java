@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+-   Transformando as classes de testes unitários em classes de exemplos.
+
 ## [1.2.0] - 2021-02-03
 
 ### Changed
@@ -15,23 +19,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.0] - 2020-08-31
 
+### Changed
+
+-   Melhorias na classe `NotificationIT`
+
 ## [1.0.0] - 2020-08-25
 
 ### Added
 
--   ECOAPI-222 - Criado classe `BlobClient` para realizar as chamadas para o serviço de manipulação de arquivos(`BlobService`)
+-   Criado classe `BlobClient` para realizar as chamadas para o serviço de manipulação de arquivos(`BlobService`)
 
 ### Changed
 
--   ECOAPI-785 - Refatorado testes de exemplo da classe `UserIT`
+-   Refatorado testes de exemplo da classe `UserIT`
 
 ### Removed
 
--   ECOAPI-785 - Removido campo email da classe `GetUserInput`
+-   Removido campo email da classe `GetUserInput`
 
 ### Fixed
 
--   ECOAPI-785 - Correção da URL quando a busca de entidades contém filtros
+-   Correção da URL quando a busca de entidades contém filtros
 
 ## [0.23.1] - 2020-08-18
 

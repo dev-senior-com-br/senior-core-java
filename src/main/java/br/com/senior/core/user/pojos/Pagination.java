@@ -1,23 +1,25 @@
 package br.com.senior.core.user.pojos;
 
 import lombok.AccessLevel;
-import lombok.Data;
+import lombok.Builder;
 import lombok.experimental.FieldDefaults;
 
 /**
  * Dados de paginação de uma lista
  */
-@Data
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Pagination {
 
     /**
      * O número da página retornado. A primeira página corresponde ao índice 0
      */
-    public Long pageNumber = 0L;
+    @Builder.Default
+    int pageNumber = 0;
     /**
      * Quantidade de registros por página
      */
-    public Long pageSize = 10L;
+    @Builder.Default
+    int pageSize = 10;
 
 }

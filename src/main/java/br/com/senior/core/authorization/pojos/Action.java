@@ -1,18 +1,14 @@
 package br.com.senior.core.authorization.pojos;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Builder;
 import lombok.experimental.FieldDefaults;
 
 /**
  * Uma ação de um recurso
  */
-@Getter
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor
-@NoArgsConstructor
 public class Action {
 
     /**
@@ -26,18 +22,14 @@ public class Action {
     /**
      * Indica se a ação pode ser somente utilizada por tenants master
      */
-    Boolean master;
+    boolean master;
     /**
      * Informação se a ação possui atributos, somente consulta
      */
-    Boolean hasAttributes;
+    boolean hasAttributes;
     /**
      * Informa se a ação está bloqueada
      */
-    Boolean locked = false;
-
-    public Action(String name) {
-        this.name = name;
-    }
+    boolean locked;
 
 }
