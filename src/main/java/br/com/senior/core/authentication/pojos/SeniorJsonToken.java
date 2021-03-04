@@ -37,7 +37,4 @@ public class SeniorJsonToken {
      */
     String username;
 
-    public String getAccessToken() {
-        return access_token;
-    }
 }
