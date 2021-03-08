@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+-   Incluidas as primitivas `getCustomProperty`, `createCustomProperty`, `updateCustomProperty` e `deleteCustomProperty` do serviço Configuration
+
 ### Changed
 
 -   Transformando as classes de testes unitários em classes de exemplos.
@@ -15,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
--   ECOAPI-876 - Alterado os endpoints do `User.deleteGroup` e `User.deleteUser`. Agora passam a chamar o serviço de `user` (`user\actions\deleteUser` e `user\actions\removeGroup`).
+-   Alterado os endpoints do `User.deleteGroup` e `User.deleteUser`. Agora passam a chamar o serviço de `user` (`user\actions\deleteUser` e `user\actions\removeGroup`).
 
 ## [1.1.0] - 2020-08-31
 
