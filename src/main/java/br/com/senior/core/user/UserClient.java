@@ -29,7 +29,7 @@ import br.com.senior.core.base.Environment;
 import br.com.senior.core.base.ServiceException;
 
 /**
- * Cliente o serviço de <a href="https://dev.senior.com.br/apis/platform_user/">Usuários</a>
+ * Cliente o serviço de <a href="https://dev.senior.com.br/api_publica/platform_user/">Usuários</a>
  */
 public class UserClient extends BaseClient {
 

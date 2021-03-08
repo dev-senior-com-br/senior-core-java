@@ -22,7 +22,7 @@ import java.util.Optional;
 import com.google.gson.Gson;
 
 /**
- * Cliente do serviço de  <a href="https://dev.senior.com.br/apis/platform_authentication">Autenticação</a>
+ * Cliente do serviço de  <a href="https://dev.senior.com.br/api_publica/platform_authentication">Autenticação</a>
  */
 public class AuthenticationClient extends BaseClient {
 

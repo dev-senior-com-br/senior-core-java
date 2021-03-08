@@ -14,7 +14,7 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
 /**
- * Cliente do serviço de  <a href="https://dev.senior.com.br/apis/platform_tenant">tenant</a>
+ * Cliente do serviço de  <a href="https://dev.senior.com.br/api_publica/platform_tenant">tenant</a>
  */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TenantClient extends BaseClient {

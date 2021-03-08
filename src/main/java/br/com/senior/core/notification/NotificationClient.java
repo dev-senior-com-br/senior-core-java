@@ -13,7 +13,7 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
 /**
- * Cliente o serviço de <a href="https://dev.senior.com.br/apis/platform_notifications">Notificação</a>
+ * Cliente o serviço de <a href="https://dev.senior.com.br/api_publica/platform_notifications">Notificação</a>
  */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class NotificationClient extends BaseClient {

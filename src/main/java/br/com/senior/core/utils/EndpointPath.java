@@ -41,6 +41,18 @@ public class EndpointPath {
     }
 
     /**
+     * Caminhos do serviço Configuration
+     */
+    @UtilityClass
+    public class Configuration {
+
+        public final String GET_CUSTOM_PROPERTY = "getCustomProperty";
+        public final String CREATE_CUSTOM_PROPERTY = "createCustomProperty";
+        public final String UPDATE_CUSTOM_PROPERTY = "updateCustomProperty";
+        public final String DELETE_CUSTOM_PROPERTY = "deleteCustomProperty";
+    }
+
+    /**
      * Caminhos do serviço User
      */
     @UtilityClass
