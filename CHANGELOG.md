@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2021-03-08
+
 ### Added
 
 -   Incluidas as primitivas `getCustomProperty`, `createCustomProperty`, `updateCustomProperty` e `deleteCustomProperty` do serviço Configuration
@@ -55,7 +57,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-[Unreleased]: https://github.com/dev-senior-com-br/senior-core-java/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/dev-senior-com-br/senior-core-java/compare/2.0.0...HEAD
+
+[2.0.0]: https://github.com/dev-senior-com-br/senior-core-java/compare/1.2.0...2.0.0
 
 [1.2.0]: https://github.com/dev-senior-com-br/senior-core-java/compare/v1.1.0...1.2.0
 
