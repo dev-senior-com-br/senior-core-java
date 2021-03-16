@@ -177,6 +177,15 @@ public class AuthorizationExample extends BaseExample {
                 .name(ROLE_NAME)
                 .build();
         client.deleteRole(deleteRoleInput);
+
+        // GetRoleFilters
+        GetRoleFiltersInput input = GetRoleFiltersInput.builder()
+            .roles(Arrays.asList("papel"))
+            .domainName("domainName")
+            .serviceName("serviceName")
+            .build();
+
+        GetRoleFiltersOutput getRoleFiltersOutput = client.getRoleFilters(input);
     }
 
 }
