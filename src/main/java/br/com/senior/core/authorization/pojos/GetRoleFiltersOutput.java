@@ -14,6 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 public class GetRoleFiltersOutput {
 
+    /**
+     * Os filtros dos papéis unificados
+     */
     List<RoleServiceFilterSet> filters;
 
 }
