@@ -32,6 +32,7 @@ public class EndpointPath {
         public final String DELETE_RESOURCES = "deleteResources";
         public final String GET_ROLE = "getRole";
         public final String CREATE_ROLE = "createRole";
+        public final String GET_ROLE_FILTERS = "getRoleFilters";
         public final String DELETE_ROLE = "deleteRole";
         public final String GET_ASSIGN_USERS = "getAssignedUsers";
         public final String ASSIGN_USER = "assignUsers";

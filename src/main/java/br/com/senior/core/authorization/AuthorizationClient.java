@@ -17,6 +17,8 @@ import br.com.senior.core.authorization.pojos.GetAssignedUsersInput;
 import br.com.senior.core.authorization.pojos.GetAssignedUsersOutput;
 import br.com.senior.core.authorization.pojos.GetResourcesInput;
 import br.com.senior.core.authorization.pojos.GetResourcesOutput;
+import br.com.senior.core.authorization.pojos.GetRoleFiltersInput;
+import br.com.senior.core.authorization.pojos.GetRoleFiltersOutput;
 import br.com.senior.core.authorization.pojos.GetRoleInput;
 import br.com.senior.core.authorization.pojos.GetRoleOutput;
 import br.com.senior.core.authorization.pojos.ListRolesInput;
@@ -190,5 +192,16 @@ public class AuthorizationClient extends BaseClient {
      */
     public ListRolesOutput listRoles(ListRolesInput payload) throws ServiceException {
         return execute(getQueriesUrl(EndpointPath.Authorization.LIST_ROLES), payload, this.token, ListRolesOutput.class);
+    }
+
+    /**
+     * Retorna a união dos filtros de um papel
+     *
+     * @param payload - Payload de entrada com os nomes dos papéis a serem consultados
+     * @return - Payload de saída com a união dos filtros
+     * @throws ServiceException - Erro tratado de serviço
+     */
+    public GetRoleFiltersOutput getRoleFilters(GetRoleFiltersInput payload) throws ServiceException {
+        return execute(getQueriesUrl(EndpointPath.Authorization.GET_ROLE_FILTERS), payload, this.token, GetRoleFiltersOutput.class);
     }
 }
