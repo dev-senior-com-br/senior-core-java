@@ -5,6 +5,8 @@ import br.com.senior.core.base.ServiceException;
 import br.com.senior.core.configuration.pojos.CustomPropertyValue;
 import br.com.senior.core.configuration.pojos.DeleteCustomPropertyInput;
 import br.com.senior.core.configuration.pojos.GetCustomPropertyInput;
+import br.com.senior.core.configuration.pojos.ListServicePropertiesInput;
+import br.com.senior.core.configuration.pojos.ListServicePropertiesOutput;
 import br.com.senior.core.configuration.pojos.PropertyLevel;
 import br.com.senior.core.configuration.pojos.PropertyType;
 
@@ -67,5 +69,16 @@ public class ConfigurationExample extends BaseExample {
                 .propertyKey("teste")
                 .build();
         client.deleteCustomProperty(deleteCustomPropertyInput);
+
+        // ListServiceProperties
+        ListServicePropertiesInput listServicePropertiesInput = ListServicePropertiesInput.builder()
+                .dominio("domain01")
+                .servico("service01")
+                .build();
+
+        ListServicePropertiesOutput listServicePropertiesOutput = client.listServiceProperties(listServicePropertiesInput);
+
+        listServicePropertiesOutput.getPropertyList().stream()
+                .forEach(output -> System.out.println(String.format("Property Key: %s\nProperty Value: %s\n", output.getPropertyKey(), output.getPropertyValue())));
     }
 }

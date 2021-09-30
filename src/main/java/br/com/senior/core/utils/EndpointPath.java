@@ -51,6 +51,7 @@ public class EndpointPath {
         public final String CREATE_CUSTOM_PROPERTY = "createCustomProperty";
         public final String UPDATE_CUSTOM_PROPERTY = "updateCustomProperty";
         public final String DELETE_CUSTOM_PROPERTY = "deleteCustomProperty";
+        public final String LIST_SERVICE_PROPERTIES = "listServiceProperties";
     }
 
     /**

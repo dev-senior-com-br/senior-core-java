@@ -11,6 +11,8 @@ import br.com.senior.core.configuration.pojos.CustomPropertyValue;
 import br.com.senior.core.configuration.pojos.DeleteCustomPropertyInput;
 import br.com.senior.core.configuration.pojos.DeleteCustomPropertyOutput;
 import br.com.senior.core.configuration.pojos.GetCustomPropertyInput;
+import br.com.senior.core.configuration.pojos.ListServicePropertiesInput;
+import br.com.senior.core.configuration.pojos.ListServicePropertiesOutput;
 import br.com.senior.core.configuration.pojos.UpdateCustomPropertyOutput;
 import br.com.senior.core.utils.EndpointPath;
 
@@ -45,6 +47,17 @@ public class ConfigurationClient extends BaseClient {
         super("platform", "configuration", env);
         this.token = token;
     }
+    
+    /**
+     * Recupera uma lista de todas as propriedades de domínios/serviços do tenant atual
+     *
+     * @param payload - Payload de entrada com o nome do domínio e serviço para listagem das propriedades
+     * @return - Payload de saída com a lista de todas as propriedades de domínios/serviços do tenant atual
+     * @throws ServiceException - Erro tratado de serviço
+     */
+    public ListServicePropertiesOutput listServiceProperties(ListServicePropertiesInput payload) throws ServiceException {
+        return execute(getQueriesUrl(EndpointPath.Configuration.LIST_SERVICE_PROPERTIES), payload, this.token, ListServicePropertiesOutput.class);
+    }
 
     /**
      * Obtém uma propriedade customizada. Obtém apenas do tenant autenticado e no domínio platform, serviço __custom__
@@ -65,7 +78,7 @@ public class ConfigurationClient extends BaseClient {
      * @throws ServiceException - Erro tratado de serviço
      */
     public CreateCustomPropertyOutput createCustomConfiguration(CustomPropertyValue payload) throws ServiceException {
-        return execute(getQueriesUrl(EndpointPath.Configuration.CREATE_CUSTOM_PROPERTY), payload, this.token, CreateCustomPropertyOutput.class);
+        return execute(getActionsUrl(EndpointPath.Configuration.CREATE_CUSTOM_PROPERTY), payload, this.token, CreateCustomPropertyOutput.class);
     }
 
     /**
@@ -76,7 +89,7 @@ public class ConfigurationClient extends BaseClient {
      * @throws ServiceException - Erro tratado de serviço
      */
     public UpdateCustomPropertyOutput updateCustomConfiguration(CustomPropertyValue payload) throws ServiceException {
-        return execute(getQueriesUrl(EndpointPath.Configuration.UPDATE_CUSTOM_PROPERTY), payload, this.token, UpdateCustomPropertyOutput.class);
+        return execute(getActionsUrl(EndpointPath.Configuration.UPDATE_CUSTOM_PROPERTY), payload, this.token, UpdateCustomPropertyOutput.class);
     }
 
     /**

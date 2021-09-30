@@ -15,7 +15,7 @@ Esta biblioteca permite desenvolvedores criar integrações das APIs da Senior.
         <dependency>
             <groupId>br.com.senior</groupId>
             <artifactId>senior-core-java</artifactId>
-            <version>2.0.0</version>
+            <version>2.2.0</version>
         </dependency>
     </dependencies>
     ...
