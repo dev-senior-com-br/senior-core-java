@@ -1,3 +1,9 @@
+# SDK Descontinuada!
+
+Caso julgue necessário o uso de uma SDK, sugerimos a utilização de geradores código a partir do swagger de cada API via ferramenta https://editor.swagger.io/ (Opção Generate Client)
+
+<hr />
+<strike>
 # Senior API SDK para Java
 
 Esta biblioteca permite desenvolvedores criar integrações das APIs da Senior.
@@ -121,3 +127,4 @@ Criar um issue https://github.com/dev-senior-com-br/senior-core-java/issues
 ## License
 
 Copyright © 2020.
+</strike>
